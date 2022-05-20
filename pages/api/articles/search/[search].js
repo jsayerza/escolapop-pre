@@ -9,11 +9,31 @@ export default async function handler(req, res) {
 
 const setSearch = async (req, res) => {
   try {
-    const { search } = req.query;
+    const { search, category, price, location } = req.query;
+    console.log({
+      categoria: category,
+      precio: price,
+      locacion: location,
+    });
     //console.log("setSearch/search: ", search);
-    const [result] = await pool.query(
-      `SELECT * FROM v_article_sell WHERE (articletitle LIKE '%${search}%') OR (description LIKE '%${search}%')`
-    );
+
+    let query = `SELECT * FROM v_article_sell WHERE articletitle LIKE '%${search}%'`;
+
+    if (category && category !== null) {
+      // `SELECT * FROM v_article_sell WHERE articletitle LIKE '%${search}%' AND articlecategory = '${category}'`
+      query = query + ` AND articlecategory = '${category}'`;
+    }
+
+    if (price && price !== null) {
+      query = query + ` AND price = ${price}`;
+    }
+
+    if (location && location !== null) {
+      query = query + ` AND location = '${location}'`;
+    }
+
+    console.log(query);
+    const [result] = await pool.query(query);
     //console.log("setSearch/result: ", result);
     return res.status(200).json(result);
   } catch (error) {
