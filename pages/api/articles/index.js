@@ -28,7 +28,7 @@ const getArticles = async (req, res) => {
 const saveArticle = async (req, res) => {
   //console.log("saveArticle/req.body: ", req.body);
   //articlesizeid
-  const { articlecategoryid, salestatusid, articletitle, description, price, useremail, articlestatusid, courseid, locationid, publicationstatusid } = req.body;
+  const { articlecategoryid, salestatusid, articletitle, description, price, useremail, articlestatusid, courseid, locationid, publicationstatusid, articlesizeid } = req.body;
 
   try {
     if (req.files?.image) {
@@ -44,6 +44,7 @@ const saveArticle = async (req, res) => {
       useremail,
       articlestatusid,
       courseid, locationid, publicationstatusid, salestatusid,
+      articlesizeid
     });
     //console.log("saveArticle/result: ", result);
     return res.json({
@@ -54,6 +55,7 @@ const saveArticle = async (req, res) => {
       useremail,
       articlestatusid,
       courseid, locationid, publicationstatusid, salestatusid,
+      articlesizeid,
       articleid: result.insertId,
     });
   } catch (error) {

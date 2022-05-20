@@ -35,6 +35,7 @@ export function ArticleForm({ articleUpdateId = null }) {
     locationid: 0,
     publicationstatusid: 0,
     salestatusid: 0,
+    articlesizeid: 0,
   });
 
   const [urlImg, setUrlImg] = useState("");
@@ -44,6 +45,7 @@ export function ArticleForm({ articleUpdateId = null }) {
   const [location, setLocation] = useState([]);
   const [publicationStatus, setPublicationStatus] = useState([]);
   const [saleStatus, setSaleStatus] = useState([]);
+  const [articleSize, setArticleSize] = useState([]);
 
   const handleUpload = (file) => {
     const { uploadTask } = uploadImage(file);
@@ -119,6 +121,16 @@ export function ArticleForm({ articleUpdateId = null }) {
       });
       //console.log("saleStatus: ", saleStatus);
       setSaleStatus(saleStatus);
+
+      const { data: articleSize } = await axios.get(HOST_SV + "/api/tables", {
+        params: {
+          table: "articleSize",
+        },
+      });
+      //console.log("articleSize: ", articleSize);
+      setArticleSize(articleSize);
+
+
     };
 
     ////TODO: revisar esto. ¿carga varias veces?
@@ -140,6 +152,7 @@ export function ArticleForm({ articleUpdateId = null }) {
           locationid: res.data.locationid,
           publicationstatusid: res.data.publicationstatusid,
           salestatusid: res.data.salestatusid,
+          articlesizeid: res.data.articlesizeid,
         });
       });
     }
@@ -232,10 +245,9 @@ export function ArticleForm({ articleUpdateId = null }) {
           articlestatusid: articleUpdateId ? updateArticle.articlestatusid : 0,
           courseid: articleUpdateId ? updateArticle.courseid : 0,
           locationid: articleUpdateId ? updateArticle.locationid : 0,
-          publicationstatusid: articleUpdateId
-            ? updateArticle.publicationstatusid
-            : 0,
+          publicationstatusid: articleUpdateId ? updateArticle.publicationstatusid : 0,
           salestatusid: articleUpdateId ? updateArticle.salestatusid : 0,
+          articlesizeid: articleUpdateId ? updateArticle.articlesizeid : 0,
         }}
         validationSchema={
           new yup.ObjectSchema({
@@ -245,7 +257,7 @@ export function ArticleForm({ articleUpdateId = null }) {
           })
         }
         onSubmit={(values, actions) => {
-          //console.log("onSubmit/values: ", values);
+          console.log("onSubmit/values: ", values);
           if (articleUpdateId !== null) {
             //console.log("onSubmit/PUT");
             //console.log("onSubmit/PUT/articleUpdateId: ", articleUpdateId);
@@ -475,6 +487,42 @@ export function ArticleForm({ articleUpdateId = null }) {
                 ))}
               </Field>
             </div>
+
+            <div className="mb-4">
+              <label
+                htmlFor="articlesizeid"
+                className="block text-gray-700 text-sm font-bold mb-2"
+              >
+                Talla:
+              </label>
+              <ErrorMessage
+                component="p"
+                className="text-xl text-left text-red-500"
+                name="articlesizeid"
+              />
+              <Field
+                component="select"
+                name="articlesizeid"
+                id="articlesizeid"
+                multiple={false}
+                className="shadow appereance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              >
+                <option key={0} value={0} label="Selecciona...">
+                  Selecciona...
+                </option>
+
+                {articleSize.map((list) => (
+                  <option
+                    key={list.articlesizeid}
+                    value={list.articlesizeid}
+                    label={list.articlesize}
+                  >
+                    {list.articlesize}
+                  </option>
+                ))}
+              </Field>
+            </div>
+
 
             <div className="mb-4">
               <label

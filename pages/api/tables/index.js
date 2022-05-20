@@ -23,7 +23,10 @@ export default async function handler(req, res) {
         
     case "saleStatus":
       return await getSaleStatus(req, res);
-            
+      
+    case "articleSize":
+      return await getArticleSize(req, res);
+
     default:
       break;
   }
@@ -87,4 +90,12 @@ const getSaleStatus = async (req, res) => {
   }
 };
 
+const getArticleSize = async (req, res) => {
+  try {
+    const [result] = await pool.query("SELECT * FROM articlesize");
+    return res.status(200).json(result);
+  } catch (error) {
+      return res.status(500).json({error});
+  }
+};
 
