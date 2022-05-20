@@ -18,6 +18,9 @@ function ArticleView({ article }) {
   const { data } = useSession();
   const router = useRouter();
 
+  const subject = "escolapop - Consulta article ";
+  const body = "Hola, estic interesat/da en l'article que tens publicat a escolapop.";
+
   const handleDelete = async (id) => {
     try {
       console.log("handleDelete/id: ", id);
@@ -119,7 +122,7 @@ function ArticleView({ article }) {
             <div className="my-12 flex justify-center">
               <button
                 className="bg-cyan-600 hover:bg-gray-800 text-white text-lg font-bold rounded ml-2 py-3 px-5"
-                onClick={() => router.push(`mailto:${article.useremail}`)}
+                onClick={() => router.push(`mailto:${article.useremail}?subject=${subject + article.articletitle}&body=${body}`)}
               >
                 Contacta amb el venedor
               </button>
