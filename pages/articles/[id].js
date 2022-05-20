@@ -90,6 +90,17 @@ function ArticleView({ article }) {
 
             <div>
               <h2 className="text-lg text-gray-900 font-semibold pb-2">
+                Talla:
+              </h2>
+              <h2 className="text-lg text-gray-900 font-bold pb-2">
+                {article.articlesize}
+              </h2>
+            </div>
+          </div>
+
+          <div className="py-2 flex justify-around items-center gap-4 my-4">
+            <div>
+              <h2 className="text-lg text-gray-900 font-semibold pb-2">
                 Ubicació de l&apos;article:
               </h2>
               <h2 className="text-lg text-gray-900 font-bold pb-2">

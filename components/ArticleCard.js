@@ -48,6 +48,12 @@ function ArticleCard({ article }) {
               </h3>
             </div>
             <div className="flex gap-2 py-1 items-center">
+              <p className="font-semibold text-gray-800">Talla:</p>
+              <h3 className="font-semibold text-gray-800 text-lg">
+                {article.articlesize}
+              </h3>
+            </div>
+            <div className="flex gap-2 py-1 items-center">
               <p className="font-semibold text-gray-800">Ubicació:</p>
               <h3 className="font-semibold text-gray-800 text-lg">
                 {article.location} ({article.locationid})
