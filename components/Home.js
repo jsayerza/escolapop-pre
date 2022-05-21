@@ -65,7 +65,7 @@ export const Home = ({ articles }) => {
 
   return (
     <>
-      <SearchBar change={handleChange} />
+      <SearchBar filters={false} />
       <h1 className="text-center text-2xl font-bold">
         {searchResult === SEARCH_RESULT_STATE.NOT_FOUND ||
         search === SEARCH_STATE.EMPTY
