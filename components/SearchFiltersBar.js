@@ -11,7 +11,8 @@ export const SearchFilterBar = ({ queryObj, keyword }) => {
   const router = useRouter();
   const [categories, setCategories] = useState([]);
   const [location, setLocation] = useState([]);
-  const [price, setPrice] = useState([]);
+  const [minPrice, setMinPrice] = useState(0);
+  const [maxPrice, setMaxPrice] = useState(9999);
   const [activeCategory, setActiveCategory] = useActiveFilters();
   const [activeLocation, setActiveLocation] = useActiveFilters();
   const [activePrice, setActivePrice] = useActiveFilters();
@@ -26,7 +27,8 @@ export const SearchFilterBar = ({ queryObj, keyword }) => {
       pathname: `/articles/search/${keyword}`,
       query: {
         category: articleCategory,
-        price: queryObj.price ? queryObj.price : null,
+        min_price: queryObj.min_price ? queryObj.min_price : null,
+        max_price: queryObj.max_price ? queryObj.max_price : null,
         location: queryObj.location ? queryObj.location : null,
       },
     });
@@ -39,12 +41,27 @@ export const SearchFilterBar = ({ queryObj, keyword }) => {
       pathname: `/articles/search/${keyword}`,
       query: {
         category: queryObj.category ? queryObj.category : null,
-        price: queryObj.price ? queryObj.price : null,
+        min_price: queryObj.min_price ? queryObj.min_price : null,
+        max_price: queryObj.max_price ? queryObj.max_price : null,
         location: location,
       },
     });
     setActiveLocation(true);
     handleCloseModalLocation();
+  };
+
+  const handlePrice = async (minPrice, maxPrice) => {
+    await router.push({
+      pathname: `/articles/search/${keyword}`,
+      query: {
+        category: queryObj.category ? queryObj.category : null,
+        min_price: minPrice ? minPrice : queryObj.min_price,
+        max_price: maxPrice ? maxPrice : queryObj.max_price,
+        location: queryObj.location ? queryObj.location : null,
+      },
+    });
+    setActivePrice(true);
+    handleCloseModalPrice();
   };
 
   const handleResetCategory = async () => {
@@ -53,7 +70,8 @@ export const SearchFilterBar = ({ queryObj, keyword }) => {
       pathname: `/articles/search/${keyword}`,
       query: {
         category: null,
-        price: queryObj.price ? queryObj.price : null,
+        min_price: queryObj.min_price ? queryObj.min_price : null,
+        max_price: queryObj.max_price ? queryObj.max_price : null,
         location: queryObj.location ? queryObj.location : null,
       },
     });
@@ -65,10 +83,32 @@ export const SearchFilterBar = ({ queryObj, keyword }) => {
       pathname: `/articles/search/${keyword}`,
       query: {
         category: queryObj.category ? queryObj.category : null,
-        price: queryObj.price ? queryObj.price : null,
+        min_price: queryObj.min_price ? queryObj.min_price : null,
+        max_price: queryObj.max_price ? queryObj.max_price : null,
         location: null,
       },
     });
+  };
+
+  const handleResetPrice = async () => {
+    setActivePrice(false);
+    await router.push({
+      pathname: `/articles/search/${keyword}`,
+      query: {
+        category: queryObj.category ? queryObj.category : null,
+        min_price: null,
+        max_price: null,
+        location: queryObj.location ? queryObj.location : null,
+      },
+    });
+  };
+
+  const handleChangeMin = (e) => {
+    setMinPrice(e.target.value);
+  };
+
+  const handleChangeMax = (e) => {
+    setMaxPrice(e.target.value);
   };
 
   useEffect(() => {
@@ -162,7 +202,9 @@ export const SearchFilterBar = ({ queryObj, keyword }) => {
 
       <div className="relative">
         {activePrice ? (
-          <ButtonFilter active={activePrice}>{queryObj.location}</ButtonFilter>
+          <ButtonFilter active={activePrice} handlerClick={handleResetPrice}>
+            {queryObj.min_price + " - " + queryObj.max_price}
+          </ButtonFilter>
         ) : (
           <>
             <ButtonFilter handlerClick={handleToggleModalPrice}>
@@ -172,13 +214,21 @@ export const SearchFilterBar = ({ queryObj, keyword }) => {
               <div className="flex justify-center items-center">
                 <div>
                   <h1>Min</h1>
-                  <input type="number" className="border-gray-900" />
+                  <input
+                    type="number"
+                    className="border-gray-900"
+                    onChange={handleChangeMin}
+                  />
                 </div>
                 <div>
                   <h1>Max</h1>
-                  <input type="number" />
+                  <input type="number" onChange={handleChangeMax} />
                 </div>
-                <ButtonFilter>filter</ButtonFilter>
+                <ButtonFilter
+                  handlerClick={() => handlePrice(minPrice, maxPrice)}
+                >
+                  Apply
+                </ButtonFilter>
               </div>
             </Modal>
           </>
