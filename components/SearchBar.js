@@ -1,27 +1,17 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/router";
 import { SearchIcon } from "../icons/SearchIcon";
 import { HOST_SV } from "config/config";
 import axios from "axios";
 import { Modal } from "../components/Modal";
 import { useModal } from "hooks/useModal";
+import { SearchFilterBar } from "./SearchFiltersBar";
 
-export default function SearchBar({ change, queryObj }) {
+export default function SearchBar({ keyword, queryObj, filters }) {
   console.log(queryObj, "form the searchBar component");
   const router = useRouter();
-  const [categories, setCategories] = useState([]);
-  const [isOpen, handleToggleModal, handleCloseModal] = useModal();
   const [search, setSearch] = useState("");
-  console.log(categories);
-
-  useEffect(() => {
-    function getCategories() {
-      axios
-        .get(HOST_SV + "/api/articles/categories")
-        .then((res) => setCategories(res.data));
-    }
-    getCategories();
-  }, []);
+  const inputRef = useRef("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -44,38 +34,11 @@ export default function SearchBar({ change, queryObj }) {
             type="text"
             placeholder="Cerca un article"
             onChange={handleChange}
+            ref={inputRef}
           />
         </div>
-        <div className="ml-2 flex justify-center">
-          <select
-            className="form-select block w-full px-3 py-2 text-base font-normal text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-            aria-label="Default select example"
-          >
-            <option disabled className="text-center">
-              Categories
-            </option>
-            {categories.map((category) => (
-              <option
-                key={category.articlecategory.id}
-                value={category.articlecategory}
-              >
-                {category.articlecategory}
-              </option>
-            ))}
-          </select>
-        </div>
       </form>
-      <div className="relative">
-        <button
-          className="relative px-4 py-2 bg-gray-200 font-bold rounded z-20"
-          onClick={handleToggleModal}
-        >
-          modal
-        </button>
-        <Modal isOpen={isOpen} closeModal={handleCloseModal}>
-          <h1>PERRO</h1>
-        </Modal>
-      </div>
+      {filters && <SearchFilterBar keyword={keyword} queryObj={queryObj} />}
     </>
   );
 }
