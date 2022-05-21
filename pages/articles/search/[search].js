@@ -8,7 +8,7 @@ function Search({ searchQuery, search, queryObj }) {
   console.log(searchQuery, search);
   return (
     <Layout>
-      <SearchBar queryObj={queryObj} />
+      <SearchBar queryObj={queryObj} keyword={search} filters={true} />
       <h1>Search :D of {search}</h1>
 
       <SearchResults searched={searchQuery} />
@@ -25,7 +25,8 @@ export const getServerSideProps = async (context) => {
     {
       params: {
         category: context.query?.category,
-        price: context.query?.price,
+        min_price: context.query?.min_price,
+        max_price: context.query?.max_price,
         location: context.query?.location,
       },
     }
