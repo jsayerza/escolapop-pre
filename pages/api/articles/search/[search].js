@@ -9,10 +9,11 @@ export default async function handler(req, res) {
 
 const setSearch = async (req, res) => {
   try {
-    const { search, category, price, location } = req.query;
+    const { search, category, min_price, max_price, location } = req.query;
     console.log({
       categoria: category,
-      precio: price,
+      precio_min: min_price,
+      precio_max: max_price,
       locacion: location,
     });
     //console.log("setSearch/search: ", search);
@@ -24,8 +25,16 @@ const setSearch = async (req, res) => {
       query = query + ` AND articlecategory = '${category}'`;
     }
 
-    if (price && price !== null) {
-      query = query + ` AND price = ${price}`;
+    if (min_price && min_price !== null) {
+      query = query + ` AND price >= ${min_price}`;
+    }
+
+    if (max_price && max_price !== null) {
+      query = query + ` AND price <= ${max_price}`;
+    }
+
+    if (min_price && min_price !== null && max_price && max_price !== null) {
+      query = query + ` AND price >= ${min_price} AND <= ${max_price}`;
     }
 
     if (location && location !== null) {
