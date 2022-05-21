@@ -25,16 +25,16 @@ const setSearch = async (req, res) => {
       query = query + ` AND articlecategory = '${category}'`;
     }
 
-    if (min_price && min_price !== null) {
+    /*     if (min_price && min_price !== null) {
       query = query + ` AND price >= ${min_price}`;
     }
 
     if (max_price && max_price !== null) {
       query = query + ` AND price <= ${max_price}`;
-    }
+    } */
 
     if (min_price && min_price !== null && max_price && max_price !== null) {
-      query = query + ` AND price >= ${min_price} AND <= ${max_price}`;
+      query = query + ` AND price >= ${min_price} AND price <= ${max_price}`;
     }
 
     if (location && location !== null) {
