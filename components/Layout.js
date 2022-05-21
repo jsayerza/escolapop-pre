@@ -6,7 +6,7 @@ export function Layout({ children }) {
     <>
       <Navbar />
 
-      <div className="bg-gray-100 h-full p-10">
+      <div className="bg-gray-100 h-full p-10 mt-16">
         <div className="container mx-auto h-full">{children}</div>
       </div>
       <ToastContainer />
