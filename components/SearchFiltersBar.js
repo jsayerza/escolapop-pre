@@ -150,7 +150,7 @@ export const SearchFilterBar = ({ queryObj, keyword }) => {
           </ButtonFilter>
         ) : (
           <>
-            <ButtonFilter handlerClick={handleToggleModal}>
+            <ButtonFilter handlerClick={handleToggleModal} isOpen={isOpen}>
               Category
             </ButtonFilter>
             <Modal isOpen={isOpen} closeModal={handleCloseModal}>
@@ -178,7 +178,10 @@ export const SearchFilterBar = ({ queryObj, keyword }) => {
           </ButtonFilter>
         ) : (
           <>
-            <ButtonFilter handlerClick={handleToggleModalLocation}>
+            <ButtonFilter
+              handlerClick={handleToggleModalLocation}
+              isOpen={isOpenLocation}
+            >
               Location
             </ButtonFilter>
             <Modal
@@ -207,7 +210,10 @@ export const SearchFilterBar = ({ queryObj, keyword }) => {
           </ButtonFilter>
         ) : (
           <>
-            <ButtonFilter handlerClick={handleToggleModalPrice}>
+            <ButtonFilter
+              handlerClick={handleToggleModalPrice}
+              isOpen={isOpenPrice}
+            >
               Price
             </ButtonFilter>
             <Modal isOpen={isOpenPrice} closeModal={handleCloseModalPrice}>
