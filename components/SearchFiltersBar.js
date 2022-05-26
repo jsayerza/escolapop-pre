@@ -217,18 +217,22 @@ export const SearchFilterBar = ({ queryObj, keyword }) => {
               Price
             </ButtonFilter>
             <Modal isOpen={isOpenPrice} closeModal={handleCloseModalPrice}>
-              <div className="flex justify-center items-center">
+              <div className="flex flex-col gap-2 justify-center items-center lg:items-end lg:flex-row md:gap-1">
                 <div>
                   <h1>Min</h1>
                   <input
                     type="number"
-                    className="border-gray-900"
+                    className="border-gray-300 p-1 border rounded focus:outline-2 focus:outline-orange-400"
                     onChange={handleChangeMin}
                   />
                 </div>
                 <div>
                   <h1>Max</h1>
-                  <input type="number" onChange={handleChangeMax} />
+                  <input
+                    type="number"
+                    className="border-gray-300 p-1 border rounded focus:outline-2 focus:outline-orange-400"
+                    onChange={handleChangeMax}
+                  />
                 </div>
                 <ButtonFilter
                   handlerClick={() => handlePrice(minPrice, maxPrice)}
