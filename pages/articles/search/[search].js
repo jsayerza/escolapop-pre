@@ -9,7 +9,7 @@ function Search({ searchQuery, search, queryObj }) {
   return (
     <Layout>
       <SearchBar queryObj={queryObj} keyword={search} filters={true} />
-      <h1>Search :D of {search}</h1>
+      <h1 className="font-semibold text-3xl p-4">Search of {search}</h1>
 
       <SearchResults searched={searchQuery} />
     </Layout>
