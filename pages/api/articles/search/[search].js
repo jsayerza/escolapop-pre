@@ -9,12 +9,14 @@ export default async function handler(req, res) {
 
 const setSearch = async (req, res) => {
   try {
-    const { search, category, min_price, max_price, location } = req.query;
+    const { search, category, min_price, max_price, location, size, course } =
+      req.query;
     console.log({
       categoria: category,
       precio_min: min_price,
       precio_max: max_price,
       locacion: location,
+      course: course,
     });
     //console.log("setSearch/search: ", search);
 
@@ -39,6 +41,14 @@ const setSearch = async (req, res) => {
 
     if (location && location !== null) {
       query = query + ` AND location = '${location}'`;
+    }
+
+    if (size && size !== null) {
+      query = query + ` AND articlesize = '${size}'`;
+    }
+
+    if (course && course !== null) {
+      query = query + ` AND course = '${course}'`;
     }
 
     console.log(query);
