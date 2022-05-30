@@ -2,34 +2,37 @@ import { useState, useEffect } from "react";
 import Layout from "../components/Layout";
 import axios from "axios";
 import { HOST_SV } from "../config/config";
-import { getSession } from "next-auth/react";
 import { useRouter } from "next/router";
 
 /* import ArticleCard from "components/ArticleCard";
 import { map } from "@firebase/util"; */
 import ArticleList from "../components/ArticleList";
 import { ProfileBar } from "components/ProfileBar";
+import { useUser } from "context/authContext";
 
 function ProfilePage() {
+  const { user } = useUser();
+  console.log(user);
   const router = useRouter();
   const [profileArticles, setProfileArticles] = useState([]);
 
   useEffect(() => {
     async function getProfileArticles() {
-      const session = await getSession();
-      if (!session || session === null || session === undefined) {
-        return router.push("/");
+      if (!user || user === null || user === undefined) {
+        return router.push("/login");
       }
 
-      if (session) {
-        const { data } = await axios.get(HOST_SV + "/api/articles/profile");
+      if (user) {
+        const { data } = await axios.get(HOST_SV + "/api/articles/profile", {
+          email: user.email,
+        });
         //console.log("profileArticles/data: ", data);
         setProfileArticles(data);
       }
     }
 
     getProfileArticles();
-  }, [router]);
+  }, [router, user]);
 
   return (
     <Layout>
