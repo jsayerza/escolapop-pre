@@ -70,7 +70,7 @@ export const SearchFilterBar = ({ queryObj, keyword }) => {
         ) : (
           <>
             <ButtonFilter handlerClick={handleToggleModal} isOpen={isOpen}>
-              Category
+              Categoria
             </ButtonFilter>
             <Modal isOpen={isOpen} closeModal={handleCloseModal}>
               {categories.map((category) => (
@@ -101,7 +101,7 @@ export const SearchFilterBar = ({ queryObj, keyword }) => {
               handlerClick={handleToggleModalLocation}
               isOpen={isOpenLocation}
             >
-              Location
+              Localitat
             </ButtonFilter>
             <Modal
               isOpen={isOpenLocation}
@@ -133,7 +133,7 @@ export const SearchFilterBar = ({ queryObj, keyword }) => {
               handlerClick={handleToggleModalSizes}
               isOpen={isOpenSizes}
             >
-              Sizes
+              Talla
             </ButtonFilter>
             <Modal isOpen={isOpenSizes} closeModal={handleCloseModalSizes}>
               {sizes.map((size) => (
@@ -162,7 +162,7 @@ export const SearchFilterBar = ({ queryObj, keyword }) => {
               handlerClick={handleToggleModalCourse}
               isOpen={isOpenCourse}
             >
-              Course
+              Curs
             </ButtonFilter>
             <Modal isOpen={isOpenCourse} closeModal={handleCloseModalCourse}>
               {course.map((course) => (
@@ -191,7 +191,7 @@ export const SearchFilterBar = ({ queryObj, keyword }) => {
               handlerClick={handleToggleModalPrice}
               isOpen={isOpenPrice}
             >
-              Price
+              Preu
             </ButtonFilter>
             <Modal isOpen={isOpenPrice} closeModal={handleCloseModalPrice}>
               <div className="flex flex-col gap-2 justify-center items-center lg:items-end lg:flex-row md:gap-1">
