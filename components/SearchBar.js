@@ -1,7 +1,6 @@
 import { useState, useRef } from "react";
 import { useRouter } from "next/router";
 import { SearchIcon } from "../icons/SearchIcon";
-import { IoIosCloseCircleOutline, IoIosCloseCircle } from "react-icons/io";
 import { IoOptionsOutline } from "react-icons/io5";
 import { HOST_SV } from "config/config";
 import { SearchFilterBar } from "./SearchFiltersBar";
@@ -11,11 +10,13 @@ export default function SearchBar({ keyword, queryObj, filters }) {
   console.log(queryObj, "form the searchBar component");
   const router = useRouter();
   const [search, setSearch] = useState("");
+  const [resetSearch, setResetSearch] = useState(false);
   const inputRef = useRef(null);
   const [show, handleShowComponent] = useShowComponent();
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setResetSearch(true);
     router.push(HOST_SV + `/articles/search/${search}`);
   };
 
