@@ -18,25 +18,19 @@ const setSearch = async (req, res) => {
       locacion: location,
       course: course,
     });
-    //console.log("setSearch/search: ", search);
 
-    let query = `SELECT * FROM v_article_sell WHERE articletitle LIKE '%${search}%'`;
+    let query = `SELECT * FROM v_article_sell WHERE articletitle LIKE '%${search}%' OR  description LIKE '%${search}%'`;
 
     if (category && category !== null) {
-      // `SELECT * FROM v_article_sell WHERE articletitle LIKE '%${search}%' AND articlecategory = '${category}'`
       query = query + ` AND articlecategory = '${category}'`;
     }
 
-    /*     if (min_price && min_price !== null) {
+    if (min_price && min_price !== null) {
       query = query + ` AND price >= ${min_price}`;
     }
 
     if (max_price && max_price !== null) {
       query = query + ` AND price <= ${max_price}`;
-    } */
-
-    if (min_price && min_price !== null && max_price && max_price !== null) {
-      query = query + ` AND price >= ${min_price} AND price <= ${max_price}`;
     }
 
     if (location && location !== null) {
@@ -53,7 +47,6 @@ const setSearch = async (req, res) => {
 
     console.log(query);
     const [result] = await pool.query(query);
-    //console.log("setSearch/result: ", result);
     return res.status(200).json(result);
   } catch (error) {
     return res.status(500).json(error);
