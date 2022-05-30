@@ -4,7 +4,15 @@ module.exports = {
     "./components/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        'orangeAMPA': '#FF7F2A', 
+        'greenescola': '#009140',
+      },
+      fontFamily: {
+        'lato': [ 'Lato', 'sans-serif' ],
+      }
+    },
   },
   plugins: [],
 };

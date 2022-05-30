@@ -7,7 +7,7 @@ import Link from "next/link";
 import Image from "next/image";
 
 
-export function Navbar() {
+export function NavbarPrivateArea() {
   const { data } = useSession();
   const [toggle, setToggle] = useState(false);
   //console.log(data);
@@ -139,16 +139,9 @@ export function Navbar() {
         <div className={mobileClases} id="mobile-menu-2">
           <ul className="flex flex-col mt-4 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-lato font-light md:justify-center md:items-center text-center">
             <li>
-              <Link href="/profile">
-                <a className="bg-gray-100 flex items-center justify-center m-auto py-2 px-4 font-lato font-normal text-black border rounded font-lato font-lato font-bold w-full hover:bg-orangeAMPA hover:text-black transition-all ease duration-200">
-                  El meu Escolapop
-                </a>
-              </Link>
-            </li>
-            <li>
-              <Link href="/about">
-                <a className="bg-gray-100 flex items-center justify-center m-auto py-2 px-4 font-lato font-normal text-black border rounded font-lato font-lato font-bold w-full hover:bg-orangeAMPA hover:text-black transition-all ease duration-200">
-                  Sobre Escolapop
+              <Link href="/new">
+                <a className="bg-gray-100 flex items-center justify-center m-auto py-2 px-4 font-lato font-normal text-black border rounded font-bold w-full hover:bg-orangeAMPA hover:text-black transition-all ease duration-200">
+                  Nou article
                 </a>
               </Link>
             </li>
@@ -162,13 +155,13 @@ export function Navbar() {
                     onClick={() => signOut()}
                     src={data?.user.image}
                     alt="avatar image"
-                    className="h-10 w-10 rounded-full"
+                    className="h-10 w-10 rounded-full bg-gray-100 "
                   />
                 </div>
               ) : (
                 <button
                   onClick={signIn}
-                  className="bg-gray-100 flex items-center justify-center m-auto py-2 px-4 font-lato font-normal text-black border rounded font-lato font-lato font-bold w-full hover:bg-orangeAMPA hover:text-black transition-all ease duration-200"
+                  className="bg-gray-100 flex items-center justify-center m-auto py-2 px-4 font-lato font-normal text-black border rounded font-bold w-full hover:bg-orangeAMPA hover:text-black transition-all ease duration-200"
                 >
                   Login
                 </button>

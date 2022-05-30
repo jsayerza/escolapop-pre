@@ -1,12 +1,15 @@
 import { useState, useEffect } from "react";
-import Layout from "../components/Layout";
 import axios from "axios";
-import { HOST_SV } from "../config/config";
 import { getSession } from "next-auth/react";
 import { useRouter } from "next/router";
+
 /* import ArticleCard from "components/ArticleCard";
 import { map } from "@firebase/util"; */
 import ArticleList from "../components/ArticleList";
+import Layout from "../components/Layout";
+import { HOST_SV } from "../config/config";
+import { NavbarPrivateArea } from "../components/NavbarPrivateArea";
+
 
 function ProfilePage() {
   const router = useRouter();
@@ -33,7 +36,9 @@ function ProfilePage() {
 
   return (
     <Layout>
-      <h1 className="text-left text-2xl font-bold my-2">Els teus articles</h1>
+      <NavbarPrivateArea />
+
+      <h1 className="text-left text-2xl font-lato font-black text-greenescola my-2">Els meus articles</h1>
       <div>
         <ArticleList articles={profileArticles} />
       </div>

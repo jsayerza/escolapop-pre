@@ -1,11 +1,22 @@
 import axios from "axios";
+import Image from "next/image";
+
 import { Layout } from "../components/Layout";
 import { HOST_SV } from "../config/config";
 import { Home } from "components/Home";
 
+
 function HomePage({ articles }) {
   return (
     <Layout>
+        <Image
+          width={1128}
+          height={438}
+          src="/escolapop-image.png"
+          className="mr-3 h-6 sm:h-9"
+          alt=""
+        />
+
       <Home articles={articles} />
     </Layout>
   );

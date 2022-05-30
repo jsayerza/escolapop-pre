@@ -2,7 +2,7 @@ import clsx from "clsx";
 
 export const BadgeSaleStatus = ({ status }) => {
   const classNamesDnD = clsx(
-    "rounded-full font-bold bg-green-600 px-3 py-1 text-white",
+    "rounded-full font-lato font-bold bg-greenescola px-3 py-1 text-white",
     {
       ["bg-green-400"]: status === "En venda",
       ["bg-orange-500"]: status === "Reservat",

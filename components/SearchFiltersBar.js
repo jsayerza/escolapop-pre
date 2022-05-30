@@ -159,7 +159,7 @@ export const SearchFilterBar = ({ queryObj, keyword }) => {
                   key={category.articlecategory.id}
                   value={category.articlecategory}
                   onClick={() => handleCategory(category.articlecategory)}
-                  className="px-6 py-4 rounded font-bold bg-slate-300"
+                  className="px-6 py-4 rounded font-lato font-bold bg-slate-300"
                 >
                   {category.articlecategory}
                 </button>
@@ -193,7 +193,7 @@ export const SearchFilterBar = ({ queryObj, keyword }) => {
                   key={location.locationid}
                   value={location.location}
                   onClick={() => handleLocation(location.location)}
-                  className="px-6 py-4 rounded font-bold bg-slate-300"
+                  className="px-6 py-4 rounded font-lato font-bold bg-slate-300"
                 >
                   {location.location}
                 </button>

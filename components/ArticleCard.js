@@ -24,42 +24,42 @@ function ArticleCard({ article }) {
             )}
           </div>
           <div className="p-5">
-            <h3 className="text-md font-semibold">
-              Category: {article.articlecategory}
+            <h3 className="text-md font-lato font-bold text-greenescola">
+              {article.articlecategory}
             </h3>
             <div className="py-2">
-              <h1 className="text-2xl font-bold text-center text-gray-900">
+              <h1 className="text-2xl font-lato font-bold text-center text-orangeAMPA">
                 {article.articletitle}
               </h1>
             </div>
-            <p className="font-bold text-gray-800 py-4 text-lg">
+            <p className="font-lato font-bold text-gray-800 py-4 text-lg">
               {article.description}
             </p>
             <div className="flex flex-col gap-1 justify-start items-start">
-              <span className="font-semibold text-gray-800">
+              <span className="font-lato font-normal text-gray-800">
                 Estat de conservació:
               </span>
               <BadgeStatus status={article.articlestatus} />
             </div>
             <div className="flex gap-2 py-1 items-center">
-              <p className="font-semibold text-gray-800">Curs:</p>
-              <h3 className="font-semibold text-gray-800 text-lg">
+              <p className="font-lato font-normal text-gray-800">Curs:</p>
+              <h3 className="font-lato font-normal text-gray-800 text-lg">
                 {article.course}
               </h3>
             </div>
             <div className="flex gap-2 py-1 items-center">
-              <p className="font-semibold text-gray-800">Talla:</p>
-              <h3 className="font-semibold text-gray-800 text-lg">
+              <p className="font-lato font-normal text-gray-800">Talla:</p>
+              <h3 className="font-lato font-normal text-gray-800 text-lg">
                 {article.articlesize}
               </h3>
             </div>
             <div className="flex gap-2 py-1 items-center">
-              <p className="font-semibold text-gray-800">Ubicació:</p>
-              <h3 className="font-semibold text-gray-800 text-lg">
+              <p className="font-lato font-normal text-gray-800">Ubicació:</p>
+              <h3 className="font-lato font-normal text-gray-800 text-lg">
                 {article.location} ({article.locationid})
               </h3>
             </div>
-            <h2 className="text-right text-2xl font-semibold">
+            <h2 className="text-right text-2xl font-lato font-normal">
               {article.price} €
             </h2>
           </div>

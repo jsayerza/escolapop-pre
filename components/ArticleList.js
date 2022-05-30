@@ -51,38 +51,38 @@ export default function ArticleList({ articles }) {
             </div>
 
             <div className="flex flex-col justify-center items-center py-4 px-8">
-              <h1 className="textl-lg font-semibold text-gray-900">
+              <h1 className="textl-lg font-lato font-normal text-gray-900">
                 {article.articletitle}
               </h1>
-              <p className="text-sm font-semibold text-gray-500">
+              <p className="text-sm font-lato font-normal text-gray-500">
                 {article.description}
               </p>
             </div>
 
             <div className="flex flex-col justify-center items-center py-4 px-8">
-              <h1 className="text-lg font-semibold">
+              <h1 className="text-lg font-lato font-normal">
                 {article.publicationstatus}
               </h1>
             </div>
 
             <div className="flex flex-col justify-center items-center py-4 px-8">
-              <h1 className="text-lg font-semibold">{article.salestatus}</h1>
+              <h1 className="text-lg font-lato font-normal">{article.salestatus}</h1>
             </div>
 
             <div className="flex flex-col justify-center items-center py-4 px-8">
-              <h1 className="textl-lg font-semibold text-gray-900">Preu</h1>
-              <h2 className="text-xl font-bold">{article.price}€</h2>
+              <h1 className="textl-lg font-lato font-normal text-gray-900">Preu</h1>
+              <h2 className="text-xl font-lato font-bold">{article.price}€</h2>
             </div>
 
             <div className="flex flex-col justify-center items-center py-4 px-8">
-              <h1 className="text-lg font-semibold">Modificat</h1>
-              <h2 className="font-bold text-gray-500">to/do/fecha</h2>
+              <h1 className="text-lg font-lato font-normal">Modificat</h1>
+              <h2 className="font-lato font-bold text-gray-500">to/do/fecha</h2>
             </div>
           </div>
 
           <div className="flex gap-4 justify-center items-center">
             <button
-              className="px-2 py-2 rounded font-bold text-gray-700 hover:bg-gray-400 hover:text-white transition-all duration-200"
+              className="px-2 py-2 rounded font-lato font-bold text-gray-700 hover:bg-gray-400 hover:text-white transition-all duration-200"
               onClick={() => {
                 //console.log("ArticleView/article.articleid: ", article.articleid)
                 router.push("/articles/edit/" + article.articleid);
@@ -91,7 +91,7 @@ export default function ArticleList({ articles }) {
               <FiEdit3 size={22} />
             </button>
             <button
-              className="px-2 py-2 rounded font-bold text-gray-700 hover:bg-red-500 hover:text-white transition-all duration-200"
+              className="px-2 py-2 rounded font-lato font-bold text-gray-700 hover:bg-red-500 hover:text-white transition-all duration-200"
               onClick={() => handleDelete(article.articleid)}
             >
               <AiFillDelete size={22} />

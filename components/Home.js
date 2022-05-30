@@ -32,8 +32,6 @@ export const Home = ({ articles }) => {
     async function searchedResults() {
       if (search !== SEARCH_STATE.EMPTY) {
         const response = await axios.get(
-          //`http://escolapop.hopto.org:3000/api/articles/search/${search}`,
-          //`http://localhost:3000/api/articles/search/${search}`,
           HOST_SV + `/api/articles/search/${search}`,
           // señal para abortar la peticion
           { signal: controller.signal }
@@ -56,7 +54,7 @@ export const Home = ({ articles }) => {
     return (
       <>
         <SearchBar change={handleChange} />
-        <h1 className="text-center text-2xl font-bold">
+        <h1 className="text-center text-2xl font-lato font-bold">
           No hi ha resultats de {`"${search}"`}
         </h1>
       </>
@@ -66,7 +64,7 @@ export const Home = ({ articles }) => {
   return (
     <>
       <SearchBar filters={false} />
-      <h1 className="text-center text-2xl font-bold">
+      <h1 className="text-center text-2xl font-lato font-bold">
         {searchResult === SEARCH_RESULT_STATE.NOT_FOUND ||
         search === SEARCH_STATE.EMPTY
           ? ""

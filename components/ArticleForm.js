@@ -321,9 +321,9 @@ export function ArticleForm({ articleUpdateId = null }) {
             className="bg-white shadow-md rounded px-8 py-6 pb-8 mb-4"
           >
             {articleUpdateId ? (
-              <h1 className="mb-4 text-3xl font-bold">Actualitzar article</h1>
+              <h1 className="mb-4 text-3xl font-lato font-bold">Actualitzar article</h1>
             ) : (
-              <h1 className="mb-4 text-3xl font-bold">Afegir article</h1>
+              <h1 className="mb-4 text-3xl font-lato font-bold">Afegir article</h1>
             )}
 
             {/*             <div className="mb-4">
@@ -359,7 +359,7 @@ export function ArticleForm({ articleUpdateId = null }) {
             <div className="mb-4">
               <label
                 htmlFor="articlecategoryid"
-                className="block text-gray-700 text-sm font-bold mb-2"
+                className="block text-gray-700 text-sm font-lato font-bold mb-2"
               >
                 Categoria:
               </label>
@@ -394,7 +394,7 @@ export function ArticleForm({ articleUpdateId = null }) {
             <div className="mb-4">
               <label
                 htmlFor="articletitle"
-                className="block text-gray-700 text-sm font-bold mb-2"
+                className="block text-gray-700 text-sm font-lato font-bold mb-2"
               >
                 Posa nom a l&apos;article:
               </label>
@@ -436,7 +436,7 @@ export function ArticleForm({ articleUpdateId = null }) {
             <div className="mb-4">
               <label
                 htmlFor="description"
-                className="block text-gray-700 text-sm font-bold mb-2"
+                className="block text-gray-700 text-sm font-lato font-bold mb-2"
               >
                 Descripció:
               </label>
@@ -456,7 +456,7 @@ export function ArticleForm({ articleUpdateId = null }) {
             <div className="mb-4">
               <label
                 htmlFor="courseid"
-                className="block text-gray-700 text-sm font-bold mb-2"
+                className="block text-gray-700 text-sm font-lato font-bold mb-2"
               >
                 Curs escolar:
               </label>
@@ -491,7 +491,7 @@ export function ArticleForm({ articleUpdateId = null }) {
             <div className="mb-4">
               <label
                 htmlFor="articlesizeid"
-                className="block text-gray-700 text-sm font-bold mb-2"
+                className="block text-gray-700 text-sm font-lato font-bold mb-2"
               >
                 Talla:
               </label>
@@ -527,7 +527,7 @@ export function ArticleForm({ articleUpdateId = null }) {
             <div className="mb-4">
               <label
                 htmlFor="articlestatusid"
-                className="block text-gray-700 text-sm font-bold mb-2"
+                className="block text-gray-700 text-sm font-lato font-bold mb-2"
               >
                 Estat de conservació:
               </label>
@@ -562,7 +562,7 @@ export function ArticleForm({ articleUpdateId = null }) {
             <div className="mb-4">
               <label
                 htmlFor="locationid"
-                className="block text-gray-700 text-sm font-bold mb-2"
+                className="block text-gray-700 text-sm font-lato font-bold mb-2"
               >
                 Localitat (ubicació):
               </label>
@@ -601,7 +601,7 @@ export function ArticleForm({ articleUpdateId = null }) {
             <div className="mb-4">
               <label
                 htmlFor="publicationstatusid"
-                className="block text-gray-700 text-sm font-bold mb-2"
+                className="block text-gray-700 text-sm font-lato font-bold mb-2"
               >
                 Estat de publicació:
               </label>
@@ -636,7 +636,7 @@ export function ArticleForm({ articleUpdateId = null }) {
             <div className="mb-4">
               <label
                 htmlFor="price"
-                className="block text-gray-700 text-sm font-bold mb-2"
+                className="block text-gray-700 text-sm font-lato font-bold mb-2"
               >
                 Preu (0€ = donació):
               </label>
@@ -651,7 +651,7 @@ export function ArticleForm({ articleUpdateId = null }) {
             <div className="mb-4">
               <label
                 htmlFor="salestatusid"
-                className="block text-gray-700 text-sm font-bold mb-2"
+                className="block text-gray-700 text-sm font-lato font-bold mb-2"
               >
                 Estat de venda:
               </label>
@@ -686,7 +686,7 @@ export function ArticleForm({ articleUpdateId = null }) {
             {/*             <div className="mb-4">
               <label
                 htmlFor="useremail"
-                className="block text-gray-700 text-sm font-bold mb-2"
+                className="block text-gray-700 text-sm font-lato font-bold mb-2"
               >
                 User:
               </label>
@@ -705,7 +705,7 @@ export function ArticleForm({ articleUpdateId = null }) {
 
             <button
               type="submit"
-              className="bg-emerald-500 hover:bg-emerald-700 py-2 px-4 rounded focus:outline-none focus:shadow-outline font-bold text-white"
+              className="bg-greenescola hover:bg-orangeAMPA py-2 px-4 rounded focus:outline-none focus:shadow-outline font-lato font-bold text-white"
             >
               {articleUpdateId ? "Actualitzar" : "Afegir"}
             </button>

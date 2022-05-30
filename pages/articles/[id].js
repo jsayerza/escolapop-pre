@@ -64,35 +64,35 @@ function ArticleView({ article }) {
           )}
         </div>
         <div className="flex-1 w-full flex-col">
-          <div className="py-4 text-3xl text-gray-900 font-bold flex justify-between items-center">
+          <div className="py-4 text-3xl text-gray-900 font-lato font-bold flex justify-between items-center">
             <h1>{article.articletitle}</h1>
             <h2>{article.price}€</h2>
           </div>
 
           <div className="py-4 border-gray-200 border-b">
-            <h2 className="text-lg text-gray-900 font-semibold pb-2">
+            <h2 className="text-lg text-gray-900 font-lato font-normal pb-2">
               Descripció:
             </h2>
-            <p className="text-lg text-gray-600 font-semibold">
+            <p className="text-lg text-gray-600 font-lato font-normal">
               {article.description}
             </p>
           </div>
 
           <div className="py-2 flex justify-around items-center gap-4 my-4">
             <div>
-              <h2 className="text-lg text-gray-900 font-semibold pb-2">
+              <h2 className="text-lg text-gray-900 font-lato font-normal pb-2">
                 Curs:
               </h2>
-              <h2 className="text-lg text-gray-900 font-bold pb-2">
+              <h2 className="text-lg text-gray-900 font-lato font-bold pb-2">
                 {article.course}
               </h2>
             </div>
 
             <div>
-              <h2 className="text-lg text-gray-900 font-semibold pb-2">
+              <h2 className="text-lg text-gray-900 font-lato font-normal pb-2">
                 Talla:
               </h2>
-              <h2 className="text-lg text-gray-900 font-bold pb-2">
+              <h2 className="text-lg text-gray-900 font-lato font-bold pb-2">
                 {article.articlesize}
               </h2>
             </div>
@@ -100,10 +100,10 @@ function ArticleView({ article }) {
 
           <div className="py-2 flex justify-around items-center gap-4 my-4">
             <div>
-              <h2 className="text-lg text-gray-900 font-semibold pb-2">
+              <h2 className="text-lg text-gray-900 font-lato font-normal pb-2">
                 Ubicació de l&apos;article:
               </h2>
-              <h2 className="text-lg text-gray-900 font-bold pb-2">
+              <h2 className="text-lg text-gray-900 font-lato font-bold pb-2">
                 {article.location} ({article.locationid})
               </h2>
             </div>
@@ -111,16 +111,16 @@ function ArticleView({ article }) {
 
           <div className="py-2 flex justify-around items-center gap-4 my-4">
             <div>
-              <h2 className="text-lg text-gray-900 font-semibold pb-2">
+              <h2 className="text-lg text-gray-900 font-lato font-normal pb-2">
                 Estat de l&apos;article:
               </h2>
               <BadgeStatus status={article.articlestatus} />
             </div>
             <div>
-              <h2 className="text-lg text-gray-900 font-semibold pb-2">
+              <h2 className="text-lg text-gray-900 font-lato font-normal pb-2">
                 Estat de venda:
               </h2>
-{/*               <span className="rounded-full font-bold bg-green-600 px-3 py-1 text-white">
+{/*               <span className="rounded-full font-lato font-bold bg-greenescola px-3 py-1 text-white">
                 {article.salestatus}
               </span>
  */}
@@ -132,7 +132,7 @@ function ArticleView({ article }) {
           {data && data.user.email !== article.useremail && (
             <div className="my-12 flex justify-center">
               <button
-                className="bg-cyan-600 hover:bg-gray-800 text-white text-lg font-bold rounded ml-2 py-3 px-5"
+                className="bg-cyan-600 hover:bg-gray-800 text-white text-lg font-lato font-bold rounded ml-2 py-3 px-5"
                 onClick={() => router.push(`mailto:${article.useremail}?subject=${subject + article.articletitle}&body=${body}`)}
               >
                 Contacta amb el venedor

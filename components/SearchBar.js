@@ -30,7 +30,7 @@ export default function SearchBar({ keyword, queryObj, filters }) {
             <SearchIcon />
           </div>
           <input
-            className="p-2 text-md font-semibold shadow-sm w-full outline-none"
+            className="p-2 text-md font-lato font-normal shadow-sm w-full outline-none"
             type="text"
             placeholder="Cerca un article"
             onChange={handleChange}
