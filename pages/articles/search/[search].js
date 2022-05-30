@@ -9,9 +9,13 @@ function Search({ searchQuery, search, queryObj }) {
   return (
     <Layout>
       <SearchBar queryObj={queryObj} keyword={search} filters={true} />
-      <h1 className="font-semibold text-3xl p-4">Search of {search}</h1>
+      <h1 className="font-semibold text-3xl p-4">
+        Resultats de cerca de {`'${search}'`}
+      </h1>
 
-      <SearchResults searched={searchQuery} />
+      <div className="grid gap-4 grid-cols-1 md:grid-cols-3">
+        <SearchResults searched={searchQuery} />
+      </div>
     </Layout>
   );
 }
@@ -26,8 +30,8 @@ export const getServerSideProps = async (context) => {
       params: {
         category: context.query?.category,
         size: context.query?.size,
-        min_price: context.query?.min_price,
-        max_price: context.query?.max_price,
+        min_price: 0,
+        max_price: 999999,
         location: context.query?.location,
         course: context.query?.course,
       },
