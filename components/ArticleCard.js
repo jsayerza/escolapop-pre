@@ -25,7 +25,7 @@ function ArticleCard({ article }) {
           </div>
           <div className="p-5">
             <h3 className="text-md font-semibold">
-              Category: {article.articlecategory}
+              Categoria: {article.articlecategory}
             </h3>
             <div className="py-2">
               <h1 className="text-2xl font-bold text-center text-gray-900">
