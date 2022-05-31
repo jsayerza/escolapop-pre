@@ -19,18 +19,22 @@ const setSearch = async (req, res) => {
       course: course,
     });
 
-    let query = `SELECT * FROM v_article_sell WHERE articletitle LIKE '%${search}%' OR  description LIKE '%${search}%'`;
+    let query = `SELECT * FROM v_article_sell WHERE articletitle OR description LIKE '%${search}%'`;
 
     if (category && category !== null) {
       query = query + ` AND articlecategory = '${category}'`;
     }
 
-    if (min_price && min_price !== null) {
+    /*     if (min_price && min_price !== null) {
       query = query + ` AND price >= ${min_price}`;
     }
 
     if (max_price && max_price !== null) {
       query = query + ` AND price <= ${max_price}`;
+    } */
+
+    if (min_price && min_price !== null && max_price && max_price !== null) {
+      query = query + ` AND price BETWEEN ${min_price} AND ${max_price}`;
     }
 
     if (location && location !== null) {
