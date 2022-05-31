@@ -30,8 +30,8 @@ export const getServerSideProps = async (context) => {
       params: {
         category: context.query?.category,
         size: context.query?.size,
-        min_price: 0,
-        max_price: 999999,
+        min_price: context.query?.min_price ? context.query?.min_price : 0,
+        max_price: context.query?.max_price ? context.query?.max_price : 9999,
         location: context.query?.location,
         course: context.query?.course,
       },
