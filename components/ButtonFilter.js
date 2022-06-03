@@ -1,3 +1,5 @@
+import { RiArrowDropDownLine } from "react-icons/ri";
+import { IoIosCloseCircleOutline, IoIosCloseCircle } from "react-icons/io";
 import clsx from "clsx";
 
 export const ButtonFilter = ({ children, handlerClick, active, isOpen }) => {
@@ -21,6 +23,9 @@ export const ButtonFilter = ({ children, handlerClick, active, isOpen }) => {
     return (
       <button className={classesActive} onClick={handlerClick}>
         {children}
+        <span className="text-gray-400">
+          <IoIosCloseCircle size={"1.5rem"} />
+        </span>
       </button>
     );
   }
@@ -28,6 +33,9 @@ export const ButtonFilter = ({ children, handlerClick, active, isOpen }) => {
   return (
     <button className={classNames} onClick={handlerClick}>
       {children}
+      <span className="text-gray-400">
+        <RiArrowDropDownLine size={"1.5rem"} />
+      </span>
     </button>
   );
 };

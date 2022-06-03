@@ -12,25 +12,26 @@ export default async function handler(req, res) {
 
 const getProfileArticles = async (req, res) => {
   try {
-    const session = await getSession({ req });
+    const { email } = req.body;
 
-    if (session) {
-      const [result] = await pool.query(
-        `
-        SELECT * FROM v_article  WHERE useremail = '${session.user.email}' ORDER BY datecreation DESC
-        `
-      );
-
-      return res.status(200).json(result);
-    } else {
+    if (!email) {
       //console.log("getProfileArticles/session: ", session)
       return res.status(401).json({
-        error: "Has intentat fer alguna acció incorrecta o no estàs identificat",
+        error:
+          "Has intentat fer alguna acció incorrecta o no estàs identificat",
       });
     }
+
+    const [result] = await pool.query(
+      `
+      SELECT * FROM article WHERE useremail = '${email}' ORDER BY datecreation DESC
+      `
+    );
+
+    return res.status(200).json(result[0]);
   } catch (e) {
-    return res
-      .status(500)
-      .json({ error: "Has intentat fer alguna acció incorrecta o no estàs identificat" });
+    return res.status(500).json({
+      error: "Has intentat fer alguna acció incorrecta o no estàs identificat",
+    });
   }
 };

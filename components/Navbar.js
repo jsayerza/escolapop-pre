@@ -18,9 +18,9 @@ export function Navbar() {
   };
 
   const mobileClases = clsx(
-    "justify-between items-center w-full md:flex md:w-auto md:order-1",
+    "top-14 left-0 right-0 md:top-0 justify-between items-center w-full md:flex md:w-auto md:order-1 z-50 bg-gray-800",
     {
-      ["relative"]: toggle,
+      ["absolute md:relative"]: toggle,
       ["hidden"]: !toggle,
     }
   );

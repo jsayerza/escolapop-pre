@@ -15,14 +15,13 @@ import {
 } from "firebase/auth";
 //import { firebaseConfig } from "../firebase/firebaseConfig";
 
-
 const firebaseConfig = {
   apiKey: "AIzaSyByQP6YvMi6uDvejkm93aRFGrC2sjXT430",
   authDomain: "escolapop-pre.firebaseapp.com",
   projectId: "escolapop-pre",
   storageBucket: "escolapop-pre.appspot.com",
   messagingSenderId: "669590894513",
-  appId: "1:669590894513:web:104db4bd09c13422b7af90"
+  appId: "1:669590894513:web:104db4bd09c13422b7af90",
 };
 
 //// Joaquin's Firebase configuration
@@ -35,10 +34,9 @@ const firebaseConfig = {
   appId: "1:22410271497:web:a573e2f2e658e5aced91d8",
 }; */
 
-
 const app = initializeApp(firebaseConfig);
 
-const auth = getAuth();
+export const auth = getAuth(app);
 const provider = new GoogleAuthProvider();
 
 // mapeamos/transformamos los datos que queremos

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { getSession } from "next-auth/react";
+import { HOST_SV } from "../config/config";
 import { useRouter } from "next/router";
 
 /* import ArticleCard from "components/ArticleCard";
@@ -9,34 +9,38 @@ import ArticleList from "../components/ArticleList";
 import Layout from "../components/Layout";
 import { HOST_SV } from "../config/config";
 import { NavbarPrivateArea } from "../components/NavbarPrivateArea";
+import { ProfileBar } from "components/ProfileBar";
+import { useUser } from "context/authContext";
 
 
 function ProfilePage() {
+  const { user } = useUser();
+  console.log(user);
   const router = useRouter();
   const [profileArticles, setProfileArticles] = useState([]);
 
   useEffect(() => {
     async function getProfileArticles() {
-      const session = await getSession();
-      if (!session || session === null || session === undefined) {
-        return router.push("/");
+      if (!user || user === null || user === undefined) {
+        return router.push("/login");
       }
 
-      if (session) {
-        const { data } = await axios.get(
-          HOST_SV + "/api/articles/profile"
-        );
+      if (user) {
+        const { data } = await axios.get(HOST_SV + "/api/articles/profile", {
+          email: user.email,
+        });
         //console.log("profileArticles/data: ", data);
         setProfileArticles(data);
       }
     }
 
     getProfileArticles();
-  }, [router]);
+  }, [router, user]);
 
   return (
     <Layout>
       <NavbarPrivateArea />
+      <ProfileBar />
 
       <h1 className="text-left text-2xl font-lato font-black text-greenescola my-2">Els meus articles</h1>
       <div>

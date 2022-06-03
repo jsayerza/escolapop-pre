@@ -10,6 +10,13 @@ export function Layout({ children }) {
         <div className="container mx-auto h-full">{children}</div>
       </div>
       <ToastContainer />
+      <style jsx global>
+        {`
+          body {
+            overflow-x: hidden;
+          }
+        `}
+      </style>
     </>
   );
 }
