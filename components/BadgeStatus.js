@@ -7,7 +7,7 @@ export const BadgeStatus = ({ status }) => {
       ["bg-green-400"]: status === "Bon estat",
       ["bg-green-300"]: status === "Usat. Estat acceptable",
       ["bg-yellow-500"]: status === "Deteriorat. Necessita manteniment",
-      ["bg-orange-500"]: status === "No funciona. Per a peces",
+      ["bg-orangeAMPA"]: status === "No funciona. Per a peces",
     }
   );
 

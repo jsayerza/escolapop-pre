@@ -47,8 +47,8 @@ export default function SearchBar({ keyword, queryObj, filters }) {
             onChange={handleChange}
             ref={inputRef}
           />
-        </div>
-      )}
+        </form>
+      </div>
     </>
   );
 }
