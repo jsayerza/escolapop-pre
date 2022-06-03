@@ -40,13 +40,6 @@ export default function SearchBar({ keyword, queryObj, filters }) {
               ref={inputRef}
             />
           </div>
-          <input
-            className="p-2 text-md font-lato font-normal shadow-sm w-full outline-none"
-            type="text"
-            placeholder="Cerca un article"
-            onChange={handleChange}
-            ref={inputRef}
-          />
         </form>
       </div>
     </>
