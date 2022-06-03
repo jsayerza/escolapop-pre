@@ -141,7 +141,7 @@ export const SearchFilterBar = ({ queryObj, keyword }) => {
                   key={size.articlesizeid}
                   value={size.articlesize}
                   onClick={() => handleSize(size.articlesize)}
-                  className="px-6 py-4 rounded font-bold bg-slate-300"
+                  className="px-6 py-4 rounded font-lato font-bold bg-slate-300"
                 >
                   {size.articlesize}
                 </button>
@@ -214,7 +214,7 @@ export const SearchFilterBar = ({ queryObj, keyword }) => {
                 <ButtonFilter
                   handlerClick={() => handlePrice(minPrice, maxPrice)}
                 >
-                  Apply
+                  Aplica
                 </ButtonFilter>
               </div>
             </Modal>

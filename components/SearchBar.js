@@ -41,7 +41,28 @@ export default function SearchBar({ keyword, queryObj, filters }) {
             />
           </div>
         </form>
+        {filters && (
+          <button
+            className="flex flex-row-reverse items-center gap-1 px-2 md:px-4 py-2 md:text-lg font-bold text-white bg-orange-500 rounded hover:bg-orange-600 transition-all duration-200"
+            onClick={handleShowComponent}
+          >
+            <h2 className="hidden md:block">Filtres</h2>
+            <span>
+              <IoOptionsOutline size={"1.8rem"} />
+            </span>
+            {/* show && (
+              <span className="bg-transparent rounded-full font-bold">
+                <IoIosCloseCircle size={"1.8rem"} />
+              </span>
+            ) */}
+          </button>
+        )}
       </div>
+      {show && (
+        <div className="py-2">
+          <SearchFilterBar keyword={keyword} queryObj={queryObj} />
+        </div>
+      )}
     </>
   );
 }
