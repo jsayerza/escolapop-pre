@@ -55,7 +55,7 @@ export const Home = ({ articles }) => {
       <>
         <SearchBar change={handleChange} />
         <h1 className="text-center text-2xl font-lato font-bold">
-          No hi ha resultats de {`"${search}"`} 
+          No hi ha resultats de {`"${search}"`}
         </h1>
       </>
     );
@@ -64,7 +64,7 @@ export const Home = ({ articles }) => {
   return (
     <>
       <SearchBar filters={false} />
-      <h1 className="text-center text-2xl font-lato font-bold">
+      {/*       <h1 className="text-center text-2xl font-lato font-bold">
         {searchResult === SEARCH_RESULT_STATE.NOT_FOUND ||
         search === SEARCH_STATE.EMPTY
           ? ""
@@ -79,7 +79,7 @@ export const Home = ({ articles }) => {
             <ArticleCard key={article.articleid} article={article} />
           ))
         )}
-      </div>
+      </div> */}
     </>
   );
 };
