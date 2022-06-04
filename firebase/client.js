@@ -41,11 +41,12 @@ const provider = new GoogleAuthProvider();
 
 // mapeamos/transformamos los datos que queremos
 const mapUserFromFirebaseAuth = (user) => {
-  const { displayName, email, photoURL } = user;
+  const { displayName, email, photoURL, uid } = user;
   return {
     name: displayName,
     email,
     avatar: photoURL,
+    id: uid,
   };
 };
 
