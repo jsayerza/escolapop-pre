@@ -6,13 +6,13 @@ export const ProfileBar = () => {
   return (
     <div className=" mt-2 mb-4 flex justify-start items-center gap-4">
       <button className="flex gap-2 flex-row-reverse items-center py-2 px-4 font-semibold text-white bg-orange-500 text-2xl rounded">
-        Els teus articles
+        Els meus articles
         <span>
           <RiArticleLine />
         </span>
       </button>
       <button className="flex gap-2 flex-row-reverse items-center py-2 px-4 font-semibold bg-gray-200 text-2xl rounded">
-        El teu usuari
+        El meu usuari
         <span>
           <AiOutlineUser />
         </span>
