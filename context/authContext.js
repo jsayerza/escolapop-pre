@@ -1,5 +1,9 @@
 import { useState, useEffect, createContext, useContext } from "react";
-import { loginWithGoogle, authStateChanged } from "../firebase/client";
+import {
+  loginWithGoogle,
+  authStateChanged,
+  firebaseLogout,
+} from "../firebase/client";
 
 const USER_STATES = {
   NOT_LOGGED: null,
@@ -30,6 +34,7 @@ export const AuthContextProvider = ({ children }) => {
     user,
     setUser,
     handleGoogleLogin,
+    firebaseLogout,
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
