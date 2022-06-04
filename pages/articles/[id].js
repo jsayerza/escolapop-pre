@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import axios from "axios";
 import { useRouter } from "next/router";
 import { toast } from "react-toastify";
@@ -8,45 +9,54 @@ import { HOST_SV } from "config/config";
 import { Layout } from "../../components/Layout";
 import { BadgeStatus } from "components/BadgeStatus";
 import { BadgeSaleStatus } from "components/BadgeSaleStatus";
+import { useUser } from "context/authContext";
 // import { useUser } from "context/authContext";
 //import ButtonMailto from "components/ButtonMailTo";
-
 
 function ArticleView({ article }) {
   // const { user } = useUser();
   // console.log(user);
   const { data } = useSession();
   const router = useRouter();
+  const { user } = useUser();
 
   const subject = "escolapop - Consulta article ";
-  const body = "Hola, estic interesat/da en l'article que tens publicat a escolapop.";
+  const body =
+    "Hola, estic interesat/da en l'article que tens publicat a escolapop.";
 
   const handleDelete = async (id) => {
     try {
       console.log("handleDelete/id: ", id);
-      return await axios.delete("/api/articles/" + id)
-        .then( (res) => {
-          console.log("handleDelete/cap a : ", HOST_SV + `/api/articles/images`);
-          console.log("handleDelete/then/id: ", id);
-           axios.delete(HOST_SV + `/api/articles/images`, { articleimageid: id })
-          .then((res) => {
-            console.log("handleDelete/then/eliminat!");
-            toast.success("Article eliminat");
-            router.push("/");
-          })
-          .catch((e) =>
-            console.error("handleDelete DELETE image error: ", e)
+      return await axios
+        .delete("/api/articles/" + id)
+        .then((res) => {
+          console.log(
+            "handleDelete/cap a : ",
+            HOST_SV + `/api/articles/images`
           );
+          console.log("handleDelete/then/id: ", id);
+          axios
+            .delete(HOST_SV + `/api/articles/images`, { articleimageid: id })
+            .then((res) => {
+              console.log("handleDelete/then/eliminat!");
+              toast.success("Article eliminat");
+              router.push("/");
+            })
+            .catch((e) =>
+              console.error("handleDelete DELETE image error: ", e)
+            );
 
           return router.push("/");
         })
         .catch((e) => console.log("handleDelete delete article error: ", e));
-        
-
     } catch (error) {
       toast.error(error.response.data.message);
     }
   };
+
+  useEffect(() => {
+    !user && router.push("/login");
+  }, [user, router]);
 
   return (
     <Layout>
@@ -120,20 +130,25 @@ function ArticleView({ article }) {
               <h2 className="text-lg text-gray-900 font-lato font-normal pb-2">
                 Estat de venda:
               </h2>
-{/*               <span className="rounded-full font-lato font-bold bg-greenescola px-3 py-1 text-white">
+              {/*               <span className="rounded-full font-lato font-bold bg-greenescola px-3 py-1 text-white">
                 {article.salestatus}
               </span>
  */}
               <BadgeSaleStatus status={article.salestatus} />
             </div>
-
           </div>
 
           {data && data.user.email !== article.useremail && (
             <div className="my-12 flex justify-center">
               <button
                 className="bg-cyan-600 hover:bg-gray-800 text-white text-lg font-lato font-bold rounded ml-2 py-3 px-5"
-                onClick={() => router.push(`mailto:${article.useremail}?subject=${subject + article.articletitle}&body=${body}`)}
+                onClick={() =>
+                  router.push(
+                    `mailto:${article.useremail}?subject=${
+                      subject + article.articletitle
+                    }&body=${body}`
+                  )
+                }
               >
                 Contacta amb el venedor
               </button>
