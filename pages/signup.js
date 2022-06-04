@@ -36,15 +36,16 @@ function SignUpPage() {
         userCredentials.user.displayName = name;
         console.log(userCredentials);
         setUser(userCredentials);
-        /*         axios
-        .post(HOST_SV + "/api/register", {
-          email: userCredentials.user.email,
-        })
+        axios
+          .post(HOST_SV + "/api/register", {
+            id: userCredentials.user.uid,
+            email: userCredentials.user.email,
+            username: userCredentials.user.displayName,
+          })
           .then(() => {
             router.push("/profile");
           })
-          .catch((err) => console.log(err)); */
-        router.push("/");
+          .catch((err) => console.log(err));
       })
       .catch((err) => console.log(err));
   };
