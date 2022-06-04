@@ -4,6 +4,8 @@ import {
   authStateChanged,
   firebaseLogout,
 } from "../firebase/client";
+import axios from "axios";
+import { HOST_SV } from "config/config";
 
 const USER_STATES = {
   NOT_LOGGED: null,
@@ -30,10 +32,24 @@ export const AuthContextProvider = ({ children }) => {
       .catch((error) => console.error(error));
   };
 
+  const handleRegisterWithGoogle = () => {
+    loginWithGoogle()
+      .then(setUser)
+      .then(() => {
+        axios.post(HOST_SV + "/api/register", {
+          id: user.id,
+          email: user.email,
+          username: user.displayName,
+        });
+      })
+      .catch((error) => console.error(error));
+  };
+
   const value = {
     user,
     setUser,
     handleGoogleLogin,
+    handleRegisterWithGoogle,
     firebaseLogout,
   };
 

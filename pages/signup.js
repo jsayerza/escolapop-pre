@@ -15,7 +15,7 @@ function SignUpPage() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { handleGoogleLogin, setUser } = useUser();
+  const { handleRegisterWithGoogle, setUser } = useUser();
   const router = useRouter();
 
   const handleChangeName = (e) => {
@@ -112,7 +112,7 @@ function SignUpPage() {
 
           <button
             className="w-full rounded bg-gray-100 py-3 px-2 font-semibold text-lg flex gap-2 justify-center items-center hover:bg-slate-200 duration-200 ease"
-            onClick={handleGoogleLogin}
+            onClick={handleRegisterWithGoogle}
           >
             <span>
               <FcGoogle size={"2rem"} />
