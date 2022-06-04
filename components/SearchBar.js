@@ -5,6 +5,7 @@ import { IoOptionsOutline } from "react-icons/io5";
 import { HOST_SV } from "config/config";
 import { SearchFilterBar } from "./SearchFiltersBar";
 import { useShowComponent } from "hooks/useShowComponent";
+import { useUser } from "context/authContext";
 
 export default function SearchBar({ keyword, queryObj, filters }) {
   console.log(queryObj, "form the searchBar component");
@@ -13,10 +14,14 @@ export default function SearchBar({ keyword, queryObj, filters }) {
   const [resetSearch, setResetSearch] = useState(false);
   const inputRef = useRef(null);
   const [show, handleShowComponent] = useShowComponent();
+  const { user } = useUser();
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setResetSearch(true);
+    if (!user) {
+      return router.push("/login");
+    }
     router.push(HOST_SV + `/articles/search/${search}`);
   };
 
