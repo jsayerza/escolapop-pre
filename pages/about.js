@@ -14,6 +14,7 @@ function about() {
         <p>- Nom i Cognoms</p>
         <p>- Relació amb l&apos;esola</p>
         <p>- email amb el que et vols enregistrar a escolapop</p>
+        
       </h1>
     </Layout>
   )
