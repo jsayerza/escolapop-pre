@@ -5,6 +5,7 @@ import { SearchResults } from "../components/SearchResults";
 import ArticleCard from "../components/ArticleCard";
 import { HOST_SV } from "../config/config";
 import debounce from "just-debounce-it";
+import { useUser } from "../context/authContext";
 
 const SEARCH_STATE = {
   EMPTY: "",
@@ -18,6 +19,8 @@ const SEARCH_RESULT_STATE = {
 export const Home = ({ articles }) => {
   const [search, setSearch] = useState(SEARCH_STATE.EMPTY);
   const [searchResult, setSearchResult] = useState(SEARCH_RESULT_STATE.EMPTY);
+  const { user } = useUser();
+  console.log(user);
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const handleChange = useCallback(
