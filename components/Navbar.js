@@ -166,12 +166,22 @@ export function Navbar() {
                   />
                 </div>
               ) : (
-                <button
+/*                 <button
                   onClick={signIn}
                   className="bg-gray-100 flex items-center justify-center m-auto py-2 px-4 font-lato font-normal text-black border rounded font-lato font-lato font-bold w-full hover:bg-orangeAMPA hover:text-black transition-all ease duration-200"
                 >
                   Login
                 </button>
+ */
+                <Link href="/login">
+                  <a className="bg-gray-100 flex items-center justify-center m-auto py-2 px-4 font-lato font-normal text-black border rounded font-lato font-lato font-bold w-full hover:bg-orangeAMPA hover:text-black transition-all ease duration-200">
+                    Login
+                  </a>
+                </Link>
+
+
+
+
               )}
             </li>
           </ul>
