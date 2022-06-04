@@ -1,17 +1,15 @@
 import { useState } from "react";
 import clsx from "clsx";
-// import { useUser } from "context/authContext";
-import { useSession, signIn, signOut } from "next-auth/react";
+import { useUser } from "context/authContext";
+// import { useSession, signIn, signOut } from "next-auth/react";
 
 import Link from "next/link";
 import Image from "next/image";
 
-
 export function Navbar() {
-  const { data } = useSession();
+  const { user, firebaseLogout } = useUser();
   const [toggle, setToggle] = useState(false);
-  //console.log(data);
-  // const { user, handleGoogleLogin } = useUser();
+
   const toggleButtonAction = () => {
     setToggle(!toggle);
     console.log(toggle);
@@ -154,13 +152,13 @@ export function Navbar() {
             </li>
 
             <li className="pt-1">
-              {data?.user ? (
+              {user ? (
                 <div className="rounded-full hover:cursor-pointer">
                   <Image
                     width={32}
                     height={32}
-                    onClick={() => signOut()}
-                    src={data?.user.image}
+                    onClick={firebaseLogout}
+                    src={user.avatar}
                     alt="avatar image"
                     className="h-10 w-10 rounded-full"
                   />
@@ -173,31 +171,6 @@ export function Navbar() {
                 </Link>
               )}
             </li>
-
-            <li className="pt-1">
-              {data?.user ? (
-                <div className="rounded-full hover:cursor-pointer">
-                  <Image
-                    width={32}
-                    height={32}
-                    onClick={() => signOut()}
-                    src={data?.user.image}
-                    alt="avatar image"
-                    className="h-10 w-10 rounded-full"
-                  />
-                </div>
-              ) : (
-                <button
-                  onClick={signIn}
-                  className="bg-gray-100 flex items-center justify-center m-auto py-2 px-4 font-lato font-normal text-black border rounded font-lato font-lato font-bold w-full hover:bg-orangeAMPA hover:text-black transition-all ease duration-200"
-                >
-                  LoginButton
-                </button>
-              )}
-            </li>
-
-
-
           </ul>
         </div>
       </div>
