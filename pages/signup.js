@@ -95,7 +95,7 @@ function SignUpPage() {
             type="submit"
             className="px-4 py-3 bg-orange-500 rounded font-semibold text-white text-xl hover:bg-orange-600 duration-200 ease"
           >
-            Sign up
+            Enregistrar-se
           </button>
         </form>
 
@@ -105,7 +105,7 @@ function SignUpPage() {
           <Link href={"/login"}>
             <a className="w-full rounded bg-gray-100 py-3 px-2 font-semibold text-lg flex gap-2 justify-center items-center hover:bg-slate-200 duration-200 ease">
               <AiOutlineMail size={"2rem"} />
-              With Email and password
+              amb Email i contrassenya
             </a>
           </Link>
 
@@ -116,7 +116,7 @@ function SignUpPage() {
             <span>
               <FcGoogle size={"2rem"} />
             </span>
-            With Google
+            amb Google
           </button>
         </div>
       </div>

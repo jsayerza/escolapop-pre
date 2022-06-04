@@ -166,24 +166,38 @@ export function Navbar() {
                   />
                 </div>
               ) : (
-/*                 <button
-                  onClick={signIn}
-                  className="bg-gray-100 flex items-center justify-center m-auto py-2 px-4 font-lato font-normal text-black border rounded font-lato font-lato font-bold w-full hover:bg-orangeAMPA hover:text-black transition-all ease duration-200"
-                >
-                  Login
-                </button>
- */
                 <Link href="/login">
                   <a className="bg-gray-100 flex items-center justify-center m-auto py-2 px-4 font-lato font-normal text-black border rounded font-lato font-lato font-bold w-full hover:bg-orangeAMPA hover:text-black transition-all ease duration-200">
                     Login
                   </a>
                 </Link>
-
-
-
-
               )}
             </li>
+
+            <li className="pt-1">
+              {data?.user ? (
+                <div className="rounded-full hover:cursor-pointer">
+                  <Image
+                    width={32}
+                    height={32}
+                    onClick={() => signOut()}
+                    src={data?.user.image}
+                    alt="avatar image"
+                    className="h-10 w-10 rounded-full"
+                  />
+                </div>
+              ) : (
+                <button
+                  onClick={signIn}
+                  className="bg-gray-100 flex items-center justify-center m-auto py-2 px-4 font-lato font-normal text-black border rounded font-lato font-lato font-bold w-full hover:bg-orangeAMPA hover:text-black transition-all ease duration-200"
+                >
+                  LoginButton
+                </button>
+              )}
+            </li>
+
+
+
           </ul>
         </div>
       </div>
