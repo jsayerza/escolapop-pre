@@ -137,7 +137,7 @@ export function Navbar() {
         <div className={mobileClases} id="mobile-menu-2">
           <ul className="flex flex-col mt-4 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-lato font-light md:justify-center md:items-center text-center">
             <li>
-              <Link href="/profile">
+              <Link href={user ? `/profile/${user.id}` : `/login`}>
                 <a className="bg-gray-100 flex items-center justify-center m-auto py-2 px-4 font-lato font-normal text-black border rounded font-lato font-lato font-bold w-full hover:bg-orangeAMPA hover:text-black transition-all ease duration-200">
                   El meu Escolapop
                 </a>
@@ -153,15 +153,19 @@ export function Navbar() {
 
             <li className="pt-1">
               {user ? (
-                <div className="rounded-full hover:cursor-pointer">
-                  <Image
+                <div
+                  className="rounded-full hover:cursor-pointer"
+                  onClick={firebaseLogout}
+                >
+                  {/*                   <Image
                     width={32}
                     height={32}
                     onClick={firebaseLogout}
                     src={user.avatar}
                     alt="avatar image"
                     className="h-10 w-10 rounded-full"
-                  />
+                  /> */}
+                  Sin imagen
                 </div>
               ) : (
                 <Link href="/login">
