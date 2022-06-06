@@ -13,12 +13,15 @@ export default async function handler(req, res) {
 const getProfileArticles = async (req, res) => {
   try {
     const { id } = req.query;
+    console.log(id);
 
     const [user] = await pool.query(
       `
-      SELECT FROM user WHERE fbkey = '${id}'
+      SELECT * FROM user WHERE fbkey = '${id}'
       `
     );
+
+    console.log(user, "user");
 
     if (!user) {
       //console.log("getProfileArticles/session: ", session)
@@ -30,11 +33,11 @@ const getProfileArticles = async (req, res) => {
 
     const [result] = await pool.query(
       `
-      SELECT * FROM article WHERE useremail = '${user[0].useremail}' ORDER BY datecreation DESC
+      SELECT * FROM v_article WHERE useremail = '${user[0].useremail}' ORDER BY datecreation DESC
       `
     );
 
-    return res.status(200).json(result[0]);
+    return res.status(200).json(result);
   } catch (e) {
     return res.status(500).json({
       error: "Has intentat fer alguna acció incorrecta o no estàs identificat",
