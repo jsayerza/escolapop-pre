@@ -18,21 +18,17 @@ function ProfilePage() {
   const [profileArticles, setProfileArticles] = useState([]);
 
   useEffect(() => {
-    async function getProfileArticles() {
-      if (!user || user === null) {
-        await router.push("/login");
-      }
+    !user || (user === null && router.push("/login"));
 
-      if (user) {
-        const { data } = await axios.get(HOST_SV + "/api/articles/profile", {
+    user &&
+      axios
+        .get(HOST_SV + "/api/articles/profile", {
           email: user.email,
+        })
+        .then((data) => {
+          setProfileArticles(data);
         });
-        //console.log("profileArticles/data: ", data);
-        setProfileArticles(data);
-      }
-    }
-
-    getProfileArticles();
+    //console.log("profileArticles/data: ", data);
   }, [router, user]);
 
   return (
