@@ -8,6 +8,8 @@ import { toast } from "react-toastify";
 export default function ArticleList({ articles }) {
   const router = useRouter();
 
+  console.log(articles, "from article list");
+
   const handleDelete = async (id) => {
     try {
       //console.log("ArticleList/handleDelete/id: ", id);
@@ -32,6 +34,7 @@ export default function ArticleList({ articles }) {
   return (
     <div className="flex gap-4 flex-col w-full justify-center">
       {articles &&
+        articles.length > 0 &&
         articles.map((article) => (
           <div
             className="flex flex-col md:flex-row justify-center md:justify-between items-center border-gray-200 border-b pb-2 px-2 gap-6 transition-all duration-200 hover:bg-white"
