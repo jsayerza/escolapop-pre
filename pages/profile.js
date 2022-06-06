@@ -11,7 +11,6 @@ import { HOST_SV } from "../config/config";
 import { NavbarPrivateArea } from "../components/NavbarPrivateArea";
 import { ProfileBar } from "components/ProfileBar";
 
-
 function ProfilePage() {
   const { user } = useUser();
   console.log(user);
@@ -20,8 +19,8 @@ function ProfilePage() {
 
   useEffect(() => {
     async function getProfileArticles() {
-      if (!user || user === null || user === undefined) {
-        return router.push("/login");
+      if (!user || user === null) {
+        await router.push("/login");
       }
 
       if (user) {
@@ -41,7 +40,9 @@ function ProfilePage() {
       {/* <NavbarPrivateArea /> */}
       <ProfileBar />
 
-      <h1 className="text-left text-2xl font-lato font-black text-greenescola my-2">Els meus articles</h1>
+      <h1 className="text-left text-2xl font-lato font-black text-greenescola my-2">
+        Els meus articles
+      </h1>
       <div>
         <ArticleList articles={profileArticles} />
       </div>
