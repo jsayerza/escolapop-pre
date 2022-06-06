@@ -18,7 +18,7 @@ function ProfilePage({ articles }) {
 
   useEffect(() => {
     if (!user || user === null || user === undefined) {
-      return router.push("/login");
+      router.push("/login");
     }
   }, [router, user]);
 
@@ -53,7 +53,7 @@ function ProfilePage({ articles }) {
 
 export const getServerSideProps = async (context) => {
   const { data: articles } = await axios.get(
-    HOST_SV + "/api/articles/" + context.query.id
+    HOST_SV + "/api/articles/profile/" + context.query.id
   );
 
   return {
