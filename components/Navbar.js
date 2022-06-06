@@ -2,6 +2,7 @@ import { useState } from "react";
 import clsx from "clsx";
 import { useUser } from "context/authContext";
 // import { useSession, signIn, signOut } from "next-auth/react";
+import { FaUserCircle } from "react-icons/fa";
 
 import Link from "next/link";
 import Image from "next/image";
@@ -145,7 +146,7 @@ export function Navbar() {
             </li>
             <li>
               <Link href="/about">
-                <a className="bg-gray-100 flex items-center justify-center m-auto py-2 px-4 font-lato font-normal text-black border rounded font-lato font-lato font-bold w-full hover:bg-orangeAMPA hover:text-black transition-all ease duration-200">
+                <a className="bg-gray-100 flex items-center justify-center m-auto py-2 px-4 font-lato font-normal text-black border rounded font-lato font-bold w-full hover:bg-orangeAMPA hover:text-black transition-all ease duration-200">
                   Sobre Escolapop
                 </a>
               </Link>
@@ -153,20 +154,25 @@ export function Navbar() {
 
             <li className="pt-1">
               {user ? (
-                <div
-                  className="rounded-full hover:cursor-pointer"
+                <button
+                  className="rounded-full hover:cursor-pointer bg-transparent flex  flex-col"
                   onClick={firebaseLogout}
                 >
-                  {/*                   <Image
-                    width={32}
-                    height={32}
-                    onClick={firebaseLogout}
-                    src={user.avatar}
-                    alt="avatar image"
-                    className="h-10 w-10 rounded-full"
-                  /> */}
-                  Sin imagen
-                </div>
+                  {user && user.avatar ? (
+                    <Image
+                      width={32}
+                      height={32}
+                      src={user.avatar}
+                      alt="avatar image"
+                      className="h-10 w-10 rounded-full"
+                    />
+                  ) : (
+                    <>
+                      <FaUserCircle size={"2rem"} color="white" />
+                      {user.name ? user.name : "user"}
+                    </>
+                  )}
+                </button>
               ) : (
                 <Link href="/login">
                   <a className="bg-gray-100 flex items-center justify-center m-auto py-2 px-4 font-lato font-normal text-black border rounded font-lato font-lato font-bold w-full hover:bg-orangeAMPA hover:text-black transition-all ease duration-200">
