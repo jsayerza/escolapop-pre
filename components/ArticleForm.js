@@ -7,8 +7,8 @@ import { getDownloadURL } from "firebase/storage";
 import Image from "next/image";
 
 import { uploadImage } from "../firebase/client";
-// import { useUser } from "context/authContext";
-import { useSession } from "next-auth/react";
+import { useUser } from "context/authContext";
+// import { useSession } from "next-auth/react";
 import { HOST_SV } from "../config/config";
 
 export function ArticleForm({ articleUpdateId = null }) {
@@ -18,8 +18,8 @@ export function ArticleForm({ articleUpdateId = null }) {
   //console.log("ArticleForm/NEXT_PUBLIC_SECRET: ", NEXT_PUBLIC_SECRET);
 
   const router = useRouter();
-  // const { user } = useUser();
-  const { data } = useSession();
+  const { user } = useUser();
+  // const { data } = useSession();
   //console.log("ArticleForm/data:" , data);
   //console.log("ArticleForm/user.email: ", user.email)
   //console.log("ArticleForm/user: ", user)
@@ -129,8 +129,6 @@ export function ArticleForm({ articleUpdateId = null }) {
       });
       //console.log("articleSize: ", articleSize);
       setArticleSize(articleSize);
-
-
     };
 
     ////TODO: revisar esto. ¿carga varias veces?
@@ -245,7 +243,9 @@ export function ArticleForm({ articleUpdateId = null }) {
           articlestatusid: articleUpdateId ? updateArticle.articlestatusid : 0,
           courseid: articleUpdateId ? updateArticle.courseid : 0,
           locationid: articleUpdateId ? updateArticle.locationid : 0,
-          publicationstatusid: articleUpdateId ? updateArticle.publicationstatusid : 0,
+          publicationstatusid: articleUpdateId
+            ? updateArticle.publicationstatusid
+            : 0,
           salestatusid: articleUpdateId ? updateArticle.salestatusid : 0,
           articlesizeid: articleUpdateId ? updateArticle.articlesizeid : 0,
         }}
@@ -267,7 +267,7 @@ export function ArticleForm({ articleUpdateId = null }) {
               axios
                 .put(HOST_SV + `/api/articles/${articleUpdateId}`, {
                   ...values,
-                  useremail: `${data?.user?.email}`,
+                  useremail: `${user?.email}`,
                 })
                 //.then((res) => router.push("/"));
                 .then((res) => {
@@ -296,7 +296,7 @@ export function ArticleForm({ articleUpdateId = null }) {
             return axios
               .post(HOST_SV + "/api/articles", {
                 ...values,
-                useremail: `${data?.user?.email}`,
+                useremail: `${user?.email}`,
               })
               .then((response) => {
                 //console.log(response.data);
@@ -321,9 +321,13 @@ export function ArticleForm({ articleUpdateId = null }) {
             className="bg-white shadow-md rounded px-8 py-6 pb-8 mb-4"
           >
             {articleUpdateId ? (
-              <h1 className="mb-4 text-3xl font-lato font-bold">Actualitzar article</h1>
+              <h1 className="mb-4 text-3xl font-lato font-bold">
+                Actualitzar article
+              </h1>
             ) : (
-              <h1 className="mb-4 text-3xl font-lato font-bold">Afegir article</h1>
+              <h1 className="mb-4 text-3xl font-lato font-bold">
+                Afegir article
+              </h1>
             )}
 
             {/*             <div className="mb-4">
@@ -522,7 +526,6 @@ export function ArticleForm({ articleUpdateId = null }) {
                 ))}
               </Field>
             </div>
-
 
             <div className="mb-4">
               <label
