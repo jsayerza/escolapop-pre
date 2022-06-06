@@ -13,6 +13,8 @@ import {
   GoogleAuthProvider,
   onAuthStateChanged,
 } from "firebase/auth";
+import { HOST_SV } from "config/config";
+import axios from "axios";
 //import { firebaseConfig } from "../firebase/firebaseConfig";
 
 const firebaseConfig = {
@@ -61,6 +63,7 @@ const catchErrorsFromFirebaseAuth = (error) => {
 
 export const authStateChanged = async (onChange) => {
   return await onAuthStateChanged(auth, (user) => {
+    console.log(user, "estate");
     // si el usuario existe transformamos la data a lo que nos interesa
     const normalizedUser = user ? mapUserFromFirebaseAuth(user) : null;
     onChange(normalizedUser);
@@ -71,6 +74,13 @@ export const loginWithGoogle = () => {
   return signInWithPopup(auth, provider)
     .then((result) => result.user)
     .then(mapUserFromFirebaseAuth)
+    .then((user) => {
+      axios.post(HOST_SV + "/api/provider", {
+        id: user.id,
+        username: user.name,
+        email: user.email,
+      });
+    })
     .catch(catchErrorsFromFirebaseAuth);
 };
 
