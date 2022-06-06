@@ -72,15 +72,15 @@ export const authStateChanged = async (onChange) => {
 
 export const loginWithGoogle = () => {
   return signInWithPopup(auth, provider)
-    .then((result) => result.user)
-    .then(mapUserFromFirebaseAuth)
-    .then((user) => {
+    .then((result) => {
       axios.post(HOST_SV + "/api/provider", {
-        id: user.id,
-        username: user.name,
-        email: user.email,
+        id: result.user.uid,
+        username: result.user.displayName,
+        email: result.user.email,
       });
+      return result.user;
     })
+    .then(mapUserFromFirebaseAuth)
     .catch(catchErrorsFromFirebaseAuth);
 };
 
