@@ -16,7 +16,7 @@ const getProfileArticles = async (req, res) => {
 
     const [user] = await pool.query(
       `
-      SELECT FROM user WHERE fbkey = '${id}' 
+      SELECT FROM user WHERE fbkey = '${id}'
       `
     );
 

@@ -14,9 +14,11 @@ export default async function handler(req, res) {
 const getArticles = async (req, res) => {
   try {
     /* const [result] = await pool.query("SELECT * FROM v_article"); */
-/*     const [result] = await pool.query("SELECT * FROM v_article ORDER BY datecreation DESC"); */
-    const [result] = await pool.query("SELECT * FROM v_article_sell ORDER BY datecreation DESC");
-    
+    /*     const [result] = await pool.query("SELECT * FROM v_article ORDER BY datecreation DESC"); */
+    const [result] = await pool.query(
+      "SELECT * FROM v_article_sell ORDER BY datecreation DESC"
+    );
+
     //console.log(result);
     return res.status(200).json(result);
   } catch (error) {
@@ -24,18 +26,29 @@ const getArticles = async (req, res) => {
   }
 };
 
-
 const saveArticle = async (req, res) => {
   //console.log("saveArticle/req.body: ", req.body);
   //articlesizeid
-  const { articlecategoryid, salestatusid, articletitle, description, price, useremail, articlestatusid, courseid, locationid, publicationstatusid, articlesizeid } = req.body;
+  const {
+    articlecategoryid,
+    salestatusid,
+    articletitle,
+    description,
+    price,
+    useremail,
+    articlestatusid,
+    courseid,
+    locationid,
+    publicationstatusid,
+    articlesizeid,
+  } = req.body;
 
   try {
     if (req.files?.image) {
       const result = await uploadImage(req.files.image.tempFilepath);
       //console.log("saveArticle/result: ", result);
     }
-    
+
     const [result] = await pool.query("INSERT INTO article SET ?", {
       articlecategoryid,
       articletitle,
@@ -43,8 +56,11 @@ const saveArticle = async (req, res) => {
       price,
       useremail,
       articlestatusid,
-      courseid, locationid, publicationstatusid, salestatusid,
-      articlesizeid
+      courseid,
+      locationid,
+      publicationstatusid,
+      salestatusid,
+      articlesizeid,
     });
     //console.log("saveArticle/result: ", result);
     return res.json({
@@ -54,7 +70,10 @@ const saveArticle = async (req, res) => {
       price,
       useremail,
       articlestatusid,
-      courseid, locationid, publicationstatusid, salestatusid,
+      courseid,
+      locationid,
+      publicationstatusid,
+      salestatusid,
       articlesizeid,
       articleid: result.insertId,
     });
