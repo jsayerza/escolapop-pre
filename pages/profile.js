@@ -36,7 +36,7 @@ function ProfilePage() {
       {/* <NavbarPrivateArea /> */}
       <ProfileBar />
 
-      <h1 className="text-left text-2xl font-lato font-black text-greenescola my-2">
+      <h1 className="text-center md:text-left text-2xl font-lato font-black text-greenescola my-2">
         Els meus articles
       </h1>
       <div>
