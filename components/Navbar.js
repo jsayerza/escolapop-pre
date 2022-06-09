@@ -3,9 +3,12 @@ import clsx from "clsx";
 import { useUser } from "context/authContext";
 // import { useSession, signIn, signOut } from "next-auth/react";
 import { FaUserCircle } from "react-icons/fa";
+import { AiFillInfoCircle } from "react-icons/ai";
+import { CgProfile } from "react-icons/cg";
 
 import Link from "next/link";
 import Image from "next/image";
+
 
 export function Navbar() {
   const { user, firebaseLogout } = useUser();
@@ -141,6 +144,9 @@ export function Navbar() {
               <Link href={user ? `/profile/${user.id}` : `/login`}>
                 <a className="bg-gray-100 flex items-center justify-center m-auto py-2 px-4 font-lato font-normal text-black border rounded font-lato font-lato font-bold w-full hover:bg-orangeAMPA hover:text-black transition-all ease duration-200">
                   El meu Escolapop
+                  <span className="px-2">
+                    <CgProfile size={"2rem"}/>
+                  </span>
                 </a>
               </Link>
             </li>
@@ -148,6 +154,9 @@ export function Navbar() {
               <Link href="/about">
                 <a className="bg-gray-100 flex items-center justify-center m-auto py-2 px-4 font-lato font-normal text-black border rounded font-lato font-bold w-full hover:bg-orangeAMPA hover:text-black transition-all ease duration-200">
                   Sobre Escolapop
+                  <span className="px-2">
+                    <AiFillInfoCircle size={"2rem"}/>
+                  </span>
                 </a>
               </Link>
             </li>

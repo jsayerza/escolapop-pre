@@ -2,9 +2,11 @@ import { useState } from "react";
 import clsx from "clsx";
 // import { useUser } from "context/authContext";
 import { useSession, signIn, signOut } from "next-auth/react";
-
 import Link from "next/link";
 import Image from "next/image";
+import { RiArticleLine } from "react-icons/ri";
+import { IoHeartCircle } from "react-icons/io5";
+import { AiOutlineUser, AiFillFileAdd } from "react-icons/ai";
 
 
 export function NavbarPrivateArea() {
@@ -142,9 +144,35 @@ export function NavbarPrivateArea() {
               <Link href="/new">
                 <a className="bg-gray-100 flex items-center justify-center m-auto py-2 px-4 font-lato font-normal text-black border rounded font-bold w-full hover:bg-orangeAMPA hover:text-black transition-all ease duration-200">
                   Nou article
+                  <span className="px-2">
+                    <AiFillFileAdd size={"2rem"}/>
+                  </span>
                 </a>
               </Link>
             </li>
+
+            <li>
+              <Link href="/userSettings">
+                <a className="bg-gray-100 flex items-center justify-center m-auto py-2 px-4 font-lato font-normal text-black border rounded font-bold w-full hover:bg-orangeAMPA hover:text-black transition-all ease duration-200">
+                  El meu usuari
+                  <span className="px-2">
+                    <AiOutlineUser  size={"2rem"}/>
+                  </span>
+                </a>
+              </Link>
+            </li>
+
+            <li>
+              <Link href="/favorites">
+                <a className="bg-gray-100 flex items-center justify-center m-auto py-2 px-4 font-lato font-normal text-black border rounded font-bold w-full hover:bg-orangeAMPA hover:text-black transition-all ease duration-200">
+                  Favorits
+                  <span className="px-2">
+                    <IoHeartCircle size={"2rem"} />
+                  </span>
+                </a>
+              </Link>
+            </li>
+
 
             <li className="pt-1">
               {data?.user ? (
