@@ -8,6 +8,8 @@ import { CgProfile } from "react-icons/cg";
 
 import Link from "next/link";
 import Image from "next/image";
+import { Tooltip } from '@mui/material';
+import { IconButton } from '@mui/material';
 
 
 export function Navbar() {
@@ -141,55 +143,73 @@ export function Navbar() {
         <div className={mobileClases} id="mobile-menu-2">
           <ul className="flex flex-col mt-4 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-lato font-light md:justify-center md:items-center text-center">
             <li>
-              <Link href={user ? `/profile/${user.id}` : `/login`}>
-                <a className="bg-gray-100 flex items-center justify-center m-auto py-2 px-4 font-lato font-normal text-black border rounded font-lato font-lato font-bold w-full hover:bg-orangeAMPA hover:text-black transition-all ease duration-200">
-                  El meu Escolapop
-                  <span className="px-2">
-                    <CgProfile size={"2rem"}/>
-                  </span>
-                </a>
-              </Link>
+              <Tooltip title="La meva àrea d'usuari/a">
+                <IconButton size="small">
+                  <Link href={user ? `/profile/${user.id}` : `/login`}>
+                    <a className="bg-gray-100 flex items-center justify-center m-auto py-2 px-4 font-lato font-normal text-black border rounded font-lato font-lato font-bold w-full hover:bg-orangeAMPA hover:text-black transition-all ease duration-200">
+                      El meu Escolapop
+                      <span className="px-2">
+                        <CgProfile size={"2rem"}/>
+                      </span>
+                    </a>
+                  </Link>
+                </IconButton>
+              </Tooltip>
             </li>
+
             <li>
-              <Link href="/about">
-                <a className="bg-gray-100 flex items-center justify-center m-auto py-2 px-4 font-lato font-normal text-black border rounded font-lato font-bold w-full hover:bg-orangeAMPA hover:text-black transition-all ease duration-200">
-                  Sobre Escolapop
-                  <span className="px-2">
-                    <AiFillInfoCircle size={"2rem"}/>
-                  </span>
-                </a>
-              </Link>
+            <Tooltip title="Què és Escolapop?">
+              <IconButton size="small">
+                <Link href="/about">
+                  <a className="bg-gray-100 flex items-center justify-center m-auto py-2 px-4 font-lato font-normal text-black border rounded font-lato font-bold w-full hover:bg-orangeAMPA hover:text-black transition-all ease duration-200">
+                    Sobre Escolapop
+                    <span className="px-2">
+                        <AiFillInfoCircle size={"2rem"}/>
+                    </span>
+                  </a>
+                </Link>
+              </IconButton>
+            </Tooltip>
             </li>
 
             <li className="pt-1">
-              {user ? (
-                <button
-                  className="rounded-full hover:cursor-pointer bg-transparent flex  flex-col"
-                  onClick={firebaseLogout}
-                >
-                  {user && user.avatar ? (
-                    <Image
-                      width={32}
-                      height={32}
-                      src={user.avatar}
-                      alt="avatar image"
-                      className="h-10 w-10 rounded-full"
-                    />
+                  {user ? (
+                    <Tooltip title="Logout. Surt o canvia d'usuari">
+                      <IconButton size="small">
+                        <button
+                          className="rounded-full hover:cursor-pointer bg-transparent flex  flex-col"
+                          onClick={firebaseLogout}
+                        >
+                          {user && user.avatar ? (
+                            <Image
+                              width={32}
+                              height={32}
+                              src={user.avatar}
+                              alt="avatar image"
+                              className="h-10 w-10 rounded-full"
+                            />
+                          ) : (
+                            <>
+                              <FaUserCircle size={"2rem"} color="white" />
+                              {user.name ? user.name : "user"}
+                            </>
+                          )}
+                        </button>
+                      </IconButton>
+                    </Tooltip>
                   ) : (
-                    <>
-                      <FaUserCircle size={"2rem"} color="white" />
-                      {user.name ? user.name : "user"}
-                    </>
+                    <Tooltip title="Login. Entra a Escolapop">
+                      <IconButton size="small">
+                        <Link href="/login">
+                          <a className="bg-gray-100 flex items-center justify-center m-auto py-2 px-4 font-lato font-normal text-black border rounded font-lato font-lato font-bold w-full hover:bg-orangeAMPA hover:text-black transition-all ease duration-200">
+                            Login
+                          </a>
+                        </Link>
+                      </IconButton>
+                    </Tooltip>
                   )}
-                </button>
-              ) : (
-                <Link href="/login">
-                  <a className="bg-gray-100 flex items-center justify-center m-auto py-2 px-4 font-lato font-normal text-black border rounded font-lato font-lato font-bold w-full hover:bg-orangeAMPA hover:text-black transition-all ease duration-200">
-                    Login
-                  </a>
-                </Link>
-              )}
             </li>
+            
           </ul>
         </div>
       </div>
