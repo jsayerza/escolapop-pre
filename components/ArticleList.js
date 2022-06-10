@@ -4,11 +4,16 @@ import { FiEdit3 } from "react-icons/fi";
 import { AiFillDelete } from "react-icons/ai";
 import { useRouter } from "next/router";
 import { toast } from "react-toastify";
+import Moment from 'moment';
+import { Tooltip } from '@mui/material';
+import { IconButton } from '@mui/material';
+
 
 export default function ArticleList({ articles }) {
   const router = useRouter();
+  Moment.locale('es');
 
-  console.log(articles, "from article list");
+  //console.log(articles, "from article list");
 
   const handleDelete = async (id) => {
     try {
@@ -49,7 +54,7 @@ export default function ArticleList({ articles }) {
                     height={200}
                     objectFit="cover"
                     className="max-w-full h-auto rounded-lg transition-shadow ease-in-out shadow-none"
-                    alt="image of the article"
+                    alt="imatge de l_article"
                   />
                 )}
               </div>
@@ -87,27 +92,39 @@ export default function ArticleList({ articles }) {
               <div className="flex flex-col justify-center items-center py-4 px-8">
                 <h1 className="text-lg font-lato font-normal">Modificat</h1>
                 <h2 className="font-lato font-bold text-gray-500">
-                  to/do/fecha
+                  {/* {article.datecreation} */}
+                  {Moment(article.datecreation).format('DD/MM/yyyy')}
                 </h2>
               </div>
             </div>
 
             <div className="flex gap-4 justify-center items-center">
-              <button
-                className="px-2 py-2 rounded font-lato font-bold text-gray-700 hover:bg-gray-400 hover:text-white transition-all duration-200"
-                onClick={() => {
-                  //console.log("ArticleView/article.articleid: ", article.articleid)
-                  router.push("/articles/edit/" + article.articleid);
-                }}
-              >
-                <FiEdit3 size={22} />
-              </button>
-              <button
-                className="px-2 py-2 rounded font-lato font-bold text-gray-700 hover:bg-red-500 hover:text-white transition-all duration-200"
-                onClick={() => handleDelete(article.articleid)}
-              >
-                <AiFillDelete size={22} />
-              </button>
+              
+              <Tooltip title="Edita el teu article">
+                <IconButton size="small">
+                  <button
+                    className="px-2 py-2 rounded font-lato font-bold text-gray-700 hover:bg-gray-400 hover:text-white transition-all duration-200"
+                    onClick={() => {
+                      //console.log("ArticleView/article.articleid: ", article.articleid)
+                      router.push("/articles/edit/" + article.articleid);
+                    }}
+                  >
+                    <FiEdit3 size={22} />
+                  </button>
+                </IconButton>
+              </Tooltip>
+
+              <Tooltip title="Elimina definitivament el teu article">
+                <IconButton size="small">
+                    <button
+                    className="px-2 py-2 rounded font-lato font-bold text-gray-700 hover:bg-red-500 hover:text-white transition-all duration-200"
+                      onClick={() => handleDelete(article.articleid)}
+                    >
+                      <AiFillDelete size={22} />
+                    </button>
+                </IconButton>
+              </Tooltip>
+
             </div>
           </div>
         ))}

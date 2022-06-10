@@ -7,6 +7,8 @@ import Image from "next/image";
 import { RiArticleLine } from "react-icons/ri";
 import { IoHeartCircle } from "react-icons/io5";
 import { AiOutlineUser, AiFillFileAdd } from "react-icons/ai";
+import { Tooltip } from '@mui/material';
+import { IconButton } from '@mui/material';
 
 
 export function NavbarPrivateArea() {
@@ -138,39 +140,53 @@ export function NavbarPrivateArea() {
             </svg>
           </button>
         </div>
+
         <div className={mobileClases} id="mobile-menu-2">
           <ul className="flex flex-col mt-4 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-lato font-light md:justify-center md:items-center text-center">
+            
             <li>
-              <Link href="/new">
-                <a className="bg-gray-100 flex items-center justify-center m-auto py-2 px-4 font-lato font-normal text-black border rounded font-bold w-full hover:bg-orangeAMPA hover:text-black transition-all ease duration-200">
-                  Nou article
-                  <span className="px-2">
-                    <AiFillFileAdd size={"2rem"}/>
-                  </span>
-                </a>
-              </Link>
+              <Tooltip title="Publica un nou article">
+                <IconButton size="small">
+                  <Link href="/new">
+                    <a className="bg-gray-100 flex items-center justify-center m-auto py-2 px-4 font-lato font-normal text-black border rounded font-bold w-full hover:bg-orangeAMPA hover:text-black transition-all ease duration-200">
+                      Nou article
+                      <span className="px-2">
+                        <AiFillFileAdd size={"2rem"}/>
+                      </span>
+                    </a>
+                  </Link>
+                </IconButton>
+              </Tooltip>
             </li>
 
             <li>
-              <Link href="/userSettings">
-                <a className="bg-gray-100 flex items-center justify-center m-auto py-2 px-4 font-lato font-normal text-black border rounded font-bold w-full hover:bg-orangeAMPA hover:text-black transition-all ease duration-200">
-                  El meu usuari
-                  <span className="px-2">
-                    <AiOutlineUser  size={"2rem"}/>
-                  </span>
-                </a>
-              </Link>
+              <Tooltip title="Detalls i configuració del meu usuari">
+                <IconButton size="small">
+                  <Link href="/userSettings">
+                    <a className="bg-gray-100 flex items-center justify-center m-auto py-2 px-4 font-lato font-normal text-black border rounded font-bold w-full hover:bg-orangeAMPA hover:text-black transition-all ease duration-200">
+                      El meu usuari
+                      <span className="px-2">
+                        <AiOutlineUser  size={"2rem"}/>
+                      </span>
+                    </a>
+                  </Link>
+                </IconButton>
+              </Tooltip>
             </li>
 
             <li>
-              <Link href="/favorites">
-                <a className="bg-gray-100 flex items-center justify-center m-auto py-2 px-4 font-lato font-normal text-black border rounded font-bold w-full hover:bg-orangeAMPA hover:text-black transition-all ease duration-200">
-                  Favorits
-                  <span className="px-2">
-                    <IoHeartCircle size={"2rem"} />
-                  </span>
-                </a>
-              </Link>
+              <Tooltip title="La meva llista de desitjos">
+                <IconButton size="small">
+                  <Link href="/favorites">
+                    <a className="bg-gray-100 flex items-center justify-center m-auto py-2 px-4 font-lato font-normal text-black border rounded font-bold w-full hover:bg-orangeAMPA hover:text-black transition-all ease duration-200">
+                      Favorits
+                      <span className="px-2">
+                        <IoHeartCircle size={"2rem"} />
+                      </span>
+                    </a>
+                  </Link>
+                </IconButton>
+              </Tooltip>
             </li>
 
 
