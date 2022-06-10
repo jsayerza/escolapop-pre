@@ -24,8 +24,8 @@ function ProfilePage({ articles }) {
 
   return (
     <Layout>
-      {/* <NavbarPrivateArea /> */}
-      <ProfileBar />
+      <NavbarPrivateArea />
+      {/* <ProfileBar /> */}
 
       <h1 className="text-left text-2xl font-lato font-black text-greenescola my-2">
         Els meus articles
