@@ -19,7 +19,8 @@ const setSearch = async (req, res) => {
       course: course,
     });
 
-    let query = `SELECT * FROM v_article_sell WHERE articletitle OR description LIKE '%${search}%'`;
+    //let query = `SELECT * FROM v_article_sell WHERE articletitle OR description LIKE '%${search}%'`;
+      let query = `SELECT * FROM v_article_sell WHERE ((articletitle LIKE '%${search}%') OR (description LIKE '%${search}%'))`;
 
     if (category && category !== null) {
       query = query + ` AND articlecategory = '${category}'`;
