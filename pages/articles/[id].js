@@ -19,8 +19,10 @@ import { useUser } from "context/authContext";
 
 
 function ArticleView({ article }) {
+
   // const { user } = useUser();
-  // console.log(user);
+  //console.log(user);
+  //console.log("ArticleView/article: ", article);
   const { data } = useSession();
   const router = useRouter();
   const { user } = useUser();
@@ -135,14 +137,45 @@ function ArticleView({ article }) {
               <h2 className="text-lg text-gray-900 font-lato font-normal pb-2">
                 Estat de venda:
               </h2>
-              {/*               <span className="rounded-full font-lato font-bold bg-greenescola px-3 py-1 text-white">
-                {article.salestatus}
-              </span>
- */}
               <BadgeSaleStatus status={article.salestatus} />
+            </div>
+
+          </div>
+
+          <div className="py-2 flex justify-around items-center gap-4 my-4">
+            <div>
+              <h2 className="text-lg text-gray-900 font-lato font-normal pb-2">
+                Venedor:
+              </h2>
+
+              <div>
+                {article.avatarurl ? (
+                  <Image
+                    width={50}
+                    height={50}
+                    src={article.avatarurl}
+                    alt="Venedor/a"
+                    className="h-10 w-10 rounded-full"
+                  />
+                ) : (
+                  <Image
+                    width={50}
+                    height={50}
+                    src="/user-profile-icon.jpg"
+                    className="mr-3 h-6 sm:h-9"
+                    alt="Venedor/a"
+                  />
+                )}
+                <h2 className="text-lg text-gray-900 font-lato font-bold pb-2">
+                  {article.username}
+                </h2>
+              </div>
+
             </div>
           </div>
 
+          {/* ///////// */}
+          {/* Si user != vendedor, muestra "Cantacta con vendedor" */}
           {data && data.user.email !== article.useremail && (
             <div className="my-12 flex justify-center">
               <button
@@ -155,48 +188,52 @@ function ArticleView({ article }) {
                   )
                 }
               >
-                Contacta amb el venedor
+                Contacta amb el venedor/a
               </button>
             </div>
           )}
+          {/* ///////// */}
+          {/* Si user == vendedor, muestra botones edit y delete */}
+          {data && data.user.email === article.useremail && (
+            <div className="py-5">
+
+              <Tooltip title="Edita el teu article">
+                <IconButton size="small">
+                  <button
+                    /* className="bg-gray-500 hover:bg-gray-800 text-white rounded ml-2 px-3 py-2" */
+                    className="px-2 py-2 rounded font-lato font-bold text-gray-700 hover:bg-gray-400 hover:text-white transition-all duration-200"
+                    onClick={() => {
+                      //console.log("ArticleView/article.articleid: ", article.articleid)
+                      router.push("/articles/edit/" + article.articleid);
+                    }}
+                  >
+                    {/* Edita article */}
+                    <FiEdit3 size={22} />
+                  </button>
+                </IconButton>
+              </Tooltip>
+
+              <Tooltip title="Elimina definitivament el teu article">
+                <IconButton size="small">
+                  <button
+                    /* className="bg-red-500 hover:bg-red-700 text-white rounded px-3 py-2" */
+                    className="px-2 py-2 rounded font-lato font-bold text-gray-700 hover:bg-red-500 hover:text-white transition-all duration-200"
+                    onClick={() => handleDelete(article.articleid)}
+                  >
+                    {/* Elimina article */}
+                    <AiFillDelete size={22} />
+                  </button>
+                </IconButton>
+              </Tooltip>
+
+              {/* <ButtonMailto label="Contacta amb el venedor" mailto="mailto: ${article.email}" /> */}
+            </div>
+          )}
+          {/* ///////// */}
+
         </div>
       </div>
 
-      {data && data.user.email === article.useremail && (
-        <div className="py-5">
-
-          <Tooltip title="Edita el teu article">
-            <IconButton size="small">
-              <button
-                /* className="bg-gray-500 hover:bg-gray-800 text-white rounded ml-2 px-3 py-2" */
-                className="px-2 py-2 rounded font-lato font-bold text-gray-700 hover:bg-gray-400 hover:text-white transition-all duration-200"
-                onClick={() => {
-                  //console.log("ArticleView/article.articleid: ", article.articleid)
-                  router.push("/articles/edit/" + article.articleid);
-                }}
-              >
-                {/* Edita article */}
-                <FiEdit3 size={22} />
-              </button>
-            </IconButton>
-          </Tooltip>
-
-          <Tooltip title="Elimina definitivament el teu article">
-            <IconButton size="small">
-              <button
-                /* className="bg-red-500 hover:bg-red-700 text-white rounded px-3 py-2" */
-                className="px-2 py-2 rounded font-lato font-bold text-gray-700 hover:bg-red-500 hover:text-white transition-all duration-200"
-                onClick={() => handleDelete(article.articleid)}
-              >
-                {/* Elimina article */}
-                <AiFillDelete size={22} />
-              </button>
-            </IconButton>
-          </Tooltip>
-
-          {/* <ButtonMailto label="Contacta amb el venedor" mailto="mailto: ${article.email}" /> */}
-        </div>
-      )}
     </Layout>
   );
 }
