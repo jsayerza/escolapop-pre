@@ -11,7 +11,7 @@ const setSearch = async (req, res) => {
   try {
     const { search, category, min_price, max_price, location, size, course } =
       req.query;
-/*     console.log({
+/*     //console.log({
       categoria: category,
       precio_min: min_price,
       precio_max: max_price,
@@ -50,7 +50,7 @@ const setSearch = async (req, res) => {
       query = query + ` AND course = '${course}'`;
     }
 
-    console.log(query);
+    //console.log("search/query: ", query);
     const [result] = await pool.query(query);
     return res.status(200).json(result);
   } catch (error) {

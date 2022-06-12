@@ -35,7 +35,7 @@ function SignUpPage() {
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredentials) => {
         userCredentials.user.displayName = name;
-        console.log("handleSignupSubmit/userCredentials: ", userCredentials);
+        //console.log("handleSignupSubmit/userCredentials: ", userCredentials);
         setUser(userCredentials);
         axios
           .post(HOST_SV + "/api/register", {

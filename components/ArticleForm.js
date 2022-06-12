@@ -54,7 +54,7 @@ export function ArticleForm({ articleUpdateId = null }) {
       (snapshot) => {
         const progress =
           (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-        console.log("handleUpload/progress: ", progress);
+        //console.log("handleUpload/progress: ", progress);
       },
       // si hay error lo ejecutamos
       (err) => console.log(err),
@@ -257,7 +257,7 @@ export function ArticleForm({ articleUpdateId = null }) {
           })
         }
         onSubmit={(values, actions) => {
-          console.log("onSubmit/values: ", values);
+          //console.log("onSubmit/values: ", values);
           if (articleUpdateId !== null) {
             //console.log("onSubmit/PUT");
             //console.log("onSubmit/PUT/articleUpdateId: ", articleUpdateId);

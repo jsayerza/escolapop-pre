@@ -33,19 +33,16 @@ function ArticleView({ article }) {
 
   const handleDelete = async (id) => {
     try {
-      console.log("handleDelete/id: ", id);
+      //console.log("handleDelete/id: ", id);
       return await axios
         .delete("/api/articles/" + id)
         .then((res) => {
-          console.log(
-            "handleDelete/cap a : ",
-            HOST_SV + `/api/articles/images`
-          );
-          console.log("handleDelete/then/id: ", id);
+          //console.log("handleDelete/cap a : ", HOST_SV + `/api/articles/images`);
+          //console.log("handleDelete/then/id: ", id);
           axios
             .delete(HOST_SV + `/api/articles/images`, { articleimageid: id })
             .then((res) => {
-              console.log("handleDelete/then/eliminat!");
+              //console.log("handleDelete/then/eliminat!");
               toast.success("Article eliminat");
               router.push("/");
             })

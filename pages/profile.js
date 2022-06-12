@@ -13,7 +13,7 @@ import { ProfileBar } from "components/ProfileBar";
 
 function ProfilePage() {
   const { user } = useUser();
-  console.log(user);
+  //console.log("profile/ser: ", user);
   const router = useRouter();
   const [profileArticles, setProfileArticles] = useState([]);
 

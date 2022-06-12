@@ -64,7 +64,7 @@ const catchErrorsFromFirebaseAuth = (error) => {
 
 export const authStateChanged = async (onChange) => {
   return await onAuthStateChanged(auth, (user) => {
-    console.log("client/onAuthStateChanged/user: ", user);
+    //console.log("client/onAuthStateChanged/user: ", user);
     // si el usuario existe transformamos la data a lo que nos interesa
     const normalizedUser = user ? mapUserFromFirebaseAuth(user) : null;
     onChange(normalizedUser);
@@ -74,7 +74,7 @@ export const authStateChanged = async (onChange) => {
 export const loginWithGoogle = () => {
   return signInWithPopup(auth, provider)
     .then((result) => {
-      console.log("client/loginWithGoogle/result.user: ", result.user);
+      //console.log("client/loginWithGoogle/result.user: ", result.user);
       axios.post(HOST_SV + "/api/provider", {
         id: result.user.uid,
         username: result.user.displayName,
@@ -100,7 +100,7 @@ const storage = getStorage(app);
 
 export const uploadImage = (file) => {
   // creamos la referencia de donde se guradaran en firebase y el nombre del archivo
-  console.log("client/uploadImage/file.name: ", file.name);
+  //console.log("client/uploadImage/file.name: ", file.name);
   const reference = ref(storage, `images/${file.name}`);
   // Lo subimos
   const uploadTask = uploadBytesResumable(reference, file);

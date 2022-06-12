@@ -13,7 +13,7 @@ export default async function handler(req, res) {
 const getProfileArticles = async (req, res) => {
   try {
     const { id } = req.query;
-    console.log(id);
+    //console.log("getProfileArticles/id: ", id);
 
     const [user] = await pool.query(
       `

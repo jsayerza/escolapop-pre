@@ -1,7 +1,7 @@
 import Image from "next/image";
-import { useUser } from "context/authContext";
 import { FaUserCircle } from "react-icons/fa";
 
+import { useUser } from "../context/authContext";
 import Layout from "../components/Layout";
 
 

@@ -27,7 +27,7 @@ function SignUpPage() {
     e.preventDefault();
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredentials) => {
-        console.log("login/handleLoginSubmit/userCredentials", userCredentials);
+        //console.log("login/handleLoginSubmit/userCredentials", userCredentials);
         setUser(userCredentials);
         return router.push("/profile");
       })

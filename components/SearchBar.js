@@ -8,7 +8,7 @@ import { useShowComponent } from "hooks/useShowComponent";
 import { useUser } from "context/authContext";
 
 export default function SearchBar({ keyword, queryObj, filters }) {
-  console.log(queryObj, "form the searchBar component");
+  //console.log(queryObj, "form the searchBar component");
   const router = useRouter();
   const [search, setSearch] = useState("");
   const [resetSearch, setResetSearch] = useState(false);

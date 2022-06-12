@@ -20,7 +20,7 @@ export const Home = ({ articles }) => {
   const [search, setSearch] = useState(SEARCH_STATE.EMPTY);
   const [searchResult, setSearchResult] = useState(SEARCH_RESULT_STATE.EMPTY);
   const { user } = useUser();
-  console.log(user);
+  //console.log("Home/user: ", user);
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const handleChange = useCallback(

@@ -5,7 +5,7 @@ import SearchBar from "../../../components/SearchBar";
 import { SearchResults } from "../../../components/SearchResults";
 
 function Search({ searchQuery, search, queryObj }) {
-  console.log(searchQuery, search);
+  //console.log("search/searchQuery: ", searchQuery, search);
   return (
     <Layout>
       <SearchBar queryObj={queryObj} keyword={search} filters={true} />
@@ -21,7 +21,7 @@ function Search({ searchQuery, search, queryObj }) {
 }
 
 export const getServerSideProps = async (context) => {
-  console.log(context.query?.search?.category, "in the server response");
+  //console.log(context.query?.search?.category, "in the server response");
   const { search } = context.query;
   const queryObj = context.query;
   const { data: searchQuery } = await axios.get(

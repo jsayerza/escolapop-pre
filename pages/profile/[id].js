@@ -13,7 +13,7 @@ import { ProfileBar } from "../../components/ProfileBar";
 
 function ProfilePage({ articles }) {
   const { user } = useUser();
-  console.log(user);
+  //console.log("ProfilePage/user: ", user);
   const router = useRouter();
 
   useEffect(() => {
@@ -42,7 +42,7 @@ function ProfilePage({ articles }) {
     HOST_SV + "/api/articles/profile"
   );
 
-  console.log(articles);
+  //console.log(articles);
   return {
     props: {
       ses

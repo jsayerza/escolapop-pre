@@ -30,7 +30,7 @@ const getRegisterProvider = async (req, res) => {
       //`INSERT INTO user (useremail, fbkey, username) VALUES ('${email}','${id}','${username}')`
       `INSERT INTO user (useremail, fbkey, username, avatarurl) VALUES ('${email}','${id}','${username}','${avatarurl}')`
     );
-    console.log(result[0]);
+    //console.log("getRegisterProvider/result[0]: ", result[0]);
     return res.status(201).json(result[0]);
   } catch (error) {
     return res.status(500).json({ message: error.message });
