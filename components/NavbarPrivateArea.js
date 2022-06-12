@@ -30,7 +30,7 @@ export function NavbarPrivateArea() {
   );
 
   return (
-    <nav className="bg-white border-gray-200 px-2 sm:px-4 py-2.5 dark:bg-gray-800 fixed top-0 left-0 right-0 h-16 z-50">
+    <nav className="bg-white border-gray-200 px-2 sm:px-4  dark:bg-gray-800 fixed top-0 left-0 right-0 h-16 z-50">
       <div className="container flex flex-wrap justify-between items-center mx-auto">
         <Link href="/">
           <a className="flex items-center">

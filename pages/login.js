@@ -27,7 +27,7 @@ function SignUpPage() {
     e.preventDefault();
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredentials) => {
-        console.log(userCredentials);
+        console.log("login/handleLoginSubmit/userCredentials", userCredentials);
         setUser(userCredentials);
         return router.push("/profile");
       })
@@ -76,7 +76,7 @@ function SignUpPage() {
           <Link href={"/signup"}>
             <a className="w-full rounded bg-gray-100 py-3 px-2 font-semibold text-lg flex gap-2 justify-center items-center hover:bg-slate-200 duration-200 ease">
               <AiOutlineMail size={"2rem"} />
-              With Email and password
+              amb Email i contrassenya
             </a>
           </Link>
 
@@ -87,7 +87,7 @@ function SignUpPage() {
             <span>
               <FcGoogle size={"2rem"} />
             </span>
-            With Google
+            amb Google
           </button>
         </div>
       </div>

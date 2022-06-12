@@ -145,7 +145,7 @@ function ArticleView({ article }) {
           <div className="py-2 flex justify-around items-center gap-4 my-4">
             <div>
               <h2 className="text-lg text-gray-900 font-lato font-normal pb-2">
-                Venedor:
+                Venedor/a:
               </h2>
 
               <div>

@@ -3,6 +3,7 @@ import { pool } from "../../../config/db";
 export default function handler(req, res) {
   switch (req.method) {
     case "POST":
+      //console.log("indexProvider/req: ", req);
       return getRegisterProvider(req, res);
 
     default:
@@ -11,8 +12,11 @@ export default function handler(req, res) {
 }
 
 const getRegisterProvider = async (req, res) => {
+  console.log("indexProvider/getRegisterProvider/req.body: ", req.body);
   try {
-    const { email, id, username } = req.body;
+    //const { email, id, username } = req.body;
+    const { email, id, username, avatarurl } = req.body;
+    console.log("indexProvider/getRegisterProvider/avatarurl: ", avatarurl);
 
     const [searchEmail] = await pool.query(
       `SELECT * FROM user WHERE useremail = '${email}'`
@@ -23,7 +27,8 @@ const getRegisterProvider = async (req, res) => {
     }
 
     const [result] = await pool.query(
-      `INSERT INTO user (useremail, fbkey, username) VALUES ('${email}','${id}','${username}')`
+      //`INSERT INTO user (useremail, fbkey, username) VALUES ('${email}','${id}','${username}')`
+      `INSERT INTO user (useremail, fbkey, username, avatarurl) VALUES ('${email}','${id}','${username}','${avatarurl}')`
     );
     console.log(result[0]);
     return res.status(201).json(result[0]);

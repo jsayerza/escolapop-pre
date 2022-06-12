@@ -9,6 +9,7 @@ import axios from "axios";
 import Link from "next/link";
 import { HOST_SV } from "config/config";
 
+
 function SignUpPage() {
   const { user } = useUser();
   const [loading, setLoading] = useState(true);
@@ -34,13 +35,15 @@ function SignUpPage() {
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredentials) => {
         userCredentials.user.displayName = name;
-        console.log(userCredentials);
+        console.log("handleSignupSubmit/userCredentials: ", userCredentials);
         setUser(userCredentials);
         axios
           .post(HOST_SV + "/api/register", {
             id: userCredentials.user.uid,
             email: userCredentials.user.email,
             username: userCredentials.user.displayName,
+            ////Creo q esto es inutil
+            avatarurl: userCredentials.user.avatar,
           })
           .then(() => {
             router.push("/profile");

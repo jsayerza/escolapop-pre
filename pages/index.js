@@ -4,6 +4,7 @@ import Image from "next/image";
 import { Layout } from "../components/Layout";
 import { HOST_SV } from "../config/config";
 import { Home } from "components/Home";
+import { Footer } from "../components/Footer";
 
 
 function HomePage({ articles }) {
@@ -18,6 +19,7 @@ function HomePage({ articles }) {
         />
 
       <Home articles={articles} />
+      <Footer />
     </Layout>
   );
 }
