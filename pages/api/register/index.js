@@ -12,11 +12,11 @@ export default function handler(req, res) {
 }
 
 const getRegister = async (req, res) => {
-  console.log("indexRegister/getRegister/req.body: ", req.body)
+  //console.log("indexRegister/getRegister/req.body: ", req.body)
   try {
     /* const { email, id, username } = req.body; */
     const { email, id, username, avatarurl } = req.body;
-    console.log("indexRegister/getRegister/avatarurl: ", avatarurl)
+    //console.log("indexRegister/getRegister/avatarurl: ", avatarurl)
 
     const [searchEmail] = await pool.query(
       `SELECT * FROM user WHERE useremail = '${email}'`
