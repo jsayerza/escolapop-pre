@@ -1,29 +1,28 @@
 import Image from "next/image";
 import { FaUserCircle } from "react-icons/fa";
 
-import { useUser } from "context/authContext";
+//import { useUser } from "context/authContext";
 import Layout from "../components/Layout";
 
 
 function userSettings() {
 
-  const { user } = useUser();
+/*   const { user } = useUser();
   console.log("userSettings/user: ", user)
   //console.log("userSettings/user.avatar: ", user.avatar)
-
+ */
   return (
     <Layout>
       <h1 className="text-left text-2xl font-lato font-black text-greenescola my-2">
         <div>El meu usuari</div>
       </h1>
-      <div className="flex flex-col gap-4 md:flex-row">
-      {/* <div className="py-2 flex justify-around items-center gap-4 my-4"> */}
+
+{/*       <div className="flex flex-col gap-4 md:flex-row">
         <div>
           <h2 className="text-lg text-gray-900 font-lato font-normal pb-2">
             Avatar:
           </h2>
 
-          {/* <div className="flex-1 w-full"> */}
           {user && user.avatar ? (
             <Image
               width={100}
@@ -41,7 +40,6 @@ function userSettings() {
               alt="Venedor/a"
             />
           )}
-          {/* </div> */}
         </div>
 
         <div>
@@ -69,6 +67,7 @@ function userSettings() {
           )}
         </div>
       </div>
+ */}
     </Layout>
   )
 }
