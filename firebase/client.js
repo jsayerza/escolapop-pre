@@ -46,7 +46,7 @@ const mapUserFromFirebaseAuth = (user) => {
   const { displayName, email, photoURL, uid } = user;
   return {
     name: displayName,
-    email,
+    email: email,
     avatar: photoURL,
     id: uid,
   };
