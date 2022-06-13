@@ -17,7 +17,7 @@ function userSettings() {
         <div>El meu usuari</div>
       </h1>
 
-{/*       <div className="flex flex-col gap-4 md:flex-row">
+      <div className="flex flex-col gap-4 md:flex-row">
         <div>
           <h2 className="text-lg text-gray-900 font-lato font-normal pb-2">
             Avatar:
@@ -67,7 +67,7 @@ function userSettings() {
           )}
         </div>
       </div>
- */}
+
     </Layout>
   )
 }
