@@ -162,7 +162,7 @@ export function NavbarPrivateArea() {
             <li>
               <Tooltip title="Detalls i configuració del meu usuari">
                 <IconButton size="small">
-                  <Link href="/UserSettings">
+                  <Link href="/userSettings">
                     <a className="bg-gray-100 flex items-center justify-center m-auto py-2 px-4 font-lato font-normal text-black border rounded font-bold w-full hover:bg-orangeAMPA hover:text-black transition-all ease duration-200">
                       El meu usuari
                       <span className="px-2">
