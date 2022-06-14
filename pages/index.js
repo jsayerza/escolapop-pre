@@ -5,6 +5,7 @@ import { Layout } from "../components/Layout";
 import { HOST_SV } from "../config/config";
 import { Home } from "components/Home";
 import { Footer } from "../components/Footer";
+import { SearchCategoryBar } from "../components/SearchCategoryBar";
 
 
 function HomePage({ articles }) {
@@ -17,7 +18,8 @@ function HomePage({ articles }) {
           className="mr-3 h-6 sm:h-9"
           alt=""
         />
-
+      {/* Aqui va la barra de busqueda por categoria */}
+      <SearchCategoryBar />
       <Home articles={articles} />
       <Footer />
     </Layout>
