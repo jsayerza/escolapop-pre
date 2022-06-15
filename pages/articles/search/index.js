@@ -1,11 +1,22 @@
+import { useEffect } from "react";
+import { useRouter } from "next/router";
 import axios from "axios";
 import { HOST_SV } from "../../../config/config";
 import { Layout } from "../../../components/Layout";
 import SearchBar from "../../../components/SearchBar";
 import { SearchResults } from "../../../components/SearchResults";
+import { useUser } from "context/authContext";
 
 function SearchWithoutParams({ searchQuery, queryObj }) {
-  //console.log("search/searchQuery: ", searchQuery, search);
+  const { user } = useUser();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (!user || user === null || user === undefined) {
+      router.push("/login");
+    }
+  }, [router, user]);
+
   return (
     <Layout>
       <SearchBar queryObj={queryObj} filters={true} />
