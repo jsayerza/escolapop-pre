@@ -17,6 +17,22 @@ export const useHandlersFilters = ({
   const router = useRouter();
   let path = keyword ? `/articles/search/${keyword}` : `/articles/search`;
 
+  const handleAllCategory = async () => {
+    await router.push({
+      pathname: `/articles/search`,
+      query: {
+        category: queryObj.category ? queryObj.category : null,
+        min_price: queryObj.min_price ? queryObj.min_price : null,
+        max_price: queryObj.max_price ? queryObj.max_price : null,
+        location: queryObj.location ? queryObj.location : null,
+        size: queryObj.size ? queryObj.size : null,
+        course: queryObj.course ? queryObj.course : null,
+      },
+    });
+    setActiveCategory(true);
+    handleCloseModal();
+  };
+
   const handleCategory = async (articleCategory) => {
     await router.push({
       pathname: path,
@@ -172,6 +188,7 @@ export const useHandlersFilters = ({
     });
   };
   return {
+    handleAllCategory,
     handleCategory,
     handleCourse,
     handleLocation,
