@@ -172,7 +172,7 @@ function ArticleView({ article }) {
           </div>
 
           {/* ///////// */}
-{/*           {data.user.email ?
+          {data.user.email ? 
             <div>
               data.user.email: {data.user.email}
             </div>
@@ -190,7 +190,7 @@ function ArticleView({ article }) {
               article.useremail: NO N_HI HA!
             </div>
           }
- */}          
+          
           {/* Si user != vendedor, muestra "Cantacta con vendedor" */}
           {data && data.user.email !== article.useremail && (
             <div className="my-12 flex justify-center">
