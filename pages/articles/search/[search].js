@@ -13,8 +13,10 @@ function Search({ searchQuery, search, queryObj }) {
         Resultats de cerca de {`'${search}'`}
       </h1>
 
-      <div className="grid gap-4 grid-cols-1 md:grid-cols-3">
-        <SearchResults searched={searchQuery} />
+      <div className="flex flex-col gap-2">
+        <div className="grid gap-4 grid-cols-1 md:grid-cols-3">
+          <SearchResults searched={searchQuery} />
+        </div>
       </div>
     </Layout>
   );
@@ -22,8 +24,10 @@ function Search({ searchQuery, search, queryObj }) {
 
 export const getServerSideProps = async (context) => {
   //console.log(context.query?.search?.category, "in the server response");
+  console.log(context);
   const { search } = context.query;
   const queryObj = context.query;
+  console.log(queryObj);
   const { data: searchQuery } = await axios.get(
     HOST_SV + "/api/articles/search/" + context.query.search,
     {
