@@ -32,6 +32,7 @@ export const SearchFilterBar = ({ queryObj, keyword }) => {
     useModal();
 
   const {
+    handleAllCategory,
     handleCategory,
     handleCourse,
     handleLocation,
@@ -65,14 +66,20 @@ export const SearchFilterBar = ({ queryObj, keyword }) => {
             handlerClick={handleResetCategory}
             active={activeCategory}
           >
-            {queryObj.category}
+            {queryObj.category ? queryObj.category : "Todas las Categorias"}
           </ButtonFilter>
         ) : (
           <>
             <ButtonFilter handlerClick={handleToggleModal} isOpen={isOpen}>
-              Categoria
+              Todas las Categoria
             </ButtonFilter>
             <Modal isOpen={isOpen} closeModal={handleCloseModal}>
+              <button
+                onClick={handleAllCategory}
+                className="px-6 py-4 rounded font-lato font-bold bg-slate-300"
+              >
+                Todas las Categoria
+              </button>
               {categories.map((category) => (
                 <button
                   key={category.articlecategory.id}
