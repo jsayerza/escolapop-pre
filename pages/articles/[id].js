@@ -172,14 +172,25 @@ function ArticleView({ article }) {
           </div>
 
           {/* ///////// */}
+          {data.user.email ?
+            <div>
+              data.user.email: {data.user.email}
+            </div>
+          :
+            <div>
+              data.user.email: NO N_HI HA!
+            </div>
+          }
+          {article.useremail ?
+            <div>
+              article.useremail: {article.useremail}
+            </div>
+          :
+            <div>
+              article.useremail: NO N_HI HA!
+            </div>
+          }
           {/* Si user != vendedor, muestra "Cantacta con vendedor" */}
-{/*           <div>
-            data.user.email: {data.user.email}
-          </div>
-          <div>
-            article.useremail: {article.useremail}
-          </div>
- */}          
           {data && data.user.email !== article.useremail && (
             <div className="my-12 flex justify-center">
               <button
