@@ -24,15 +24,15 @@ const setSearch = async (req, res) => {
       query = query + ` AND price BETWEEN ${min_price} AND ${max_price}`;
     }
 
-    if (location && location !== null && category) {
+    if (location && location !== null) {
       query = query + ` AND location = '${location}'`;
     }
 
-    if (size && size !== null && category) {
+    if (size && size !== null) {
       query = query + ` AND articlesize = '${size}'`;
     }
 
-    if (course && course !== null && category) {
+    if (course && course !== null) {
       query = query + ` AND course = '${course}'`;
     }
 
