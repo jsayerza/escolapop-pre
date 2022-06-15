@@ -15,10 +15,27 @@ export const useHandlersFilters = ({
   queryObj,
 }) => {
   const router = useRouter();
+  let path = keyword ? `/articles/search/${keyword}` : `/articles/search`;
+
+  const handleAllCategory = async () => {
+    await router.push({
+      pathname: `/articles/search`,
+      query: {
+        category: queryObj.category ? queryObj.category : null,
+        min_price: queryObj.min_price ? queryObj.min_price : null,
+        max_price: queryObj.max_price ? queryObj.max_price : null,
+        location: queryObj.location ? queryObj.location : null,
+        size: queryObj.size ? queryObj.size : null,
+        course: queryObj.course ? queryObj.course : null,
+      },
+    });
+    setActiveCategory(true);
+    handleCloseModal();
+  };
 
   const handleCategory = async (articleCategory) => {
     await router.push({
-      pathname: `/articles/search/${keyword}`,
+      pathname: path,
       query: {
         category: articleCategory,
         min_price: queryObj.min_price ? queryObj.min_price : null,
@@ -34,7 +51,7 @@ export const useHandlersFilters = ({
 
   const handleLocation = async (location) => {
     await router.push({
-      pathname: `/articles/search/${keyword}`,
+      pathname: path,
       query: {
         category: queryObj.category ? queryObj.category : null,
         min_price: queryObj.min_price ? queryObj.min_price : null,
@@ -50,7 +67,7 @@ export const useHandlersFilters = ({
 
   const handleSize = async (size) => {
     await router.push({
-      pathname: `/articles/search/${keyword}`,
+      pathname: path,
       query: {
         category: queryObj.category ? queryObj.category : null,
         min_price: queryObj.min_price ? queryObj.min_price : null,
@@ -66,7 +83,7 @@ export const useHandlersFilters = ({
 
   const handleCourse = async (course) => {
     await router.push({
-      pathname: `/articles/search/${keyword}`,
+      pathname: path,
       query: {
         category: queryObj.category ? queryObj.category : null,
         min_price: queryObj.min_price ? queryObj.min_price : null,
@@ -82,7 +99,7 @@ export const useHandlersFilters = ({
 
   const handlePrice = async (minPrice, maxPrice) => {
     await router.push({
-      pathname: `/articles/search/${keyword}`,
+      pathname: path,
       query: {
         category: queryObj.category ? queryObj.category : null,
         min_price: minPrice ? minPrice : queryObj.min_price,
@@ -99,7 +116,7 @@ export const useHandlersFilters = ({
   const handleResetCategory = async () => {
     setActiveCategory(false);
     await router.push({
-      pathname: `/articles/search/${keyword}`,
+      pathname: path,
       query: {
         category: null,
         min_price: queryObj.min_price ? queryObj.min_price : null,
@@ -114,7 +131,7 @@ export const useHandlersFilters = ({
   const handleResetSizes = async () => {
     setActiveSizes(false);
     await router.push({
-      pathname: `/articles/search/${keyword}`,
+      pathname: path,
       query: {
         category: queryObj.category ? queryObj.category : null,
         min_price: queryObj.min_price ? queryObj.min_price : null,
@@ -129,7 +146,7 @@ export const useHandlersFilters = ({
   const handleResetCourse = async () => {
     setActiveCourse(false);
     await router.push({
-      pathname: `/articles/search/${keyword}`,
+      pathname: path,
       query: {
         category: queryObj.category ? queryObj.category : null,
         min_price: queryObj.min_price ? queryObj.min_price : null,
@@ -144,7 +161,7 @@ export const useHandlersFilters = ({
   const handleResetLocation = async () => {
     setActiveLocation(false);
     await router.push({
-      pathname: `/articles/search/${keyword}`,
+      pathname: path,
       query: {
         category: queryObj.category ? queryObj.category : null,
         min_price: queryObj.min_price ? queryObj.min_price : null,
@@ -159,7 +176,7 @@ export const useHandlersFilters = ({
   const handleResetPrice = async () => {
     setActivePrice(false);
     await router.push({
-      pathname: `/articles/search/${keyword}`,
+      pathname: path,
       query: {
         category: queryObj.category ? queryObj.category : null,
         min_price: null,
@@ -171,6 +188,7 @@ export const useHandlersFilters = ({
     });
   };
   return {
+    handleAllCategory,
     handleCategory,
     handleCourse,
     handleLocation,

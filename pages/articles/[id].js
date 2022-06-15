@@ -6,8 +6,8 @@ import Image from "next/image";
 import { useSession } from "next-auth/react";
 import { FiEdit3 } from "react-icons/fi";
 import { AiFillDelete } from "react-icons/ai";
-import { Tooltip } from '@mui/material';
-import { IconButton } from '@mui/material';
+import { Tooltip } from "@mui/material";
+import { IconButton } from "@mui/material";
 
 import { HOST_SV } from "config/config";
 import { Layout } from "../../components/Layout";
@@ -17,9 +17,7 @@ import { useUser } from "context/authContext";
 // import { useUser } from "context/authContext";
 //import ButtonMailto from "components/ButtonMailTo";
 
-
 function ArticleView({ article }) {
-
   // const { user } = useUser();
   //console.log(user);
   //console.log("ArticleView/article: ", article);
@@ -136,7 +134,6 @@ function ArticleView({ article }) {
               </h2>
               <BadgeSaleStatus status={article.salestatus} />
             </div>
-
           </div>
 
           <div className="py-2 flex justify-around items-center gap-4 my-4">
@@ -167,7 +164,6 @@ function ArticleView({ article }) {
                   {article.username}
                 </h2>
               </div>
-
             </div>
           </div>
 
@@ -192,7 +188,7 @@ function ArticleView({ article }) {
           }
           
           {/* Si user != vendedor, muestra "Cantacta con vendedor" */}
-          {data && data.user.email !== article.useremail && (
+          {user && user.email !== article.useremail && (
             <div className="my-12 flex justify-center">
               <button
                 className="bg-cyan-600 hover:bg-gray-800 text-white text-lg font-lato font-bold rounded ml-2 py-3 px-5"
@@ -210,9 +206,8 @@ function ArticleView({ article }) {
           )}
           {/* ///////// */}
           {/* Si user == vendedor, muestra botones edit y delete */}
-          {data && data.user.email === article.useremail && (
+          {user && user.email === article.useremail && (
             <div className="py-5">
-
               <Tooltip title="Edita el teu article">
                 <IconButton size="small">
                   <button
@@ -246,10 +241,8 @@ function ArticleView({ article }) {
             </div>
           )}
           {/* ///////// */}
-
         </div>
       </div>
-
     </Layout>
   );
 }

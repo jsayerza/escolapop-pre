@@ -7,17 +7,16 @@ import { Home } from "components/Home";
 import { Footer } from "../components/Footer";
 import { SearchCategoryBar } from "../components/SearchCategoryBar";
 
-
 function HomePage({ articles }) {
   return (
     <Layout>
-        <Image
-          width={1128}
-          height={438}
-          src="/escolapop-image.png"
-          className="mr-3 h-6 sm:h-9"
-          alt=""
-        />
+      <Image
+        width={1128}
+        height={438}
+        src="/escolapop-image.png"
+        className="mr-3 h-6 sm:h-9"
+        alt=""
+      />
       {/* Aqui va la barra de busqueda por categoria */}
       <SearchCategoryBar />
       <Home articles={articles} />
@@ -29,12 +28,9 @@ function HomePage({ articles }) {
 //// Funció especial de Next per executar codi de server que s'executa abans que la pantalla es presenti en el client.
 ////   Després carrega el return de HomePage
 export const getServerSideProps = async (context) => {
-  
   //console.log("getServerSideProps/HOST_SV: ", HOST_SV);
-  
-  const { data: articles } = await axios.get(
-    HOST_SV + "/api/articles"
-  );
+
+  const { data: articles } = await axios.get(HOST_SV + "/api/articles");
   //console.log("getServerSideProps/articles: ", articles);
 
   return {
