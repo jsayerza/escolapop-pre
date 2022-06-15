@@ -11,7 +11,7 @@ const setSearch = async (req, res) => {
   try {
     const { search, category, min_price, max_price, location, size, course } =
       req.query;
-/*     //console.log({
+    /*     //console.log({
       categoria: category,
       precio_min: min_price,
       precio_max: max_price,
@@ -20,7 +20,8 @@ const setSearch = async (req, res) => {
     });
  */
     //let query = `SELECT * FROM v_article_sell WHERE articletitle OR description LIKE '%${search}%'`;
-      let query = `SELECT * FROM v_article_sell WHERE ((articletitle LIKE '%${search}%') OR (description LIKE '%${search}%'))`;
+
+    let query = `SELECT * FROM v_article_sell WHERE ((articletitle LIKE '%${search}%') OR (description LIKE '%${search}%'))`;
 
     if (category && category !== null) {
       query = query + ` AND articlecategory = '${category}'`;
