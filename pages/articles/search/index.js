@@ -6,6 +6,7 @@ import { Layout } from "../../../components/Layout";
 import SearchBar from "../../../components/SearchBar";
 import { SearchResults } from "../../../components/SearchResults";
 import { useUser } from "context/authContext";
+import { OrderButton } from "components/OrderButton";
 
 function SearchWithoutParams({ searchQuery, queryObj }) {
   const { user } = useUser();
@@ -22,6 +23,8 @@ function SearchWithoutParams({ searchQuery, queryObj }) {
       <SearchBar queryObj={queryObj} filters={true} />
 
       <div className="flex flex-col gap-2">
+        <OrderButton queryObj={queryObj} />
+
         <div className="grid gap-4 grid-cols-1 md:grid-cols-3">
           <SearchResults searched={searchQuery} />
         </div>
@@ -45,6 +48,7 @@ export const getServerSideProps = async (context) => {
         max_price: context.query?.max_price ? context.query?.max_price : 9999,
         location: context.query?.location,
         course: context.query?.course,
+        order_by: context.query?.order_by,
       },
     }
   );

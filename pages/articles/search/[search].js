@@ -3,6 +3,7 @@ import { HOST_SV } from "../../../config/config";
 import { Layout } from "../../../components/Layout";
 import SearchBar from "../../../components/SearchBar";
 import { SearchResults } from "../../../components/SearchResults";
+import { OrderButton } from "components/OrderButton";
 
 function Search({ searchQuery, search, queryObj }) {
   //console.log("search/searchQuery: ", searchQuery, search);
@@ -14,6 +15,8 @@ function Search({ searchQuery, search, queryObj }) {
       </h1>
 
       <div className="flex flex-col gap-2">
+        <OrderButton queryObj={queryObj} keyword={search} />
+
         <div className="grid gap-4 grid-cols-1 md:grid-cols-3">
           <SearchResults searched={searchQuery} />
         </div>
@@ -27,7 +30,7 @@ export const getServerSideProps = async (context) => {
   console.log(context);
   const { search } = context.query;
   const queryObj = context.query;
-  console.log(queryObj);
+  console.log(queryObj.order_by, "ORDEN");
   const { data: searchQuery } = await axios.get(
     HOST_SV + "/api/articles/search/" + context.query.search,
     {
@@ -38,6 +41,7 @@ export const getServerSideProps = async (context) => {
         max_price: context.query?.max_price ? context.query?.max_price : 9999,
         location: context.query?.location,
         course: context.query?.course,
+        order_by: context.query?.order_by,
       },
     }
   );
