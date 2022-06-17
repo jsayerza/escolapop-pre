@@ -66,19 +66,19 @@ export const SearchFilterBar = ({ queryObj, keyword }) => {
             handlerClick={handleResetCategory}
             active={activeCategory}
           >
-            {queryObj.category ? queryObj.category : "Todas las Categorias"}
+            {queryObj.category ? queryObj.category : "Totes les categories"}
           </ButtonFilter>
         ) : (
           <>
             <ButtonFilter handlerClick={handleToggleModal} isOpen={isOpen}>
-              Todas las Categoria
+              Totes les categories
             </ButtonFilter>
             <Modal isOpen={isOpen} closeModal={handleCloseModal}>
               <button
                 onClick={handleAllCategory}
                 className="px-6 py-4 rounded font-lato font-bold bg-slate-300"
               >
-                Todas las Categoria
+                Totes les categories
               </button>
               {categories.map((category) => (
                 <button
