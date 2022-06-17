@@ -6,11 +6,13 @@ export const useHandlersFilters = ({
   setActiveLocation,
   setActivePrice,
   setActiveSizes,
+  setActiveOrder,
   handleCloseModal,
   handleCloseModalCourse,
   handleCloseModalLocation,
   handleCloseModalPrice,
   handleCloseModalSizes,
+  handleCloseOrderModal,
   keyword,
   queryObj,
 }) => {
@@ -27,6 +29,7 @@ export const useHandlersFilters = ({
         location: queryObj.location ? queryObj.location : null,
         size: queryObj.size ? queryObj.size : null,
         course: queryObj.course ? queryObj.course : null,
+        order_by: queryObj.order_by ? queryObj.order_by : null,
       },
     });
     setActiveCategory(true);
@@ -43,6 +46,7 @@ export const useHandlersFilters = ({
         location: queryObj.location ? queryObj.location : null,
         size: queryObj.size ? queryObj.size : null,
         course: queryObj.course ? queryObj.course : null,
+        order_by: queryObj.order_by ? queryObj.order_by : null,
       },
     });
     setActiveCategory(true);
@@ -59,6 +63,7 @@ export const useHandlersFilters = ({
         location: location,
         size: queryObj.size ? queryObj.size : null,
         course: queryObj.course ? queryObj.course : null,
+        order_by: queryObj.order_by ? queryObj.order_by : null,
       },
     });
     setActiveLocation(true);
@@ -75,6 +80,7 @@ export const useHandlersFilters = ({
         location: queryObj.location ? queryObj.location : null,
         size: size,
         course: queryObj.course ? queryObj.course : null,
+        order_by: queryObj.order_by ? queryObj.order_by : null,
       },
     });
     setActiveSizes(true);
@@ -90,6 +96,7 @@ export const useHandlersFilters = ({
         max_price: queryObj.max_price ? queryObj.max_price : null,
         location: queryObj.location ? queryObj.location : null,
         size: queryObj.size ? queryObj.size : null,
+        order_by: queryObj.order_by ? queryObj.order_by : null,
         course: course,
       },
     });
@@ -107,10 +114,28 @@ export const useHandlersFilters = ({
         location: queryObj.location ? queryObj.location : null,
         size: queryObj.size ? queryObj.size : null,
         course: queryObj.course ? queryObj.course : null,
+        order_by: queryObj.order_by ? queryObj.order_by : null,
       },
     });
     setActivePrice(true);
     handleCloseModalPrice();
+  };
+
+  const handleOrder = async (order) => {
+    await router.push({
+      pathname: path,
+      query: {
+        category: queryObj.category ? queryObj.category : null,
+        min_price: queryObj.min_price ? queryObj.min_price : null,
+        max_price: queryObj.max_price ? queryObj.max_price : null,
+        location: queryObj.location ? queryObj.location : null,
+        size: queryObj.size ? queryObj.size : null,
+        course: queryObj.course ? queryObj.course : null,
+        order_by: order,
+      },
+    });
+    setActiveOrder(true);
+    handleCloseOrderModal();
   };
 
   const handleResetCategory = async () => {
@@ -124,6 +149,7 @@ export const useHandlersFilters = ({
         location: queryObj.location ? queryObj.location : null,
         size: queryObj.size ? queryObj.size : null,
         course: queryObj.course ? queryObj.course : null,
+        order_by: queryObj.order_by ? queryObj.order_by : null,
       },
     });
   };
@@ -139,6 +165,7 @@ export const useHandlersFilters = ({
         location: queryObj.location ? queryObj.location : null,
         size: null,
         course: queryObj.course ? queryObj.course : null,
+        order_by: queryObj.order_by ? queryObj.order_by : null,
       },
     });
   };
@@ -154,6 +181,7 @@ export const useHandlersFilters = ({
         location: queryObj.location ? queryObj.location : null,
         size: queryObj.size ? queryObj.size : null,
         course: null,
+        order_by: queryObj.order_by ? queryObj.order_by : null,
       },
     });
   };
@@ -169,6 +197,7 @@ export const useHandlersFilters = ({
         location: null,
         size: queryObj.size ? queryObj.size : null,
         course: queryObj.course ? queryObj.course : null,
+        order_by: queryObj.order_by ? queryObj.order_by : null,
       },
     });
   };
@@ -184,6 +213,7 @@ export const useHandlersFilters = ({
         location: queryObj.location ? queryObj.location : null,
         size: queryObj.size ? queryObj.size : null,
         course: queryObj.course ? queryObj.course : null,
+        order_by: queryObj.order_by ? queryObj.order_by : null,
       },
     });
   };
@@ -199,5 +229,6 @@ export const useHandlersFilters = ({
     handleResetLocation,
     handleResetPrice,
     handleResetSizes,
+    handleOrder,
   };
 };
