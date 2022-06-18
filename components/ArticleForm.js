@@ -266,6 +266,7 @@ export function ArticleForm({ articleUpdateId = null }) {
             return (
               axios
                 .put(HOST_SV + `/api/articles/${articleUpdateId}`, {
+                  puttype: "articleupdate",
                   ...values,
                   useremail: `${user?.email}`,
                 })
@@ -273,7 +274,7 @@ export function ArticleForm({ articleUpdateId = null }) {
                 .then((res) => {
                   //// Solo modificar la imágen si hay una nueva imágen para sustituir JSM 20220424
                   if (urlImg != "") {
-                    console.log("onSubmit/PUT/urlImg/entra!");
+                    //console.log("onSubmit/PUT/urlImg/entra!");
                     return axios
                       .put(HOST_SV + `/api/articles/images`, {
                         imageurl: urlImg,

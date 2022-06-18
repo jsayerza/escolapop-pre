@@ -24,10 +24,10 @@ function Search({ searchQuery, search, queryObj }) {
 
 export const getServerSideProps = async (context) => {
   //console.log(context.query?.search?.category, "in the server response");
-  console.log(context);
+  //console.log("search/getServerSideProps/context: ", context);
   const { search } = context.query;
   const queryObj = context.query;
-  console.log(queryObj);
+  //console.log("search/getServerSideProps/queryObj: ", queryObj);
   const { data: searchQuery } = await axios.get(
     HOST_SV + "/api/articles/search/" + context.query.search,
     {

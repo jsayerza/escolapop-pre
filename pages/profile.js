@@ -51,7 +51,7 @@ function ProfilePage() {
     HOST_SV + "/api/articles/profile"
   );
 
-  console.log(articles);
+  //console.log(articles);
   return {
     props: {
       ses

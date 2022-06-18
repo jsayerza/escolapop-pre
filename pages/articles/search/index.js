@@ -32,9 +32,9 @@ function SearchWithoutParams({ searchQuery, queryObj }) {
 
 export const getServerSideProps = async (context) => {
   //console.log(context.query?.search?.category, "in the server response");
-  console.log(context);
+  //console.log("index/getServerSideProps/context: ", context);
   const queryObj = context.query;
-  console.log(queryObj);
+  //console.log("index/getServerSideProps/queryObj: ", queryObj);
   const { data: searchQuery } = await axios.get(
     HOST_SV + "/api/articles/search",
     {
