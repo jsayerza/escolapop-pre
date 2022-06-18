@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useRouter } from "next/router";
 import { SearchIcon } from "../icons/SearchIcon";
 import { IoOptionsOutline } from "react-icons/io5";
@@ -10,7 +10,7 @@ import { useUser } from "context/authContext";
 export default function SearchBar({ keyword, queryObj, filters }) {
   //console.log(queryObj, "form the searchBar component");
   const router = useRouter();
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useState(keyword);
   const [resetSearch, setResetSearch] = useState(false);
   const inputRef = useRef(null);
   const [show, handleShowComponent] = useShowComponent();
@@ -29,11 +29,25 @@ export default function SearchBar({ keyword, queryObj, filters }) {
     setSearch(e.target.value);
   };
 
+  const handleClear = () => {
+    setSearch("");
+    // En caso de dejarlo todo por defecto en la busqueda descomentar
+    // router.push(HOST_SV + `/articles/search`);
+  };
+
+  useEffect(() => {
+    if (search) {
+      inputRef.current.value = search;
+    } else {
+      inputRef.current.value = "";
+    }
+  }, [search]);
+
   return (
     <>
       <div className="flex gap-2 items-center">
         <form className="w-full" onSubmit={handleSubmit}>
-          <div className="flex justify-center items-center w-full my-2 rounded hover:shadow-md transition duration-200">
+          <div className="relative flex justify-center items-center w-full my-2 rounded hover:shadow-md transition duration-200">
             <div className="p-2 bg-white">
               <SearchIcon />
             </div>
@@ -46,6 +60,11 @@ export default function SearchBar({ keyword, queryObj, filters }) {
             />
           </div>
         </form>
+        {search && search !== "" && (
+          <button className="bg-white p-2" onClick={handleClear}>
+            x
+          </button>
+        )}
         {filters && (
           <button
             className="flex flex-row-reverse items-center gap-1 px-2 md:px-4 py-2 md:text-lg font-bold text-white bg-orange-500 rounded hover:bg-orange-600 transition-all duration-200"
