@@ -27,7 +27,7 @@ function Search({ searchQuery, search, queryObj }) {
 
 export const getServerSideProps = async (context) => {
   //console.log(context.query?.search?.category, "in the server response");
-  console.log(context);
+  //console.log("search/getServerSideProps/context: ", context);
   const { search } = context.query;
   const queryObj = context.query;
   console.log(queryObj.order_by, "ORDEN");

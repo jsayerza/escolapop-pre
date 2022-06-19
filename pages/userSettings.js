@@ -8,7 +8,7 @@ import Layout from "../components/Layout";
 function userSettings() {
 
 /*   const { user } = useUser();
-  console.log("userSettings/user: ", user)
+  //console.log("userSettings/user: ", user)
   //console.log("userSettings/user.avatar: ", user.avatar)
  */
   return (

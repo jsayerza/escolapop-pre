@@ -1,12 +1,17 @@
 import axios from "axios";
 import Image from "next/image";
+import { toast } from "react-toastify";
+import Moment from 'moment';
 import { FiEdit3 } from "react-icons/fi";
 import { AiFillDelete } from "react-icons/ai";
 import { useRouter } from "next/router";
-import { toast } from "react-toastify";
-import Moment from 'moment';
 import { Tooltip } from '@mui/material';
 import { IconButton } from '@mui/material';
+import { FaRegHandshake } from "react-icons/fa"
+import { BsBookmark } from "react-icons/bs"
+
+import { HOST_SV } from "../config/config";
+import { BadgeSaleStatus } from "../components/BadgeSaleStatus";
 
 
 export default function ArticleList({ articles }) {
@@ -35,6 +40,27 @@ export default function ArticleList({ articles }) {
       toast.error(error.response.data.message);
     }
   };
+
+  const handleUpdate = async (id, salestatusid) => {
+    //console.log("ArticleList/handleUpdate/salestatusid: ", salestatusid);
+    try {
+      //console.log("ArticleList/handleUpdate/id: ", id);
+      axios
+        .put(HOST_SV + `/api/articles/${id}`, {
+          puttype: "salestatus",
+          salestatusid: salestatusid,
+        })
+        .then(async (res) => {
+          toast.success("Article reservat/venut");
+          router.push("/");
+        })
+        .catch((e) => console.log("handleUpdate update article error: ", e));
+    } catch (error) {
+      console.log("ArticleList/handleUpdate/error: ", error);
+      //toast.error(error.response.data.message);
+    }
+  };
+
 
   return (
     <div className="flex gap-4 flex-col w-full justify-center">
@@ -76,7 +102,8 @@ export default function ArticleList({ articles }) {
 
               <div className="flex flex-col justify-center items-center py-4 px-8">
                 <h1 className="text-lg font-lato font-normal">
-                  {article.salestatus}
+                  {/* {article.salestatus} */}
+                  <BadgeSaleStatus status={article.salestatus} />
                 </h1>
               </div>
 
@@ -96,6 +123,40 @@ export default function ArticleList({ articles }) {
                   {Moment(article.datecreation).format('DD/MM/yyyy')}
                 </h2>
               </div>
+            </div>
+
+            <div className="flex gap-4 justify-center items-center">
+              
+              <Tooltip title="Marca com article venut">
+                <IconButton size="small">
+                  <button
+                    className="px-2 py-2 rounded font-lato font-bold text-gray-700 hover:bg-greenescola hover:text-white transition-all duration-200"
+                    onClick={() => {
+                      //console.log("ArticleView/sold/article.articleid: ", article.articleid);
+                      handleUpdate(article.articleid, 3);
+                    }}
+                    
+                >
+                    <FaRegHandshake size={22} />
+                  </button>
+                </IconButton>
+              </Tooltip>
+
+              <Tooltip title="Marca com article reservat">
+                <IconButton size="small">
+                    <button
+                    className="px-2 py-2 rounded font-lato font-bold text-gray-700 hover:bg-orangeAMPA hover:text-white transition-all duration-200"
+                    onClick={() => {
+                      //console.log("ArticleView/reserved/article.articleid: ", article.articleid);
+                      handleUpdate(article.articleid, 2);
+                    }}
+                    
+                >
+                      <BsBookmark size={22} />
+                    </button>
+                </IconButton>
+              </Tooltip>
+
             </div>
 
             <div className="flex gap-4 justify-center items-center">
@@ -126,6 +187,8 @@ export default function ArticleList({ articles }) {
               </Tooltip>
 
             </div>
+
+
           </div>
         ))}
     </div>

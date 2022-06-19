@@ -43,17 +43,29 @@ const deleteArticle = async (req, res) => {
 
 const updateArticle = async (req, res) => {
   const { id } = req.query;
+  const {puttype} = req.body;
   const { articletitle, articlecategoryid, description, price, useremail, articlestatusid, courseid, locationid, publicationstatusid, salestatusid, articlesizeid } = req.body;
   //console.log("updateArticle/req.body: ", req.body);
   try {
-    await pool.query(
-      "UPDATE article " +
-      "SET articletitle = ?, articlecategoryid = ?, description = ?, price = ?, useremail = ?, articlestatusid = ?, " +
-      "courseid = ?, locationid = ?, publicationstatusid = ?, salestatusid = ?, " +
-      "articlesizeid = ? " +
-      "WHERE articleid = ?",
-      [articletitle, articlecategoryid, description, price, useremail, articlestatusid, courseid, locationid, publicationstatusid, salestatusid, articlesizeid, id]
-    );
+    if (puttype == "salestatus") {
+      await pool.query(
+        "UPDATE article " +
+        "SET salestatusid = ? " +
+        "WHERE articleid = ?",
+        [ salestatusid, id]
+      );
+
+    } else {
+      await pool.query(
+        "UPDATE article " +
+        "SET articletitle = ?, articlecategoryid = ?, description = ?, price = ?, useremail = ?, articlestatusid = ?, " +
+        "courseid = ?, locationid = ?, publicationstatusid = ?, salestatusid = ?, " +
+        "articlesizeid = ? " +
+        "WHERE articleid = ?",
+        [articletitle, articlecategoryid, description, price, useremail, articlestatusid, courseid, locationid, publicationstatusid, salestatusid, articlesizeid, id]
+      );
+        
+    }
     return res.status(204).json();
   } catch (error) {
     return res.status(500).json({ message: error.message });
