@@ -21,7 +21,7 @@ const getProfileArticles = async (req, res) => {
       `
     );
 
-    console.log(user, "user");
+    //console.log("profile/getProfileArticles/user: ", user);
 
     if (!user) {
       //console.log("getProfileArticles/session: ", session)

@@ -18,7 +18,7 @@ export function Navbar() {
 
   const toggleButtonAction = () => {
     setToggle(!toggle);
-    console.log(toggle);
+    //console.log("toggleButtonAction/toggle: ", toggle);
   };
 
   const mobileClases = clsx(

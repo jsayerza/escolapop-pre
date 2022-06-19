@@ -1,5 +1,6 @@
 import axios from "axios";
 import Image from "next/image";
+import Link from "next/link";
 import { toast } from "react-toastify";
 import Moment from 'moment';
 import { FiEdit3 } from "react-icons/fi";
@@ -53,6 +54,7 @@ export default function ArticleList({ articles }) {
         .then(async (res) => {
           toast.success("Article reservat/venut");
           router.push("/");
+          /* router.push(`/profile/${user.id}`); */
         })
         .catch((e) => console.log("handleUpdate update article error: ", e));
     } catch (error) {
@@ -67,11 +69,14 @@ export default function ArticleList({ articles }) {
       {articles &&
         articles.length > 0 &&
         articles.map((article) => (
+          
           <div
             className="flex flex-col md:flex-row justify-center md:justify-between items-center border-gray-200 border-b pb-2 px-2 gap-6 transition-all duration-200 hover:bg-white"
             key={article.articleid}
           >
+
             <div className="flex flex-col md:flex-row md:items-center">
+
               <div className="rounded">
                 {article && article.imageurl && (
                   <Image
@@ -80,7 +85,7 @@ export default function ArticleList({ articles }) {
                     height={200}
                     objectFit="cover"
                     className="max-w-full h-auto rounded-lg transition-shadow ease-in-out shadow-none"
-                    alt="imatge de l_article"
+                    alt="imatge de l$apos;article"
                   />
                 )}
               </div>
@@ -95,6 +100,60 @@ export default function ArticleList({ articles }) {
               </div>
 
               <div className="flex flex-col justify-center items-center py-4 px-8">
+                <h1 className="textl-lg font-lato font-normal text-gray-900">
+                  Preu
+                </h1>
+                <h2 className="text-xl font-lato font-bold">
+                  {article.price}€
+                </h2>
+              </div>
+
+              <div className="flex flex-col justify-center items-center py-4 px-8">
+                <h1 className="text-lg font-lato font-normal">
+                  Modificat
+                </h1>
+                <h2 className="font-lato font-bold text-gray-500">
+                  {/* {article.datecreation} */}
+                  {Moment(article.datecreation).format('DD/MM/yyyy')}
+                </h2>
+              </div>
+            </div>
+
+            <div className="flex flex-col md:flex-row md:items-center">
+              <div className="flex gap-4 justify-center items-center">
+
+                <div className="flex flex-col justify-center items-center py-4 px-8">
+                  <h1 className="textl-lg font-lato font-normal text-gray-900">
+                    Visites:
+                  </h1>
+                  <h2 className="text-lg text-gray-900 font-lato font-bold pb-2">
+                    {article.articlevisitcount}
+                  </h2>
+                </div>
+
+                <div className="flex flex-col justify-center items-center py-4 px-8">
+                  <h1 className="textl-lg font-lato font-normal text-gray-900">
+                    Contactes:
+                  </h1>
+                  <h2 className="text-lg text-gray-900 font-lato font-bold pb-2">
+                    {article.articlecontactcount}
+                  </h2>
+                </div>
+
+                <div className="flex flex-col justify-center items-center py-4 px-8">
+                  <h1 className="textl-lg font-lato font-normal text-gray-900">
+                    Favorits:
+                  </h1>
+                  <h2 className="text-lg text-gray-900 font-lato font-bold pb-2">
+                    {article.articlefavoritecount}
+                  </h2>
+                </div>
+              </div>
+            </div>
+
+            <div className="flex gap-4 justify-center items-center">
+              
+              <div className="flex flex-col justify-center items-center py-4 px-8">
                 <h1 className="text-lg font-lato font-normal">
                   {article.publicationstatus}
                 </h1>
@@ -107,23 +166,7 @@ export default function ArticleList({ articles }) {
                 </h1>
               </div>
 
-              <div className="flex flex-col justify-center items-center py-4 px-8">
-                <h1 className="textl-lg font-lato font-normal text-gray-900">
-                  Preu
-                </h1>
-                <h2 className="text-xl font-lato font-bold">
-                  {article.price}€
-                </h2>
-              </div>
 
-              <div className="flex flex-col justify-center items-center py-4 px-8">
-                <h1 className="text-lg font-lato font-normal">Modificat</h1>
-                <h2 className="font-lato font-bold text-gray-500">
-                  {/* {article.datecreation} */}
-                  {Moment(article.datecreation).format('DD/MM/yyyy')}
-                </h2>
-              </div>
-            </div>
 
             <div className="flex gap-4 justify-center items-center">
               
@@ -159,8 +202,7 @@ export default function ArticleList({ articles }) {
 
             </div>
 
-            <div className="flex gap-4 justify-center items-center">
-              
+
               <Tooltip title="Edita el teu article">
                 <IconButton size="small">
                   <button
@@ -187,7 +229,6 @@ export default function ArticleList({ articles }) {
               </Tooltip>
 
             </div>
-
 
           </div>
         ))}
