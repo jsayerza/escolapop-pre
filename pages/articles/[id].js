@@ -56,8 +56,31 @@ function ArticleView({ article }) {
     }
   };
 
+  const handleCounter = async (id, articlevisitcount) => {
+    //console.log("id/handleCounter/articlevisitcount: ", articlevisitcount);
+    try {
+      //console.log("ArticleList/handleUpdate/id: ", id);
+      axios
+        .put(HOST_SV + `/api/articles/${id}`, {
+          puttype: "articlevisitcount",
+          //articlevisitcount: articlevisitcount,
+        })
+        .then(async (res) => {
+          //console.log("+1 a comptador visites de: ", id);
+          //router.push("/");
+          /* router.push(`/profile/${user.id}`); */
+        })
+        .catch((e) => console.log("articlevisitcount update article counter error: ", e));
+    } catch (error) {
+      console.log("id/handleCounter/error: ", error);
+      //toast.error(error.response.data.message);
+    }
+  };
+
   useEffect(() => {
     !user && router.push("/login");
+    handleCounter(article.articleid, article.articlevisitcount);
+
   }, [user, router]);
 
   return (
@@ -68,7 +91,7 @@ function ArticleView({ article }) {
             <Image
               src={article.imageurl}
               height={600}
-              width={600}
+              width={400}
               alt="image of the article"
             />
           ) : (
@@ -135,6 +158,38 @@ function ArticleView({ article }) {
               <BadgeSaleStatus status={article.salestatus} />
             </div>
           </div>
+
+          <div className="py-2 flex justify-around items-center gap-4 my-4">
+            <div>
+              <h2 className="text-lg text-gray-900 font-lato font-normal pb-2">
+                Visites:
+              </h2>
+              <h2 className="text-lg text-gray-900 font-lato font-bold pb-2">
+                {article.articlevisitcount}
+              </h2>
+            </div>
+
+            <div>
+              <h2 className="text-lg text-gray-900 font-lato font-normal pb-2">
+                Contactes:
+              </h2>
+              <h2 className="text-lg text-gray-900 font-lato font-bold pb-2">
+                {article.articlecontactcount}
+              </h2>
+            </div>
+
+            <div>
+              <h2 className="text-lg text-gray-900 font-lato font-normal pb-2">
+                Favorits:
+              </h2>
+              <h2 className="text-lg text-gray-900 font-lato font-bold pb-2">
+                {article.articlefavoritecount}
+              </h2>
+            </div>
+          </div>
+
+
+
 
           <div className="py-2 flex justify-around items-center gap-4 my-4">
             <div>

@@ -52,7 +52,7 @@ export const getServerSideProps = async (context) => {
       },
     }
   );
-  console.log(searchQuery);
+  //console.log("index/searchQuery: ", searchQuery);
 
   return {
     props: {
