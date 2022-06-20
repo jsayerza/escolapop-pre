@@ -61,12 +61,12 @@ export default function SearchBar({ keyword, queryObj, filters }) {
                 ref={inputRef}
               />
               {search && search !== "" && (
-                <button
+                <span
                   className="text-gray-800 p-1 bg-white hover:cursor-pointer hover:text-red-500 transition-colors duration-200"
                   onClick={handleClear}
                 >
                   <AiOutlineCloseCircle size="2rem" />
-                </button>
+                </span>
               )}
             </div>
           </form>
