@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import { useRouter } from "next/router";
 import { SearchIcon } from "../icons/SearchIcon";
+import { AiOutlineCloseCircle } from "react-icons/ai";
 import { IoOptionsOutline } from "react-icons/io5";
 import { HOST_SV } from "config/config";
 import { SearchFilterBar } from "./SearchFiltersBar";
@@ -46,25 +47,30 @@ export default function SearchBar({ keyword, queryObj, filters }) {
   return (
     <>
       <div className="flex gap-2 items-center">
-        <form className="w-full" onSubmit={handleSubmit}>
-          <div className="relative flex justify-center items-center w-full my-2 rounded hover:shadow-md transition duration-200">
-            <div className="p-2 bg-white">
-              <SearchIcon />
+        <div className="w-full flex">
+          <form className="relative w-full" onSubmit={handleSubmit}>
+            <div className="relative flex justify-center items-center w-full my-2 rounded hover:shadow-md transition duration-200">
+              <div className="p-2 bg-white">
+                <SearchIcon />
+              </div>
+              <input
+                className="p-2 text-md font-semibold shadow-sm w-full outline-none"
+                type="text"
+                placeholder="Cerca un article"
+                onChange={handleChange}
+                ref={inputRef}
+              />
+              {search && search !== "" && (
+                <button
+                  className="text-gray-800 p-1 bg-white hover:cursor-pointer hover:text-red-500 transition-colors duration-200"
+                  onClick={handleClear}
+                >
+                  <AiOutlineCloseCircle size="2rem" />
+                </button>
+              )}
             </div>
-            <input
-              className="p-2 text-md font-semibold shadow-sm w-full outline-none"
-              type="text"
-              placeholder="Cerca un article"
-              onChange={handleChange}
-              ref={inputRef}
-            />
-          </div>
-        </form>
-        {search && search !== "" && (
-          <button className="bg-white p-2" onClick={handleClear}>
-            x
-          </button>
-        )}
+          </form>
+        </div>
         {filters && (
           <button
             className="flex flex-row-reverse items-center gap-1 px-2 md:px-4 py-2 md:text-lg font-bold text-white bg-orange-500 rounded hover:bg-orange-600 transition-all duration-200"
