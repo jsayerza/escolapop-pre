@@ -44,6 +44,22 @@ const setSearch = async (req, res) => {
       query = query + ` ORDER BY price DESC`;
     }
 
+    if (order_by && order_by !== null && order_by === "min_size") {
+      query = query + ` ORDER BY articlesize`;
+    }
+
+    if (order_by && order_by !== null && order_by === "max_size") {
+      query = query + ` ORDER BY articlesize DESC`;
+    }
+
+    if (order_by && order_by !== null && order_by === "min_course") {
+      query = query + ` ORDER BY course`;
+    }
+
+    if (order_by && order_by !== null && order_by === "max_course") {
+      query = query + ` ORDER BY course DESC`;
+    }
+
     //console.log("search/query: ", query);
     const [result] = await pool.query(query);
     return res.status(200).json(result);
