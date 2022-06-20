@@ -1,4 +1,4 @@
-export const Modal = ({ children, isOpen, closeModal }) => {
+export const Modal = ({ children, isOpen, closeModal, center = true }) => {
   const handleModalClick = (e) => {
     e.stopPropagation();
   };
@@ -11,7 +11,9 @@ export const Modal = ({ children, isOpen, closeModal }) => {
       onClick={closeModal}
     >
       <div
-        className="z-30 absolute top-44 left-10 grid justify-center items-center gap-2 w-4/5 md:w-2/4 p-2 bg-white shadow-xl rounded h-96 overflow-y-auto"
+        className={`z-30 absolute top-44 left-10 grid ${
+          center === false ? "" : "justify-center"
+        } items-center gap-2 w-4/5 md:w-2/4 p-2 bg-white shadow-xl rounded h-96 overflow-y-auto`}
         onClick={handleModalClick}
       >
         {children}
