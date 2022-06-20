@@ -2,6 +2,7 @@ import { useActiveFilters } from "hooks/useActiveFilters";
 import { useHandlersFilters } from "hooks/useHandlersFilters";
 import { useModal } from "hooks/useModal";
 import { Modal } from "./Modal";
+import { BsArrowUpRight, BsArrowDownLeft } from "react-icons/bs";
 
 export const OrderButton = ({ queryObj, keyword }) => {
   const [open, handleModal, handleCloseOrderModal] = useModal();
@@ -21,19 +22,23 @@ export const OrderButton = ({ queryObj, keyword }) => {
       >
         ordernar
       </button>
-      <Modal isOpen={open} closeModal={handleCloseOrderModal}>
-        <button
-          className="bg-slate-400 px-4 py-2 rounded"
-          onClick={() => handleOrder("max_price")}
-        >
-          Ordenar mas caros
-        </button>
-        <button
-          className="bg-slate-400 px-4 py-2 rounded"
-          onClick={() => handleOrder("min_price")}
-        >
-          Ordenar mas baratos
-        </button>
+      <Modal isOpen={open} closeModal={handleCloseOrderModal} center={false}>
+        <div className="h-full w-full flex flex-col gap-2">
+          <button
+            className="flex gap-2 items-center bg-slate-100 px-4 py-4 rounded font-semibold"
+            onClick={() => handleOrder("max_price")}
+          >
+            <BsArrowUpRight size="2rem" />
+            Ordenar mas caros
+          </button>
+          <button
+            className="flex gap-2 items-center bg-slate-100 px-4 py-4 rounded font-semibold"
+            onClick={() => handleOrder("min_price")}
+          >
+            <BsArrowDownLeft size="2rem" />
+            Ordenar mas baratos
+          </button>
+        </div>
       </Modal>
     </div>
   );
