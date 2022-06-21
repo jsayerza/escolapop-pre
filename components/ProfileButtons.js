@@ -52,16 +52,14 @@ export const ProfileButtons = ({ publicationStatus, saleStatus, article }) => {
   };
 
   return (
-    <div className="flex gap-2 justify-center items-center">
+    <div className="flex flex-wrap md:flex-nowrap gap-2 justify-center items-center">
       <div className="flex flex-col justify-center items-center py-2 px-4">
         <h1 className="text-lg font-lato font-normal">{publicationStatus}</h1>
       </div>
 
       <div className="flex flex-col justify-center items-center py-2 px-2">
-        <h1 className="text-lg font-lato font-normal">
-          {/* {article.salestatus} */}
-          <BadgeSaleStatus status={saleStatus} />
-        </h1>
+        {/* {article.salestatus} */}
+        <BadgeSaleStatus status={saleStatus} />
       </div>
 
       <div className="flex gap-1 md:gap-4 justify-center items-center">

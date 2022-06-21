@@ -38,8 +38,8 @@ export default function ArticleList({ articles }) {
                 />
               )}
             </div>
-            <div className="flex justify-center">
-              <div className="flex flex-col justify-center items-center py-4 px-8">
+            <div className="flex flex-wrap md:flex-nowrap justify-center">
+              <div className="flex flex-col w-full justify-center items-center py-2 px-1">
                 <h1 className="textl-lg font-lato font-normal text-gray-900">
                   {article.articletitle}
                 </h1>
@@ -48,7 +48,7 @@ export default function ArticleList({ articles }) {
                 </p>
               </div>
 
-              <div className="flex flex-col justify-center items-center py-4 px-8">
+              <div className="flex flex-col justify-center items-center py-2 px-4">
                 <h1 className="textl-lg font-lato font-normal text-gray-900">
                   Preu
                 </h1>
@@ -57,7 +57,7 @@ export default function ArticleList({ articles }) {
                 </h2>
               </div>
 
-              <div className="flex flex-col justify-center items-center py-4 px-8">
+              <div className="flex flex-col justify-center items-center py-2 px-4">
                 <h1 className="text-lg font-lato font-normal">Modificat</h1>
                 <h2 className="font-lato font-bold text-gray-500">
                   {/* {article.datecreation} */}
@@ -71,7 +71,7 @@ export default function ArticleList({ articles }) {
                   <div className="flex flex-wrap justify-center lg:justify-between items-center">
                     <div className="flex justify-center">
                       <div className="flex flex-col justify-center items-center py-2 px-4">
-                        <h1 className="textl-lg font-lato font-normal text-gray-900">
+                        <h1 className="text-sm md:text-lg font-lato font-normal text-gray-900">
                           Visites:
                         </h1>
                         <h2 className="text-lg text-gray-900 font-lato font-bold pb-2">
@@ -80,7 +80,7 @@ export default function ArticleList({ articles }) {
                       </div>
 
                       <div className="flex flex-col justify-center items-center py-2 px-4">
-                        <h1 className="textl-lg font-lato font-normal text-gray-900">
+                        <h1 className="text-sm md:text-lg font-lato font-normal text-gray-900">
                           Contactes:
                         </h1>
                         <h2 className="text-lg text-gray-900 font-lato font-bold pb-2">
@@ -89,7 +89,7 @@ export default function ArticleList({ articles }) {
                       </div>
 
                       <div className="flex flex-col justify-center items-center py-2 px-4">
-                        <h1 className="textl-lg font-lato font-normal text-gray-900">
+                        <h1 className="text-sm md:text-lg font-lato font-normal text-gray-900">
                           Favorits:
                         </h1>
                         <h2 className="text-lg text-gray-900 font-lato font-bold pb-2">
