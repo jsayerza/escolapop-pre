@@ -11,7 +11,9 @@ function Search({ searchQuery, search, queryObj }) {
     <Layout>
       <SearchBar queryObj={queryObj} keyword={search} filters={true} />
       <h1 className="font-semibold text-3xl p-4">
-        Resultats de cerca de {`'${search}'`}
+        {searchQuery.length > 0
+          ? `Resultats de cerca de '${search}'`
+          : `No existen resultados de '${search}'`}
       </h1>
 
       <div className="flex flex-col gap-2">
