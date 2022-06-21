@@ -12,6 +12,8 @@ export default function SearchBar({ keyword, queryObj, filters }) {
   //console.log(queryObj, "form the searchBar component");
   const router = useRouter();
   const [search, setSearch] = useState(keyword);
+  const [error, setError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
   const [resetSearch, setResetSearch] = useState(false);
   const inputRef = useRef(null);
   const [show, handleShowComponent] = useShowComponent();
@@ -22,6 +24,10 @@ export default function SearchBar({ keyword, queryObj, filters }) {
     setResetSearch(true);
     if (!user) {
       return router.push("/login");
+    }
+    if (search === "" || search === undefined) {
+      setError(true);
+      return setErrorMessage("No se puede buscar un campo vacio");
     }
     router.push(HOST_SV + `/articles/search/${search}`);
   };
@@ -42,10 +48,21 @@ export default function SearchBar({ keyword, queryObj, filters }) {
     } else {
       inputRef.current.value = "";
     }
-  }, [search]);
+
+    if (error) {
+      setTimeout(() => {
+        setError(false);
+      }, 2000);
+    }
+
+    return clearTimeout();
+  }, [search, error]);
 
   return (
     <>
+      {error && (
+        <span className="font-semibold text-red-600">{errorMessage}</span>
+      )}
       <div className="flex gap-2 items-center">
         <div className="w-full flex">
           <form className="relative w-full" onSubmit={handleSubmit}>
