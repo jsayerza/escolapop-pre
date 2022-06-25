@@ -29,7 +29,13 @@ const setSearch = async (req, res) => {
  */
     //let query = `SELECT * FROM v_article_sell WHERE articletitle OR description LIKE '%${search}%'`;
 
-    let query = `SELECT * FROM v_article_sell WHERE ((articletitle LIKE '%${search}%') OR (description LIKE '%${search}%'))`;
+    let query;
+
+    if (search === "*" || search === "%") {
+      query = `SELECT * FROM v_article_sell WHERE 1`;
+    } else {
+      query = `SELECT * FROM v_article_sell WHERE ((articletitle LIKE '%${search}%') OR (description LIKE '%${search}%'))`;
+    }
 
     if (category && category !== null) {
       query = query + ` AND articlecategory = '${category}'`;
