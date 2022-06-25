@@ -1,18 +1,16 @@
 import { useState } from "react";
 import clsx from "clsx";
-// import { useUser } from "context/authContext";
-import { useSession, signIn, signOut } from "next-auth/react";
 import Link from "next/link";
 import Image from "next/image";
 import { RiArticleLine } from "react-icons/ri";
 import { IoHeartCircle } from "react-icons/io5";
 import { AiOutlineUser, AiFillFileAdd } from "react-icons/ai";
-import { Tooltip } from '@mui/material';
-import { IconButton } from '@mui/material';
-
+import { Tooltip } from "@mui/material";
+import { IconButton } from "@mui/material";
+import { useUser } from "context/authContext";
 
 export function NavbarPrivateArea() {
-  const { data } = useSession();
+  const { user, handleGoogleLogin, firebaseLogout } = useUser();
   const [toggle, setToggle] = useState(false);
   //console.log(data);
   // const { user, handleGoogleLogin } = useUser();
@@ -143,7 +141,6 @@ export function NavbarPrivateArea() {
 
         <div className={mobileClases} id="mobile-menu-2">
           <ul className="flex flex-col mt-4 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-lato font-light md:justify-center md:items-center text-center">
-            
             <li>
               <Tooltip title="Publica un nou article">
                 <IconButton size="small">
@@ -151,7 +148,7 @@ export function NavbarPrivateArea() {
                     <a className="bg-gray-100 flex items-center justify-center m-auto py-2 px-4 font-lato font-normal text-black border rounded font-bold w-full hover:bg-orangeAMPA hover:text-black transition-all ease duration-200">
                       Nou article
                       <span className="px-2">
-                        <AiFillFileAdd size={"2rem"}/>
+                        <AiFillFileAdd size={"2rem"} />
                       </span>
                     </a>
                   </Link>
@@ -166,7 +163,7 @@ export function NavbarPrivateArea() {
                     <a className="bg-gray-100 flex items-center justify-center m-auto py-2 px-4 font-lato font-normal text-black border rounded font-bold w-full hover:bg-orangeAMPA hover:text-black transition-all ease duration-200">
                       El meu usuari
                       <span className="px-2">
-                        <AiOutlineUser  size={"2rem"}/>
+                        <AiOutlineUser size={"2rem"} />
                       </span>
                     </a>
                   </Link>
@@ -189,26 +186,24 @@ export function NavbarPrivateArea() {
               </Tooltip>
             </li>
 
-
             <li className="pt-1">
-              {data?.user ? (
+              {user ? (
                 <div className="rounded-full hover:cursor-pointer">
                   <Image
                     width={32}
                     height={32}
-                    onClick={() => signOut()}
-                    src={data?.user.image}
+                    onClick={() => firebaseLogout()}
+                    src={user.avatar}
                     alt="avatar image"
                     className="h-10 w-10 rounded-full bg-gray-100 "
                   />
                 </div>
               ) : (
-                <button
-                  onClick={signIn}
-                  className="bg-gray-100 flex items-center justify-center m-auto py-2 px-4 font-lato font-normal text-black border rounded font-bold w-full hover:bg-orangeAMPA hover:text-black transition-all ease duration-200"
-                >
-                  Login
-                </button>
+                <Link href="/login">
+                  <a className="bg-gray-100 flex items-center justify-center m-auto py-2 px-4 font-lato font-normal text-black border rounded font-bold w-full hover:bg-orangeAMPA hover:text-black transition-all ease duration-200">
+                    Login
+                  </a>
+                </Link>
               )}
             </li>
           </ul>
