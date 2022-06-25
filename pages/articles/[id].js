@@ -56,13 +56,13 @@ function ArticleView({ article }) {
     }
   };
 
-  const handleCounter = async (id, articlevisitcount) => {
-    //console.log("id/handleCounter/articlevisitcount: ", articlevisitcount);
+  const handleCounter = async () => {
+    //console.log("id/handleCounter/article.articlevisitcount: ", article.articlevisitcount);
     try {
-      //console.log("ArticleList/handleUpdate/id: ", id);
+      //console.log("ArticleList/handleUpdate/article.articleid: ", article.articleid);
       axios
-        .put(HOST_SV + `/api/articles/${id}`, {
-          puttype: "articlevisitcount",
+        .put(HOST_SV + `/api/articles/${article.articleid}`, {
+            puttype: "articlevisitcount",
           //articlevisitcount: articlevisitcount,
         })
         .then(async (res) => {
@@ -79,7 +79,8 @@ function ArticleView({ article }) {
 
   useEffect(() => {
     !user && router.push("/login");
-    handleCounter(article.articleid, article.articlevisitcount);
+    //handleCounter(article.articleid, article.articlevisitcount);
+    handleCounter();
 
   }, [user, router]);
 
