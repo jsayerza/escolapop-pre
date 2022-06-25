@@ -62,7 +62,7 @@ function ArticleView({ article }) {
       //console.log("ArticleList/handleUpdate/article.articleid: ", article.articleid);
       axios
         .put(HOST_SV + `/api/articles/${article.articleid}`, {
-            puttype: "articlevisitcount",
+          puttype: "articlevisitcount",
           //articlevisitcount: articlevisitcount,
         })
         .then(async (res) => {
@@ -70,7 +70,9 @@ function ArticleView({ article }) {
           //router.push("/");
           /* router.push(`/profile/${user.id}`); */
         })
-        .catch((e) => console.log("articlevisitcount update article counter error: ", e));
+        .catch((e) =>
+          console.log("articlevisitcount update article counter error: ", e)
+        );
     } catch (error) {
       console.log("id/handleCounter/error: ", error);
       //toast.error(error.response.data.message);
@@ -81,19 +83,19 @@ function ArticleView({ article }) {
     !user && router.push("/login");
     //handleCounter(article.articleid, article.articlevisitcount);
     handleCounter();
-
   }, [user, router]);
 
   return (
     <Layout>
       <div className="flex flex-col gap-4 md:flex-row">
-        <div className="flex-1 w-full">
+        <div className="flex justify-center items-center">
           {article.imageurl ? (
             <Image
               src={article.imageurl}
-              height={600}
+              height={500}
               width={400}
               alt="image of the article"
+              className="object-cover"
             />
           ) : (
             "no hay imagen"
@@ -114,8 +116,8 @@ function ArticleView({ article }) {
             </p>
           </div>
 
-          <div className="py-2 flex justify-around items-center gap-4 my-4">
-            <div>
+          <div className="py-2 flex flex-wrap justify-around items-center gap-4 my-4">
+            <div className="flex flex-col justify-center items-center">
               <h2 className="text-lg text-gray-900 font-lato font-normal pb-2">
                 Curs:
               </h2>
@@ -124,18 +126,17 @@ function ArticleView({ article }) {
               </h2>
             </div>
 
-            <div>
+            <div className="flex flex-col justify-center items-center">
               <h2 className="text-lg text-gray-900 font-lato font-normal pb-2">
                 Talla:
               </h2>
               <h2 className="text-lg text-gray-900 font-lato font-bold pb-2">
                 {article.articlesize}
+                mano
               </h2>
             </div>
-          </div>
 
-          <div className="py-2 flex justify-around items-center gap-4 my-4">
-            <div>
+            <div className="flex flex-col justify-center items-center">
               <h2 className="text-lg text-gray-900 font-lato font-normal pb-2">
                 Ubicació de l&apos;article:
               </h2>
@@ -145,14 +146,14 @@ function ArticleView({ article }) {
             </div>
           </div>
 
-          <div className="py-2 flex justify-around items-center gap-4 my-4">
-            <div>
+          <div className="py-2 flex flex-wrap justify-center md:justify-around items-center gap-4 my-4">
+            <div className="flex flex-col items-center justify-center">
               <h2 className="text-lg text-gray-900 font-lato font-normal pb-2">
                 Estat de l&apos;article:
               </h2>
               <BadgeStatus status={article.articlestatus} />
             </div>
-            <div>
+            <div className="flex justify-center items-center flex-col">
               <h2 className="text-lg text-gray-900 font-lato font-normal pb-2">
                 Estat de venda:
               </h2>
@@ -188,9 +189,6 @@ function ArticleView({ article }) {
               </h2>
             </div>
           </div>
-
-
-
 
           <div className="py-2 flex justify-around items-center gap-4 my-4">
             <div>
