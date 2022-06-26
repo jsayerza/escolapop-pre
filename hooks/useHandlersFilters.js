@@ -17,12 +17,13 @@ export const useHandlersFilters = ({
   queryObj,
 }) => {
   const router = useRouter();
-  let path = keyword ? `/articles/search/${keyword}` : `/articles/search`;
+  let path = `/articles/search`;
 
   const handleAllCategory = async () => {
     await router.push({
       pathname: `/articles/search`,
       query: {
+        keyword: queryObj.keyword ? queryObj.keyword : null,
         category: queryObj.category ? queryObj.category : null,
         min_price: queryObj.min_price ? queryObj.min_price : null,
         max_price: queryObj.max_price ? queryObj.max_price : null,
@@ -40,6 +41,7 @@ export const useHandlersFilters = ({
     await router.push({
       pathname: path,
       query: {
+        keyword: queryObj.keyword ? queryObj.keyword : null,
         category: articleCategory,
         min_price: queryObj.min_price ? queryObj.min_price : null,
         max_price: queryObj.max_price ? queryObj.max_price : null,
@@ -57,6 +59,7 @@ export const useHandlersFilters = ({
     await router.push({
       pathname: path,
       query: {
+        keyword: queryObj.keyword ? queryObj.keyword : null,
         category: queryObj.category ? queryObj.category : null,
         min_price: queryObj.min_price ? queryObj.min_price : null,
         max_price: queryObj.max_price ? queryObj.max_price : null,
@@ -74,6 +77,7 @@ export const useHandlersFilters = ({
     await router.push({
       pathname: path,
       query: {
+        keyword: queryObj.keyword ? queryObj.keyword : null,
         category: queryObj.category ? queryObj.category : null,
         min_price: queryObj.min_price ? queryObj.min_price : null,
         max_price: queryObj.max_price ? queryObj.max_price : null,
@@ -91,6 +95,7 @@ export const useHandlersFilters = ({
     await router.push({
       pathname: path,
       query: {
+        keyword: queryObj.keyword ? queryObj.keyword : null,
         category: queryObj.category ? queryObj.category : null,
         min_price: queryObj.min_price ? queryObj.min_price : null,
         max_price: queryObj.max_price ? queryObj.max_price : null,
@@ -108,6 +113,7 @@ export const useHandlersFilters = ({
     await router.push({
       pathname: path,
       query: {
+        keyword: queryObj.keyword ? queryObj.keyword : null,
         category: queryObj.category ? queryObj.category : null,
         min_price: minPrice ? minPrice : queryObj.min_price,
         max_price: maxPrice ? maxPrice : queryObj.max_price,
@@ -125,6 +131,7 @@ export const useHandlersFilters = ({
     await router.push({
       pathname: path,
       query: {
+        keyword: queryObj.keyword ? queryObj.keyword : null,
         category: queryObj.category ? queryObj.category : null,
         min_price: queryObj.min_price ? queryObj.min_price : null,
         max_price: queryObj.max_price ? queryObj.max_price : null,
@@ -143,6 +150,7 @@ export const useHandlersFilters = ({
     await router.push({
       pathname: path,
       query: {
+        keyword: queryObj.keyword ? queryObj.keyword : null,
         category: null,
         min_price: queryObj.min_price ? queryObj.min_price : null,
         max_price: queryObj.max_price ? queryObj.max_price : null,
@@ -159,6 +167,7 @@ export const useHandlersFilters = ({
     await router.push({
       pathname: path,
       query: {
+        keyword: queryObj.keyword ? queryObj.keyword : null,
         category: queryObj.category ? queryObj.category : null,
         min_price: queryObj.min_price ? queryObj.min_price : null,
         max_price: queryObj.max_price ? queryObj.max_price : null,
@@ -175,6 +184,7 @@ export const useHandlersFilters = ({
     await router.push({
       pathname: path,
       query: {
+        keyword: queryObj.keyword ? queryObj.keyword : null,
         category: queryObj.category ? queryObj.category : null,
         min_price: queryObj.min_price ? queryObj.min_price : null,
         max_price: queryObj.max_price ? queryObj.max_price : null,
@@ -191,6 +201,7 @@ export const useHandlersFilters = ({
     await router.push({
       pathname: path,
       query: {
+        keyword: queryObj.keyword ? queryObj.keyword : null,
         category: queryObj.category ? queryObj.category : null,
         min_price: queryObj.min_price ? queryObj.min_price : null,
         max_price: queryObj.max_price ? queryObj.max_price : null,
@@ -207,6 +218,7 @@ export const useHandlersFilters = ({
     await router.push({
       pathname: path,
       query: {
+        keyword: queryObj.keyword ? queryObj.keyword : null,
         category: queryObj.category ? queryObj.category : null,
         min_price: null,
         max_price: null,
