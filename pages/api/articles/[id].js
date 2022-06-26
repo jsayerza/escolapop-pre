@@ -49,6 +49,7 @@ const updateArticle = async (req, res) => {
   //console.log("updateArticle/puttype: ", puttype);
   
   try {
+    console.log("updateArticle/puttype/id: ", id);
 
     switch (puttype) {
 
@@ -63,7 +64,6 @@ const updateArticle = async (req, res) => {
 
       case "articlevisitcount":
         //console.log("updateArticle/puttype/articlevisitcount: ", puttype);
-        //console.log("updateArticle/puttype/id: ", id);
         await pool.query(
           "UPDATE article " +
           "SET articlevisitcount = articlevisitcount + 1 " +
@@ -73,6 +73,7 @@ const updateArticle = async (req, res) => {
         break;
   
       case "articlefavoritecount":
+        console.log("updateArticle/puttype/articlefavoritecount: ", puttype);
         await pool.query(
           "UPDATE article " +
           "SET articlefavoritecount = articlefavoritecount + 1 " +
@@ -82,6 +83,7 @@ const updateArticle = async (req, res) => {
         break;
 
       case "articlecontactcount":
+        console.log("updateArticle/puttype/articlecontactcount: ", puttype);
         await pool.query(
           "UPDATE article " +
           "SET articlecontactcount = articlecontactcount + 1 " +
@@ -91,6 +93,7 @@ const updateArticle = async (req, res) => {
         break;
             
       default:
+        console.log("updateArticle/puttype/default: ", puttype);
         await pool.query(
           "UPDATE article " +
           "SET articletitle = ?, articlecategoryid = ?, description = ?, price = ?, useremail = ?, articlestatusid = ?, " +
