@@ -8,7 +8,7 @@ import debounce from "just-debounce-it";
 import { useUser } from "../context/authContext";
 
 const SEARCH_STATE = {
-  EMPTY: "",
+  EMPTY: "*",
 };
 
 const SEARCH_RESULT_STATE = {
@@ -35,9 +35,11 @@ export const Home = ({ articles }) => {
     async function searchedResults() {
       if (search !== SEARCH_STATE.EMPTY) {
         const response = await axios.get(
-          HOST_SV + `/api/articles/search/${search}`,
+          HOST_SV + `/api/articles/search?keyword=${search}`,
           // señal para abortar la peticion
-          { signal: controller.signal }
+          {
+            signal: controller.signal,
+          }
         );
         if (response.data.length === 0) {
           return setSearchResult(null);
