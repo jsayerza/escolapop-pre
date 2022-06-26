@@ -3,7 +3,6 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import { toast } from "react-toastify";
 import Image from "next/image";
-import { useSession } from "next-auth/react";
 import { FiEdit3 } from "react-icons/fi";
 import { AiFillDelete } from "react-icons/ai";
 import { Tooltip } from "@mui/material";
@@ -23,7 +22,6 @@ function ArticleView({ article }) {
   // const { user } = useUser();
   //console.log(user);
   //console.log("ArticleView/article: ", article);
-  const { data } = useSession();
   const router = useRouter();
   const { user } = useUser();
 
