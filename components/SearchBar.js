@@ -8,11 +8,10 @@ import { SearchFilterBar } from "./SearchFiltersBar";
 import { useShowComponent } from "hooks/useShowComponent";
 import { useUser } from "context/authContext";
 
-export default function SearchBar({ keyword, queryObj, filters }) {
+export default function SearchBar({ keyword = "", queryObj, filters }) {
   //console.log(queryObj, "form the searchBar component");
   const router = useRouter();
   const [search, setSearch] = useState(keyword);
-  const [errorMessage, setErrorMessage] = useState("");
   const [resetSearch, setResetSearch] = useState(false);
   const inputRef = useRef(null);
   const [show, handleShowComponent] = useShowComponent();
@@ -27,7 +26,7 @@ export default function SearchBar({ keyword, queryObj, filters }) {
     /*     if (search === "" || search === undefined) {
       return router.push(HOST_SV + `/articles/search/`);
     } */
-    router.push(HOST_SV + `/articles/search/${decodeURIComponent(search)}`);
+    router.push(HOST_SV + `/articles/search?keyword=${search}`);
   };
 
   const handleChange = (e) => {
@@ -40,21 +39,13 @@ export default function SearchBar({ keyword, queryObj, filters }) {
     // router.push(HOST_SV + `/articles/search`);
   };
 
-  /*   useEffect(() => {
+  useEffect(() => {
     if (search) {
       inputRef.current.value = search;
     } else {
       inputRef.current.value = "";
     }
-
-    if (error) {
-      setTimeout(() => {
-        setError(false);
-      }, 2000);
-    }
-
-    return clearTimeout();
-  }, [search, error]); */
+  }, [search]);
 
   return (
     <>
@@ -72,7 +63,7 @@ export default function SearchBar({ keyword, queryObj, filters }) {
                 onChange={handleChange}
                 ref={inputRef}
               />
-              {search && search !== "" && (
+              {search && search !== "" && search.length > 0 && (
                 <span
                   className="text-gray-800 p-1 bg-white hover:cursor-pointer hover:text-red-500 transition-colors duration-200"
                   onClick={handleClear}
