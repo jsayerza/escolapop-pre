@@ -27,7 +27,7 @@ export default function SearchBar({ keyword, queryObj, filters }) {
     /*     if (search === "" || search === undefined) {
       return router.push(HOST_SV + `/articles/search/`);
     } */
-    router.push(HOST_SV + `/articles/search/${search}`);
+    router.push(HOST_SV + `/articles/search/${decodeURIComponent(search)}`);
   };
 
   const handleChange = (e) => {

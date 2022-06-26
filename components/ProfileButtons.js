@@ -1,10 +1,16 @@
+import axios from "axios";
 import { useRouter } from "next/router";
-import { BadgeSaleStatus } from "../components/BadgeSaleStatus";
+import { toast } from "react-toastify";
+
 import { Tooltip, IconButton } from "@mui/material";
 import { FaRegHandshake } from "react-icons/fa";
 import { BsBookmark } from "react-icons/bs";
 import { FiEdit3 } from "react-icons/fi";
 import { AiFillDelete } from "react-icons/ai";
+
+import { HOST_SV } from "../config/config";
+import { BadgeStatus } from "../components/BadgeStatus";
+
 
 export const ProfileButtons = ({ publicationStatus, saleStatus, article }) => {
   const router = useRouter();
@@ -31,9 +37,9 @@ export const ProfileButtons = ({ publicationStatus, saleStatus, article }) => {
   };
 
   const handleUpdate = async (id, salestatusid) => {
-    //console.log("ArticleList/handleUpdate/salestatusid: ", salestatusid);
+    console.log("ProfileButtons/handleUpdate/salestatusid: ", salestatusid);
     try {
-      //console.log("ArticleList/handleUpdate/id: ", id);
+      console.log("ProfileButtons/handleUpdate/id: ", id);
       axios
         .put(HOST_SV + `/api/articles/${id}`, {
           puttype: "salestatus",
@@ -53,13 +59,18 @@ export const ProfileButtons = ({ publicationStatus, saleStatus, article }) => {
 
   return (
     <div className="flex flex-wrap md:flex-nowrap gap-2 justify-center items-center">
-      <div className="flex flex-col justify-center items-center py-2 px-4">
-        <h1 className="text-lg font-lato font-normal">{publicationStatus}</h1>
-      </div>
 
       <div className="flex flex-col justify-center items-center py-2 px-2">
-        {/* {article.salestatus} */}
-        <BadgeSaleStatus status={saleStatus} />
+        <h1 className="textl-lg font-lato font-normal text-gray-900">
+          {article.articlestatus}
+        </h1>
+        {/* <BadgeStatus status={articleStatus} /> */}
+      </div>
+
+      <div className="flex flex-col justify-center items-center py-2 px-4">
+        <h1 className="textl-lg font-lato font-normal text-gray-900">
+          {publicationStatus}
+        </h1>
       </div>
 
       <div className="flex gap-1 md:gap-4 justify-center items-center">
@@ -68,7 +79,7 @@ export const ProfileButtons = ({ publicationStatus, saleStatus, article }) => {
             <button
               className="px-2 py-2 rounded font-lato font-bold text-gray-700 hover:bg-greenescola hover:text-white transition-all duration-200"
               onClick={() => {
-                //console.log("ArticleView/sold/article.articleid: ", article.articleid);
+                console.log("ProfileButtons/sold/article.articleid: ", article.articleid);
                 handleUpdate(article.articleid, 3);
               }}
             >

@@ -31,7 +31,7 @@ const setSearch = async (req, res) => {
 
     let query;
 
-    if (search === "*" || search === "%") {
+    if (search === "*" ?? search === "%") {
       query = `SELECT * FROM v_article_sell WHERE 1`;
     } else {
       query = `SELECT * FROM v_article_sell WHERE ((articletitle LIKE '%${search}%') OR (description LIKE '%${search}%'))`;
