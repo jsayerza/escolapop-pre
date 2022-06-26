@@ -9,15 +9,45 @@ export default async function handler(req, res) {
 
 const setSearch = async (req, res) => {
   try {
-    const { category, min_price, max_price, location, size, course, order_by } =
-      req.query;
+    const {
+      category,
+      min_price,
+      max_price,
+      location,
+      size,
+      course,
+      order_by,
+      keyword,
+    } = req.query;
 
     let query;
 
-    query = `SELECT * FROM v_article_sell WHERE articlecategory != " "`;
+    /*     query =
+      keyword !== null || keyword !== undefined
+        ? `SELECT * FROM v_article_sell WHERE ((articletitle LIKE '%${keyword}%') OR (description LIKE '%${keyword}%'))`
+        : `SELECT * FROM v_article_sell WHERE articlecategory != " "`; */
 
-    if (category && category !== null) {
+    if (
+      keyword === "" ||
+      keyword === " " ||
+      keyword === "*" ||
+      keyword === "%" ||
+      !keyword
+    ) {
+      query = `SELECT * FROM v_article_sell WHERE 1`;
+    } else {
+      query = `SELECT * FROM v_article_sell WHERE ((articletitle LIKE '%${keyword}%') OR (description LIKE '%${keyword}%'))`;
+    }
+    if (category && category !== null && !keyword) {
       query = `SELECT * FROM v_article_sell WHERE articlecategory = '${category}'`;
+    }
+
+    if (keyword && category) {
+      query = query + ` AND articlecategory = '${category}'`;
+    }
+
+    if (category !== null && !keyword) {
+      query = query + ` AND articlecategory = '${category}'`;
     }
 
     if (min_price && min_price !== null && max_price && max_price !== null) {
@@ -63,7 +93,5 @@ const setSearch = async (req, res) => {
     //console.log("search/query: ", query);
     const [result] = await pool.query(query);
     return res.status(200).json(result);
-  } catch (error) {
-    return res.status(500).json(error);
-  }
+  } catch (error) {}
 };
