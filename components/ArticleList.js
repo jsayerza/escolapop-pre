@@ -9,6 +9,8 @@ import { IconButton } from "@mui/material";
 
 import { HOST_SV } from "../config/config";
 import { ProfileButtons } from "./ProfileButtons";
+import { BadgeSaleStatus } from "../components/BadgeSaleStatus";
+
 
 export default function ArticleList({ articles }) {
   console.log(articles);
@@ -52,26 +54,29 @@ export default function ArticleList({ articles }) {
                 <h1 className="textl-lg font-lato font-normal text-gray-900">
                   Preu
                 </h1>
-                <h2 className="text-xl font-lato font-bold">
+                <h2 className="font-lato font-bold text-gray-500">
                   {article.price}€
                 </h2>
               </div>
 
               <div className="flex flex-col justify-center items-center py-2 px-4">
-                <h1 className="text-lg font-lato font-normal">Modificat</h1>
+                <h1 className="textl-lg font-lato font-normal text-gray-900">
+                  Modificat
+                </h1>
                 <h2 className="font-lato font-bold text-gray-500">
                   {/* {article.datecreation} */}
                   {Moment(article.datecreation).format("DD/MM/yyyy")}
                 </h2>
               </div>
             </div>
+
             <div className="flex flex-col justify-center md:flex-row md:items-center">
               <div className="flex flex-col gap-2 py-2 md:py-0">
                 <div className="flex flex-col md:flex-row md:items-center">
                   <div className="flex flex-wrap justify-center lg:justify-between items-center">
                     <div className="flex justify-center">
                       <div className="flex flex-col justify-center items-center py-2 px-4">
-                        <h1 className="text-sm md:text-lg font-lato font-normal text-gray-900">
+                        <h1 className="textl-lg font-lato font-normal text-gray-900">
                           Visites:
                         </h1>
                         <h2 className="text-lg text-gray-900 font-lato font-bold pb-2">
@@ -80,7 +85,7 @@ export default function ArticleList({ articles }) {
                       </div>
 
                       <div className="flex flex-col justify-center items-center py-2 px-4">
-                        <h1 className="text-sm md:text-lg font-lato font-normal text-gray-900">
+                        <h1 className="textl-lg font-lato font-normal text-gray-900">
                           Contactes:
                         </h1>
                         <h2 className="text-lg text-gray-900 font-lato font-bold pb-2">
@@ -89,13 +94,18 @@ export default function ArticleList({ articles }) {
                       </div>
 
                       <div className="flex flex-col justify-center items-center py-2 px-4">
-                        <h1 className="text-sm md:text-lg font-lato font-normal text-gray-900">
+                        <h1 className="textl-lg font-lato font-normal text-gray-900">
                           Favorits:
                         </h1>
                         <h2 className="text-lg text-gray-900 font-lato font-bold pb-2">
                           {article.articlefavoritecount}
                         </h2>
                       </div>
+
+                      <div className="flex flex-col justify-center items-center py-2 px-4">
+                        <BadgeSaleStatus status={article.salestatus} />
+                      </div>
+
                     </div>
 
                     <ProfileButtons

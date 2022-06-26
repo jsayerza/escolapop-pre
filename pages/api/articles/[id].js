@@ -54,6 +54,7 @@ const updateArticle = async (req, res) => {
     switch (puttype) {
 
       case "salestatus":
+        console.log("updateArticle/puttype/salestatus: ", puttype);
         await pool.query(
           "UPDATE article " +
           "SET salestatusid = ? " +

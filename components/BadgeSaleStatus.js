@@ -9,7 +9,7 @@ export const BadgeSaleStatus = ({ status }) => {
       ["bg-greenescola"]: status === "En venda",
       ["bg-orangeAMPA"]: status === "Reservat",
       ["bg-blue-400"]: status === "Venut",
-      ["bg-red-500"]: status === "Cancel·lat",
+      ["bg-gray-500"]: status === "Cancel·lat",
     }
   );
 
