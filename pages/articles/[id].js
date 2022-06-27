@@ -70,6 +70,7 @@ function ArticleView({ article }) {
           //puttype: "articlecontactcount",
           //puttype: "articlefavoritecount".
           puttype: counterid,
+          useremail: user.email,
         })
         .then(async (res) => {
           //console.log("+1 a comptador visites de: ", id);
