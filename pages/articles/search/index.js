@@ -21,6 +21,20 @@ function SearchWithoutParams({ searchQuery, queryObj }) {
   return (
     <Layout>
       <SearchBar queryObj={queryObj} filters={true} />
+      {queryObj.keyword && (
+        <h1 className="font-semibold text-3xl p-4">
+          {searchQuery.length > 0
+            ? `Resultats de cerca de '${queryObj.keyword}'`
+            : `No existen resultados de '${queryObj.keyword}'`}
+        </h1>
+      )}
+      {!queryObj.keyword && queryObj.category && (
+        <h1 className="font-semibold text-3xl p-4">
+          {searchQuery.length > 0
+            ? `Resultats de categoria '${queryObj.category}'`
+            : `No existen resultados de categoria '${queryObj.category}'`}
+        </h1>
+      )}
 
       <div className="flex flex-col gap-2">
         <OrderButton queryObj={queryObj} />
@@ -42,6 +56,7 @@ export const getServerSideProps = async (context) => {
     HOST_SV + "/api/articles/search",
     {
       params: {
+        keyword: context.query?.keyword ? context.query.keyword : "*",
         category: context.query?.category,
         size: context.query?.size,
         min_price: context.query?.min_price ? context.query?.min_price : 0,
