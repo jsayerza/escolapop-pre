@@ -49,10 +49,24 @@ export const OrderButton = ({ queryObj, keyword }) => {
           </button>
           <button
             className="flex gap-2 items-center bg-slate-100 px-4 py-4 rounded font-semibold"
+            onClick={() => handleOrder("min_size")}
+          >
+            <GiClothes size="2rem" />
+            Ordenar por talla mas pequeña
+          </button>
+          <button
+            className="flex gap-2 items-center bg-slate-100 px-4 py-4 rounded font-semibold"
             onClick={() => handleOrder("min_course")}
           >
             <FaPencilAlt size="2rem" />
-            Ordenar por curso
+            Ordenar por menor curso
+          </button>
+          <button
+            className="flex gap-2 items-center bg-slate-100 px-4 py-4 rounded font-semibold"
+            onClick={() => handleOrder("max_course")}
+          >
+            <FaPencilAlt size="2rem" />
+            Ordenar por mayor curso
           </button>
         </div>
       </Modal>

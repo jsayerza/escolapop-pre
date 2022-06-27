@@ -3,11 +3,12 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import { toast } from "react-toastify";
 import Image from "next/image";
-import { useSession } from "next-auth/react";
 import { FiEdit3 } from "react-icons/fi";
 import { AiFillDelete } from "react-icons/ai";
 import { Tooltip } from "@mui/material";
 import { IconButton } from "@mui/material";
+import { BsBookmark } from "react-icons/bs";
+import { IoHeartCircle } from "react-icons/io5";
 
 import { HOST_SV } from "config/config";
 import { Layout } from "../../components/Layout";
@@ -21,7 +22,6 @@ function ArticleView({ article }) {
   // const { user } = useUser();
   //console.log(user);
   //console.log("ArticleView/article: ", article);
-  const { data } = useSession();
   const router = useRouter();
   const { user } = useUser();
 
@@ -56,14 +56,19 @@ function ArticleView({ article }) {
     }
   };
 
-  const handleCounter = async () => {
+  const handleCounter = async (counterid) => {
     //console.log("id/handleCounter/article.articlevisitcount: ", article.articlevisitcount);
     try {
-      //console.log("ArticleList/handleUpdate/article.articleid: ", article.articleid);
+      console.log(
+        "ArticleList/handleUpdate/article.articleid: ",
+        article.articleid
+      );
       axios
         .put(HOST_SV + `/api/articles/${article.articleid}`, {
-          puttype: "articlevisitcount",
-          //articlevisitcount: articlevisitcount,
+          //puttype: "articlevisitcount",
+          //puttype: "articlecontactcount",
+          //puttype: "articlefavoritecount".
+          puttype: counterid,
         })
         .then(async (res) => {
           //console.log("+1 a comptador visites de: ", id);
@@ -224,21 +229,48 @@ function ArticleView({ article }) {
           {/* ///////// */}
           {/* Si user != vendedor, muestra "Cantacta con vendedor" */}
           {user && user.email !== article.useremail && (
-            <div className="my-12 flex justify-center">
-              <button
-                className="bg-cyan-600 hover:bg-gray-800 text-white text-lg font-lato font-bold rounded ml-2 py-3 px-5"
-                onClick={() =>
-                  router.push(
-                    `mailto:${article.useremail}?subject=${
-                      subject + article.articletitle
-                    }&body=${body}`
-                  )
-                }
-              >
-                Contacta amb el venedor/a
-              </button>
+            <div className="py-2 flex justify-around items-center gap-4 my-4">
+              {/* <div className="my-12 flex justify-center"> */}
+              <div>
+                <button
+                  className="bg-cyan-600 hover:bg-gray-800 text-white text-lg font-lato font-bold rounded ml-2 py-3 px-5"
+                  onClick={() => {
+                    handleCounter("articlecontactcount");
+                    router.push(
+                      `mailto:${article.useremail}?subject=${
+                        subject + article.articletitle
+                      }&body=${body}`
+                    );
+                  }}
+                >
+                  Contacta amb el venedor/a
+                </button>
+              </div>
+
+              <div>
+                <h2 className="text-lg text-gray-900 font-lato font-normal pb-2">
+                  Marcar com preferit
+                </h2>
+                <Tooltip title="Marca com article preferit">
+                  <IconButton size="small">
+                    <button
+                      className="px-2 py-2 rounded font-lato font-bold text-gray-700 hover:bg-greenescola hover:text-white transition-all duration-200"
+                      onClick={() => {
+                        console.log(
+                          "ArticleView/preferit/article.articleid: ",
+                          article.articleid
+                        );
+                        handleCounter("articlefavoritecount");
+                      }}
+                    >
+                      <IoHeartCircle size={22} />
+                    </button>
+                  </IconButton>
+                </Tooltip>
+              </div>
             </div>
           )}
+
           {/* ///////// */}
           {/* Si user == vendedor, muestra botones edit y delete */}
           {user && user.email === article.useremail && (

@@ -17,7 +17,6 @@ import { HOST_SV } from "config/config";
 import axios from "axios";
 //import { firebaseConfig } from "../firebase/firebaseConfig";
 
-
 const firebaseConfig = {
   apiKey: "AIzaSyByQP6YvMi6uDvejkm93aRFGrC2sjXT430",
   authDomain: "escolapop-pre.firebaseapp.com",
@@ -63,11 +62,11 @@ const catchErrorsFromFirebaseAuth = (error) => {
 };
 
 export const authStateChanged = async (onChange) => {
-  return await onAuthStateChanged(auth, (user) => {
+  return await onAuthStateChanged(auth, async (user) => {
     //console.log("client/onAuthStateChanged/user: ", user);
     // si el usuario existe transformamos la data a lo que nos interesa
     const normalizedUser = user ? mapUserFromFirebaseAuth(user) : null;
-    onChange(normalizedUser);
+    await onChange(normalizedUser);
   });
 };
 

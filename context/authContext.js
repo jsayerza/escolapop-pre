@@ -15,7 +15,10 @@ export const AuthContextProvider = ({ children }) => {
   const [user, setUser] = useState(USER_STATES.NOT_LOGGED);
 
   useEffect(() => {
-    authStateChanged(setUser);
+    async function user() {
+      await authStateChanged(setUser);
+    }
+    user();
   }, []);
 
   /* OJO LOGICA PARA LAS RUTAS DE ATENTICACION
