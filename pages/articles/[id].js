@@ -25,6 +25,7 @@ function ArticleView({ article }) {
   const router = useRouter();
   const { user } = useUser();
 
+  console.log(article);
   const subject = "escolapop - Consulta article ";
   const body =
     "Hola, estic interesat/da en l'article que tens publicat a escolapop.";
@@ -87,7 +88,7 @@ function ArticleView({ article }) {
   useEffect(() => {
     !user && router.push("/login");
     //handleCounter(article.articleid, article.articlevisitcount);
-    handleCounter();
+    handleCounter("articlevisitcount");
   }, [user, router]);
 
   return (
@@ -137,7 +138,6 @@ function ArticleView({ article }) {
               </h2>
               <h2 className="text-lg text-gray-900 font-lato font-bold pb-2">
                 {article.articlesize}
-                mano
               </h2>
             </div>
 
