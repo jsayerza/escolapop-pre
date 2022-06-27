@@ -22,51 +22,51 @@ export const OrderButton = ({ queryObj, keyword }) => {
         className="relative rounded-xl bg-slate-100 font-semibold py-2 px-4 shadow-md"
         onClick={handleModal}
       >
-        ordernar
+        Ordenar resultats
       </button>
       <Modal isOpen={open} closeModal={handleCloseOrderModal} center={false}>
         <div className="h-full w-full flex flex-col gap-2">
+          <button
+              className="flex gap-2 items-center bg-slate-100 px-4 py-4 rounded font-semibold"
+              onClick={() => handleOrder("min_price")}
+            >
+              <BsArrowDownLeft size="2rem" />
+              De más barat a més car
+          </button>
           <button
             className="flex gap-2 items-center bg-slate-100 px-4 py-4 rounded font-semibold"
             onClick={() => handleOrder("max_price")}
           >
             <BsArrowUpRight size="2rem" />
-            Ordenar mas caros
-          </button>
-          <button
-            className="flex gap-2 items-center bg-slate-100 px-4 py-4 rounded font-semibold"
-            onClick={() => handleOrder("min_price")}
-          >
-            <BsArrowDownLeft size="2rem" />
-            Ordenar mas baratos
+            De més car a més barat
           </button>
           <button
             className="flex gap-2 items-center bg-slate-100 px-4 py-4 rounded font-semibold"
             onClick={() => handleOrder("max_size")}
           >
             <GiClothes size="2rem" />
-            Ordenar por talla mas grande
+            De talla gran a petita
           </button>
           <button
             className="flex gap-2 items-center bg-slate-100 px-4 py-4 rounded font-semibold"
             onClick={() => handleOrder("min_size")}
           >
             <GiClothes size="2rem" />
-            Ordenar por talla mas pequeña
+            De talla petita a gran
           </button>
           <button
             className="flex gap-2 items-center bg-slate-100 px-4 py-4 rounded font-semibold"
             onClick={() => handleOrder("min_course")}
           >
             <FaPencilAlt size="2rem" />
-            Ordenar por menor curso
+            De curs menor a major
           </button>
           <button
             className="flex gap-2 items-center bg-slate-100 px-4 py-4 rounded font-semibold"
             onClick={() => handleOrder("max_course")}
           >
             <FaPencilAlt size="2rem" />
-            Ordenar por mayor curso
+            De curs major a menor
           </button>
         </div>
       </Modal>
