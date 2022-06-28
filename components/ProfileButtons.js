@@ -37,9 +37,9 @@ export const ProfileButtons = ({ publicationStatus, saleStatus, article }) => {
   };
 
   const handleUpdate = async (id, salestatusid) => {
-    console.log("ProfileButtons/handleUpdate/salestatusid: ", salestatusid);
+    //console.log("ProfileButtons/handleUpdate/salestatusid: ", salestatusid);
     try {
-      console.log("ProfileButtons/handleUpdate/id: ", id);
+      //console.log("ProfileButtons/handleUpdate/id: ", id);
       axios
         .put(HOST_SV + `/api/articles/${id}`, {
           puttype: "salestatus",
@@ -79,7 +79,7 @@ export const ProfileButtons = ({ publicationStatus, saleStatus, article }) => {
             <button
               className="px-2 py-2 rounded font-lato font-bold text-gray-700 hover:bg-greenescola hover:text-white transition-all duration-200"
               onClick={() => {
-                console.log("ProfileButtons/sold/article.articleid: ", article.articleid);
+                //console.log("ProfileButtons/sold/article.articleid: ", article.articleid);
                 handleUpdate(article.articleid, 3);
               }}
             >

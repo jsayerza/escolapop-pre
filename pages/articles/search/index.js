@@ -67,8 +67,8 @@ export const getServerSideProps = async (context) => {
       },
     }
   );
-  console.log(context.query);
-  console.log("index/searchQuery: ", searchQuery);
+  //console.log("index/context.query: ", context.query);
+  //console.log("index/searchQuery: ", searchQuery);
 
   return {
     props: {

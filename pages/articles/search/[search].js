@@ -32,7 +32,7 @@ export const getServerSideProps = async (context) => {
   //console.log("search/getServerSideProps/context: ", context);
   const { search } = context.query;
   const queryObj = context.query;
-  console.log(queryObj.order_by, "ORDEN");
+  //console.log(queryObj.order_by, "ORDEN");
   const { data: searchQuery } = await axios.get(
     HOST_SV + "/api/articles/search/" + context.query.search,
     {

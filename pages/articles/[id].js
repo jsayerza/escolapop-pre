@@ -25,7 +25,7 @@ function ArticleView({ article }) {
   const router = useRouter();
   const { user } = useUser();
 
-  console.log(article);
+  //console.log("ArticleView/article: ", article);
   const subject = "escolapop - Consulta article ";
   const body =
     "Hola, estic interesat/da en l'article que tens publicat a escolapop.";
@@ -60,10 +60,7 @@ function ArticleView({ article }) {
   const handleCounter = async (counterid) => {
     //console.log("id/handleCounter/article.articlevisitcount: ", article.articlevisitcount);
     try {
-      console.log(
-        "ArticleList/handleUpdate/article.articleid: ",
-        article.articleid
-      );
+      //console.log("ArticleList/handleUpdate/article.articleid: ", article.articleid);
       axios
         .put(HOST_SV + `/api/articles/${article.articleid}`, {
           //puttype: "articlevisitcount",
@@ -90,7 +87,7 @@ function ArticleView({ article }) {
     !user && router.push("/login");
     //handleCounter(article.articleid, article.articlevisitcount);
     handleCounter("articlevisitcount");
-  }, [user, router]);
+  }, [user, router, handleCounter]);
 
   return (
     <Layout>
@@ -257,10 +254,7 @@ function ArticleView({ article }) {
                     <button
                       className="px-2 py-2 rounded font-lato font-bold text-gray-700 hover:bg-greenescola hover:text-white transition-all duration-200"
                       onClick={() => {
-                        console.log(
-                          "ArticleView/preferit/article.articleid: ",
-                          article.articleid
-                        );
+                        //console.log("ArticleView/preferit/article.articleid: ", article.articleid);
                         handleCounter("articlefavoritecount");
                       }}
                     >
