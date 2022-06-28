@@ -13,7 +13,7 @@ import { BadgeSaleStatus } from "../components/BadgeSaleStatus";
 
 
 export default function ArticleList({ articles }) {
-  console.log(articles);
+  //console.log("ArticleList/articles: ", articles);
   const router = useRouter();
   Moment.locale("es");
 
