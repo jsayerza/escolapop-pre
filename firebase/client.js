@@ -1,11 +1,5 @@
 import { initializeApp } from "firebase/app";
-import {
-  getDownloadURL,
-  getStorage,
-  ref,
-  uploadBytes,
-  uploadBytesResumable,
-} from "firebase/storage";
+import { getStorage, ref, uploadBytesResumable } from "firebase/storage";
 import {
   getAuth,
   signOut,
@@ -15,7 +9,6 @@ import {
 } from "firebase/auth";
 import { HOST_SV } from "config/config";
 import axios from "axios";
-//import { firebaseConfig } from "../firebase/firebaseConfig";
 
 const firebaseConfig = {
   apiKey: "AIzaSyByQP6YvMi6uDvejkm93aRFGrC2sjXT430",
@@ -37,8 +30,8 @@ const firebaseConfig = {
 }; */
 
 const app = initializeApp(firebaseConfig);
-
 export const auth = getAuth(app);
+
 const provider = new GoogleAuthProvider();
 
 // mapeamos/transformamos los datos que queremos
@@ -61,9 +54,9 @@ const catchErrorsFromFirebaseAuth = (error) => {
   return { errorCode, errorMessage, email, credential };
 };
 
-export const authStateChanged = async (onChange) => {
-  return await onAuthStateChanged(auth, (user) => {
-    //console.log("client/onAuthStateChanged/user: ", user);
+export const authStateChanged = (onChange) => {
+  return onAuthStateChanged(auth, (user) => {
+    console.log("client/onAuthStateChanged/user: ", user);
     // si el usuario existe transformamos la data a lo que nos interesa
     const normalizedUser = user ? mapUserFromFirebaseAuth(user) : null;
     onChange(normalizedUser);

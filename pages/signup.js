@@ -9,7 +9,6 @@ import axios from "axios";
 import Link from "next/link";
 import { HOST_SV } from "config/config";
 
-
 function SignUpPage() {
   const { user } = useUser();
   const [loading, setLoading] = useState(true);

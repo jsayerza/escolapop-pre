@@ -1,16 +1,14 @@
 import { useState } from "react";
 import clsx from "clsx";
 import { useUser } from "context/authContext";
-// import { useSession, signIn, signOut } from "next-auth/react";
 import { FaUserCircle } from "react-icons/fa";
 import { AiFillInfoCircle } from "react-icons/ai";
 import { CgProfile } from "react-icons/cg";
 
 import Link from "next/link";
 import Image from "next/image";
-import { Tooltip } from '@mui/material';
-import { IconButton } from '@mui/material';
-
+import { Tooltip } from "@mui/material";
+import { IconButton } from "@mui/material";
 
 export function Navbar() {
   const { user, firebaseLogout } = useUser();
@@ -149,7 +147,7 @@ export function Navbar() {
                     <a className="bg-gray-100 flex items-center justify-center m-auto py-2 px-4 font-lato font-normal text-black border rounded font-lato font-lato font-bold w-full hover:bg-orangeAMPA hover:text-black transition-all ease duration-200">
                       El meu Escolapop
                       <span className="px-2">
-                        <CgProfile size={"2rem"}/>
+                        <CgProfile size={"2rem"} />
                       </span>
                     </a>
                   </Link>
@@ -158,58 +156,57 @@ export function Navbar() {
             </li>
 
             <li>
-            <Tooltip title="Què és Escolapop?">
-              <IconButton size="small">
-                <Link href="/about">
-                  <a className="bg-gray-100 flex items-center justify-center m-auto py-2 px-4 font-lato font-normal text-black border rounded font-lato font-bold w-full hover:bg-orangeAMPA hover:text-black transition-all ease duration-200">
-                    Sobre Escolapop
-                    <span className="px-2">
-                        <AiFillInfoCircle size={"2rem"}/>
-                    </span>
-                  </a>
-                </Link>
-              </IconButton>
-            </Tooltip>
+              <Tooltip title="Què és Escolapop?">
+                <IconButton size="small">
+                  <Link href="/about">
+                    <a className="bg-gray-100 flex items-center justify-center m-auto py-2 px-4 font-lato font-normal text-black border rounded font-lato font-bold w-full hover:bg-orangeAMPA hover:text-black transition-all ease duration-200">
+                      Sobre Escolapop
+                      <span className="px-2">
+                        <AiFillInfoCircle size={"2rem"} />
+                      </span>
+                    </a>
+                  </Link>
+                </IconButton>
+              </Tooltip>
             </li>
 
             <li className="pt-1">
-                  {user ? (
-                    <Tooltip title="Logout. Surt o canvia d'usuari">
-                      <IconButton size="small">
-                        <button
-                          className="rounded-full hover:cursor-pointer bg-transparent flex  flex-col"
-                          onClick={firebaseLogout}
-                        >
-                          {user && user.avatar ? (
-                            <Image
-                              width={32}
-                              height={32}
-                              src={user.avatar}
-                              alt="avatar image"
-                              className="h-10 w-10 rounded-full"
-                            />
-                          ) : (
-                            <>
-                              <FaUserCircle size={"2rem"} color="white" />
-                              {user.name ? user.name : "user"}
-                            </>
-                          )}
-                        </button>
-                      </IconButton>
-                    </Tooltip>
-                  ) : (
-                    <Tooltip title="Login. Entra a Escolapop">
-                      <IconButton size="small">
-                        <Link href="/login">
-                          <a className="bg-gray-100 flex items-center justify-center m-auto py-2 px-4 font-lato font-normal text-black border rounded font-lato font-lato font-bold w-full hover:bg-orangeAMPA hover:text-black transition-all ease duration-200">
-                            Login
-                          </a>
-                        </Link>
-                      </IconButton>
-                    </Tooltip>
-                  )}
+              {user ? (
+                <Tooltip title="Logout. Surt o canvia d'usuari">
+                  <IconButton size="small">
+                    <button
+                      className="rounded-full hover:cursor-pointer bg-transparent flex  flex-col"
+                      onClick={firebaseLogout}
+                    >
+                      {user && user.avatar ? (
+                        <Image
+                          width={32}
+                          height={32}
+                          src={user.avatar}
+                          alt="avatar image"
+                          className="h-10 w-10 rounded-full"
+                        />
+                      ) : (
+                        <>
+                          <FaUserCircle size={"2rem"} color="white" />
+                          {user.name ? user.name : "user"}
+                        </>
+                      )}
+                    </button>
+                  </IconButton>
+                </Tooltip>
+              ) : (
+                <Tooltip title="Login. Entra a Escolapop">
+                  <IconButton size="small">
+                    <Link href="/login">
+                      <a className="bg-gray-100 flex items-center justify-center m-auto py-2 px-4 font-lato font-normal text-black border rounded font-lato font-lato font-bold w-full hover:bg-orangeAMPA hover:text-black transition-all ease duration-200">
+                        Login
+                      </a>
+                    </Link>
+                  </IconButton>
+                </Tooltip>
+              )}
             </li>
-            
           </ul>
         </div>
       </div>

@@ -6,8 +6,6 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebase/client";
 import { useUser } from "context/authContext";
 import Link from "next/link";
-import axios from "axios";
-import { HOST_SV } from "config/config";
 
 function SignUpPage() {
   const [email, setEmail] = useState("");
@@ -25,7 +23,7 @@ function SignUpPage() {
 
   const handleLoginSubmit = async (e) => {
     e.preventDefault();
-    signInWithEmailAndPassword(auth, email, password)
+    await signInWithEmailAndPassword(auth, email, password)
       .then((userCredentials) => {
         //console.log("login/handleLoginSubmit/userCredentials", userCredentials);
         setUser(userCredentials);
