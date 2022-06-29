@@ -1,4 +1,3 @@
-import { getSession } from "next-auth/react";
 import { pool } from "config/db";
 
 export default async function handler(req, res) {
