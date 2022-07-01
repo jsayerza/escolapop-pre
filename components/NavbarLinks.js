@@ -93,26 +93,25 @@ export const NavbarLinks = ({ user, logout, privateLinks = false }) => {
       <li>
         {user ? (
           <Tooltip title="Logout. Surt o canvia d'usuari">
-            <IconButton size="small">
-              <button
-                className="rounded-full hover:cursor-pointer bg-transparent flex  flex-col"
-                onClick={logout}
-              >
-                {user && user.avatar ? (
-                  <Image
-                    width={32}
-                    height={32}
-                    src={user.avatar}
-                    alt="avatar image"
-                    className="h-10 w-10 rounded-full"
-                  />
-                ) : (
-                  <>
-                    <FaUserCircle size={"2rem"} color="white" />
-                    {user.name ? user.name : "user"}
-                  </>
-                )}
-              </button>
+            <IconButton
+              size="small"
+              onClick={logout}
+              className="rounded-full hover:cursor-pointer bg-transparent flex  flex-col"
+            >
+              {user && user.avatar ? (
+                <Image
+                  width={32}
+                  height={32}
+                  src={user.avatar}
+                  alt="avatar image"
+                  className="h-10 w-10 rounded-full"
+                />
+              ) : (
+                <>
+                  <FaUserCircle size={"2rem"} color="white" />
+                  {user.name ? user.name : "user"}
+                </>
+              )}
             </IconButton>
           </Tooltip>
         ) : (
