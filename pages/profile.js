@@ -26,9 +26,9 @@ function ProfilePage() {
           email: user.email,
         })
         .then((data) => {
+          //console.log("profileArticles/data: ", data);
           setProfileArticles(data);
         });
-    //console.log("profileArticles/data: ", data);
   }, [router, user]);
 
   return (

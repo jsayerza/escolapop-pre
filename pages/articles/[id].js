@@ -41,6 +41,7 @@ function ArticleView({ article }) {
           axios
             .delete(HOST_SV + `/api/articles/images`, { articleimageid: id })
             .then((res) => {
+              ////TODO: Eliminar también la imagen en firebase JSM 20220702
               //console.log("handleDelete/then/eliminat!");
               toast.success("Article eliminat");
               router.push("/");
