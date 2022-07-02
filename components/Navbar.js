@@ -20,7 +20,7 @@ export const Navbar = ({ privateArea }) => {
 
   return (
     <nav className="bg-white border-gray-200 px-2 sm:px-4 py-2.5 dark:bg-gray-800 fixed top-0 left-0 right-0 z-50">
-      <div className="container flex flex-wrap justify-between items-center mx-auto">
+      <div className="container flex justify-between items-center mx-auto">
         <Link href={"/"}>
           <a className="flex gap-2 items-center">
             <Image
@@ -61,7 +61,7 @@ export const Navbar = ({ privateArea }) => {
           </svg>
         </button>
         <div className={mobileClases} id="mobile-menu">
-          <ul className="flex justify-center items-center flex-col mt-4 md:flex-row md:space-x-6 md:mt-0 md:text-sm md:font-medium">
+          <ul className="flex justify-center items-center flex-col mt-4 md:flex-row space-x-2 lg:space-x-6 md:mt-0 md:text-sm md:font-medium">
             <NavbarLinks
               user={user}
               logout={firebaseLogout}
