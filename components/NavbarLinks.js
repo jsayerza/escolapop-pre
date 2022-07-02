@@ -14,48 +14,68 @@ export const NavbarLinks = ({ user, logout, privateLinks = false }) => {
       <>
         <li>
           <Tooltip title="Publica un nou article">
-            <IconButton size="small">
-              <Link href="/new">
+            <Link href="/new">
+              <IconButton size="small">
                 <a className="bg-gray-100 flex items-center justify-center m-auto py-2 px-4 font-lato font-normal text-black border rounded font-bold w-full hover:bg-orangeAMPA hover:text-black transition-all ease duration-200">
                   Nou article
                   <span className="px-2">
                     <AiFillFileAdd size={"2rem"} />
                   </span>
                 </a>
-              </Link>
-            </IconButton>
+              </IconButton>
+            </Link>
           </Tooltip>
         </li>
 
         <li>
           <Tooltip title="Detalls i configuració del meu usuari">
-            <IconButton size="small">
-              <Link href="/userSettings">
+            <Link href="/userSettings">
+              <IconButton size="small">
                 <a className="bg-gray-100 flex items-center justify-center m-auto py-2 px-4 font-lato font-normal text-black border rounded font-bold w-full hover:bg-orangeAMPA hover:text-black transition-all ease duration-200">
                   El meu usuari
                   <span className="px-2">
                     <AiOutlineUser size={"2rem"} />
                   </span>
                 </a>
-              </Link>
-            </IconButton>
+              </IconButton>
+            </Link>
           </Tooltip>
         </li>
 
         <li>
           <Tooltip title="La meva llista de desitjos">
-            <IconButton size="small">
-              <Link href="/favorites">
+            <Link href="/favorites">
+              <IconButton size="small">
                 <a className="bg-gray-100 flex items-center justify-center m-auto py-2 px-4 font-lato font-normal text-black border rounded font-bold w-full hover:bg-orangeAMPA hover:text-black transition-all ease duration-200">
                   Favorits
                   <span className="px-2">
                     <IoHeartCircle size={"2rem"} />
                   </span>
                 </a>
-              </Link>
-            </IconButton>
+              </IconButton>
+            </Link>
           </Tooltip>
         </li>
+
+        {user && (
+          <li>
+            <Tooltip title="Logout. Surt o canvia d'usuari">
+              <IconButton
+                size="small"
+                onClick={logout}
+                className="rounded-full hover:cursor-pointer bg-transparent flex  flex-col"
+              >
+                <Image
+                  width={32}
+                  height={32}
+                  src={user.avatar}
+                  alt="avatar image"
+                  className="h-10 w-10 rounded-full"
+                />
+              </IconButton>
+            </Tooltip>
+          </li>
+        )}
       </>
     );
   }
