@@ -61,7 +61,7 @@ export const Navbar = ({ privateArea }) => {
           </svg>
         </button>
         <div className={mobileClases} id="mobile-menu">
-          <ul className="flex justify-center items-center flex-col mt-4 md:flex-row space-x-2 lg:space-x-6 md:mt-0 md:text-sm md:font-medium">
+          <ul className="flex justify-center items-center flex-col mt-4 md:flex-row space-x-0 lg:space-x-6 md:mt-0 md:text-sm md:font-medium">
             <NavbarLinks
               user={user}
               logout={firebaseLogout}
