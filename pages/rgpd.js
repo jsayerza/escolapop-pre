@@ -95,7 +95,7 @@ function RGPDPage() {
             >
                 <span className="w-full rounded bg-gray-100 py-3 px-2 pt-1 font-lato font-light text-center text-lg flex gap-2 justify-center items-center hover:bg-slate-200 duration-200 ease">
                     <MdOutlineMailOutline size={"1.5rem"} />
-                    Sol·licitar accés a l'AMPA
+                    Sol·licitar accés a l&apos;AMPA
                 </span>
             </button>
         {/* )} */}
