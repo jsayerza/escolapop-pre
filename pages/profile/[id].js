@@ -3,23 +3,28 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import { useUser } from "../../context/authContext";
 
-/* import ArticleCard from "components/ArticleCard";
-import { map } from "@firebase/util"; */
 import ArticleList from "../../components/ArticleList";
 import Layout from "../../components/Layout";
 import { HOST_SV } from "../../config/config";
 import { NavbarPrivateArea } from "../../components/NavbarPrivateArea";
 import { ProfileBar } from "../../components/ProfileBar";
 
+
 function ProfilePage({ articles }) {
   const { user } = useUser();
-  //console.log("ProfilePage/user: ", user);
+  console.log("ProfilePage/user: ", user);
   const router = useRouter();
 
   useEffect(() => {
     if (!user || user === null || user === undefined) {
       router.push("/login");
     }
+/*     //// Si el user no ha aceptado RGPD  normas de uso o el user no ha sido aceptado por la AMPA, 
+      //// no puede entrar y se le redirige a /rgpd
+    if ((user.rgpd != 10) || (user.validation != 10) ) {
+      router.push("/rgpd");
+    }
+ */    
   }, [router, user]);
 
   return (

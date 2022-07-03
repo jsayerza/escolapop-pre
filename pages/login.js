@@ -39,47 +39,12 @@ function SignUpPage() {
   return (
     <div className="min-h-screen grid place-content-center items-center justify-center bg-gray-100">
       <div className="bg-white p-4 w-full md:w-96 rounded shadow-md">
-        <h1 className="font-semibold text-4xl text-center p-4">Login</h1>
+        <h1 className="font-lato font-bold text-4xl text-center p-4">
+          Entra a Escolapop
+        </h1>
 
-        <form
-          className="w-full flex flex-col gap-4 border-gray-200 border-b py-4"
-          onSubmit={handleLoginSubmit}
-        >
-          <input
-            name="email"
-            className="px-4 py-2 rounded border border-gray-200 w-full focus:outline-orange-500"
-            type="email"
-            placeholder="Example@mail.com"
-            onChange={handleChangeEmail}
-          />
-          <input
-            name="password"
-            className="px-4 py-2 rounded border border-gray-200 w-full focus:outline-orange-500"
-            type="password"
-            placeholder="Pasword"
-            onChange={handleChangePassword}
-          />
-
-          <button
-            type="submit"
-            className="px-4 py-3 bg-orange-500 rounded font-semibold text-white text-xl hover:bg-orange-600 duration-200 ease"
-          >
-            Login
-          </button>
-        </form>
-
-        <div className="flex flex-col gap-4">
-          <h1 className="font-semibold text-xl text-center py-4">Or SignUp</h1>
-
-          <Link href={"/signup"}>
-            <a className="w-full rounded bg-gray-100 py-3 px-2 font-semibold text-lg flex gap-2 justify-center items-center hover:bg-slate-200 duration-200 ease">
-              <AiOutlineMail size={"2rem"} />
-              amb Email i contrassenya
-            </a>
-          </Link>
-
-          <button
-            className="w-full rounded bg-gray-100 py-3 px-2 font-semibold text-lg flex gap-2 justify-center items-center hover:bg-slate-200 duration-200 ease"
+        <button
+            className="w-full rounded bg-gray-100 py-3 px-2 font-lato font-bold text-lg flex gap-2 justify-center items-center hover:bg-slate-200 duration-200 ease"
             onClick={handleGoogleLogin}
           >
             <span>
@@ -87,7 +52,58 @@ function SignUpPage() {
             </span>
             amb Google
           </button>
+
+        <p
+          className="pt-6"
+        > 
+
+        </p>
+
+        <form
+/*           className="w-full flex flex-col gap-4 border-gray-200 border-b py-4" */
+          className="w-full flex flex-col rounded bg-gray-100 py-3 px-2 font-lato font-bold text-lg gap-2 justify-center items-center hover:bg-slate-200 duration-200 ease"
+          onSubmit={handleLoginSubmit}
+        >
+          <div>
+            o amb email i contrassenya
+          </div>
+          <input
+            name="email"
+            className="px-4 py-2 rounded border border-gray-200 w-full focus:outline-orange-500"
+            type="email"
+            placeholder="exemple@mail.com"
+            onChange={handleChangeEmail}
+          />
+          <input
+            name="password"
+            className="px-4 py-2 rounded border border-gray-200 w-full focus:outline-orange-500"
+            type="password"
+            placeholder="Contrassenya"
+            onChange={handleChangePassword}
+          />
+
+          <button
+            type="submit"
+            className="px-4 py-3 bg-orange-500 rounded font-lato font-bold text-white text-xl hover:bg-orange-600 duration-200 ease"
+          >
+            Login
+          </button>
+        </form>
+
+        <div className="flex flex-col gap-4 pt-6 pb-1">
+          <h2 className="text-lg font-lato font-bold text-center ">
+            Si no tens compte de Google ni compte d&apos;Escolapop, registra&apos;t
+          </h2>
+
+          <Link href={"/signup"}>
+            <a className="w-full rounded bg-gray-100 py-3 px-2 pt-1 font-lato font-bold text-lg flex gap-2 justify-center items-center hover:bg-slate-200 duration-200 ease">
+              <AiOutlineMail size={"2rem"} />
+              amb email i contrassenya
+            </a>
+          </Link>
+
         </div>
+
       </div>
     </div>
   );

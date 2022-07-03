@@ -6,6 +6,12 @@ function rules() {
       <h1>
         <div>Normes d&apos;ús</div>
       </h1>
+      <p>Escolapop és un servei gratuït de l'AMPA de l'escola Sant Feliu.</p>
+      <p>L&apos;AMPA es reserva el dret dacceptar, rebutjar o cancel·lar l&apos;accés de qualsevol usuari en qualsevol moment.</p>
+      <p>S'ha de sol·licitar accés a l'AMPA per poder usar aquest servei.</p>
+      <p>S'han d&apos;acceptar les normes d&apos;ús del servei i acceptar la política de protecció de dades personals.</p>
+      <p>L&apos;AMPA no es fa responsable de la qualitat, preu, condicions dels articles publicats ni dels acords de compra/venda entre usuaris.</p>
+      <p></p>
     </Layout>
   )
 }

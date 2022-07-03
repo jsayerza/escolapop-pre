@@ -40,7 +40,7 @@ export default function ArticleFavoriteList({ articles }) {
                   height={200}
                   objectFit="cover"
                   className="max-w-full h-auto rounded-lg transition-shadow ease-in-out shadow-none"
-                  alt="imatge de l$apos;article"
+                  alt="imatge de l&apos;article"
                 />
               )}
             </div>

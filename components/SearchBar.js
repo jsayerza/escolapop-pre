@@ -22,6 +22,7 @@ export default function SearchBar({ keyword = "", queryObj, filters }) {
     setResetSearch(true);
     if (!user) {
       return router.push("/login");
+      console.log("SearchBar/handleSubmit/user: ", user);
     }
     /*     if (search === "" || search === undefined) {
       return router.push(HOST_SV + `/articles/search/`);
