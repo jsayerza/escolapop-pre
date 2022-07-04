@@ -14,7 +14,7 @@ function userSettings() {
   return (
     <Layout>
       <h1 className="text-left text-2xl font-lato font-black text-greenescola my-2">
-        <div>El meu usuari</div>
+        <div>El meu usuari (reparar)</div>
       </h1>
 
 {/*       <div className="flex flex-col gap-4 md:flex-row">
