@@ -6,8 +6,6 @@ import { useUser } from "../../context/authContext";
 import ArticleList from "../../components/ArticleList";
 import Layout from "../../components/Layout";
 import { HOST_SV } from "../../config/config";
-import { NavbarPrivateArea } from "../../components/NavbarPrivateArea";
-import { ProfileBar } from "../../components/ProfileBar";
 
 
 function ProfilePage({ articles }) {
@@ -28,8 +26,7 @@ function ProfilePage({ articles }) {
   }, [router, user]);
 
   return (
-    <Layout>
-      <NavbarPrivateArea />
+    <Layout privateLinks={true}>
       {/* <ProfileBar /> */}
 
       <h1 className="text-left text-2xl font-lato font-black text-greenescola my-2">
