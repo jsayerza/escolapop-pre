@@ -8,7 +8,6 @@ import Layout from "../components/Layout";
 import { HOST_SV } from "../config/config";
 import { NavbarPrivateArea } from "../components/NavbarPrivateArea";
 
-
 function FavoritesPage() {
   const { user } = useUser();
   //console.log("favorites/user: ", user);
@@ -22,35 +21,34 @@ function FavoritesPage() {
 
     try {
       //console.log(`/api/articles/favorites/${user.id}`);
-      {/* <Link href={user ? `/profile/${user.id}` : `/login`}> */}
+      {
+        /* <Link href={user ? `/profile/${user.id}` : `/login`}> */
+      }
 
-      axios.get(HOST_SV + `/api/articles/favorites/${user.id}`, {
-        email: user.email,
-      })
-      .then((data) => {
-        //console.log("favoritesArticles/useEffect/pa setFavoritesArticles!");
-        //console.log("favoritesArticles/data: ", data.data);
-        setFavoritesArticles(data.data);
-      });
+      axios
+        .get(HOST_SV + `/api/articles/favorites/${user.id}`, {
+          email: user.email,
+        })
+        .then((data) => {
+          //console.log("favoritesArticles/useEffect/pa setFavoritesArticles!");
+          //console.log("favoritesArticles/data: ", data.data);
+          setFavoritesArticles(data.data);
+        });
     } catch (error) {
       console.log("favoritesArticles/error: ", error);
     }
   }, [router, user]);
 
   return (
-    <Layout>
-      <NavbarPrivateArea />
-
+    <Layout privateLinks={true}>
       <h1 className="text-left text-2xl font-lato font-black text-greenescola my-2">
         Els meus favorits
       </h1>
       <div>
         <ArticleFavoriteList articles={favoritesArticles} />
       </div>
-
     </Layout>
   );
 }
-
 
 export default FavoritesPage;
