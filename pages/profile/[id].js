@@ -12,6 +12,7 @@ function ProfilePage({ articles }) {
   const { user } = useUser();
   console.log("ProfilePage/user: ", user);
   const router = useRouter();
+  const [userData, setUserData] = useState([]);
 
   useEffect(() => {
     if (!user || user === null || user === undefined) {
@@ -23,6 +24,21 @@ function ProfilePage({ articles }) {
       router.push("/rgpd");
     }
  */    
+    console.log("ProfilePage/user.email: ", user.email);
+    user &&
+      axios.get(HOST_SV + "/api/rgpd", { useremail: user.email, })
+      .then((data) => {
+        console.log("ProfilePage/data: ", data);
+        return setUserData(data);
+      })
+      .then((userData) => {
+        console.log("ProfilePage/data: ", userData);
+        if ((userData.rgpd != 10) || (userData.validation != 10) ) {
+          router.push("/rgpd");
+        }
+   
+      });
+
   }, [router, user]);
 
   return (
