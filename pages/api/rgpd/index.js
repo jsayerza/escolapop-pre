@@ -7,6 +7,9 @@ export default async function handler(req, res) {
       //console.log("handler/PUT/req: ", req);
       return await updateRGPD(req, res);
 
+    case "GET":
+      return await getUserRGPD(req, res);
+
     default:
       break;
   }
@@ -30,4 +33,23 @@ const updateRGPD = async (req, res) => {
   }
 };
 
+
+const getUserRGPD = async (req, res) => {
+  try {
+    const { useremail } = req.body;
+    console.log("getUserRGPD/useremail: ", useremail);
+
+    const [user] = await pool.query(
+      `
+      SELECT * FROM user WHERE useremail = '${useremail}'
+      `
+    );
+
+    return res.status(200).json(user);
+  } catch (e) {
+    return res.status(500).json({
+      error: "Has intentat fer alguna acció incorrecta o no estàs identificat",
+    });
+  }
+};
 
