@@ -19,7 +19,8 @@ const getRegister = async (req, res) => {
     //console.log("indexRegister/getRegister/avatarurl: ", avatarurl)
 
     const [searchEmail] = await pool.query(
-      `SELECT * FROM user WHERE useremail = '${email}'`
+      `SELECT * FROM user WHERE useremail = ?`,
+      [email]
     );
 
     if (searchEmail.length > 0) {
@@ -29,7 +30,8 @@ const getRegister = async (req, res) => {
     /* TODO: Hacer INSERT si no existe, UPDATE si existe???  */
     const [result] = await pool.query(
       /* `INSERT INTO user (useremail, fbkey, username) VALUES ('${email}','${id}','${username}')` */
-      `INSERT INTO user (useremail, fbkey, username, avatarurl) VALUES ('${email}','${id}','${username}','${avatarurl}')`
+      `INSERT INTO user (useremail, fbkey, username, avatarurl) VALUES (?, ?, ?, ?)`,
+      [email, id, username, avatarurl]
     );
     //console.log("index/getRegister/result[0]: ", result[0]);
     return res.status(201).json(result[0]);

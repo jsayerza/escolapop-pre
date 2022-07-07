@@ -2,14 +2,13 @@
 
 import { pool } from "config/db";
 
-
 export default async function handler(req, res) {
   //console.log("favorites/handler/req: ", req)
 
   switch (req.method) {
     case "GET":
       return await getFavoritesArticles(req, res);
-  
+
     default:
       return await getFavoritesArticles(req, res);
   }
@@ -24,8 +23,9 @@ const getFavoritesArticles = async (req, res) => {
 
     const [user] = await pool.query(
       `
-      SELECT * FROM user WHERE fbkey = '${id}'
-      `
+      SELECT * FROM user WHERE fbkey = ?
+      `,
+      [id]
     );
 
     //console.log("favorites/getFavoritesArticles/user: ", user);
@@ -42,8 +42,9 @@ const getFavoritesArticles = async (req, res) => {
 
     const [result] = await pool.query(
       `
-      SELECT * FROM v_favorites WHERE favoriteuseremail = '${user[0].useremail}' ORDER BY datecreation DESC
-      `
+      SELECT * FROM v_favorites WHERE favoriteuseremail = ? ORDER BY datecreation DESC
+      `,
+      [user[0].useremail]
     );
 
     return res.status(200).json(result);
@@ -53,4 +54,3 @@ const getFavoritesArticles = async (req, res) => {
     });
   }
 };
-

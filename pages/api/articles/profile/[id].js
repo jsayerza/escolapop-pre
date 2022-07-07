@@ -16,8 +16,9 @@ const getProfileArticles = async (req, res) => {
 
     const [user] = await pool.query(
       `
-      SELECT * FROM user WHERE fbkey = '${id}'
-      `
+      SELECT * FROM user WHERE fbkey = ?
+      `,
+      [id]
     );
 
     //console.log("profile/getProfileArticles/user: ", user);
@@ -32,8 +33,9 @@ const getProfileArticles = async (req, res) => {
 
     const [result] = await pool.query(
       `
-      SELECT * FROM v_article WHERE useremail = '${user[0].useremail}' ORDER BY datecreation DESC
-      `
+      SELECT * FROM v_article WHERE useremail = ? ORDER BY datecreation DESC
+      `,
+      [user[0].useremail]
     );
 
     return res.status(200).json(result);
