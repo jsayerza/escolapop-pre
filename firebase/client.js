@@ -35,12 +35,18 @@ export const auth = getAuth(app);
 const provider = new GoogleAuthProvider();
 
 // mapeamos/transformamos los datos que queremos
-const mapUserFromFirebaseAuth = (user) => {
+const mapUserFromFirebaseAuth = async (user) => {
   const { displayName, email, photoURL, uid } = user;
+
+  const { data } = await axios.get(HOST_SV + `/api/rgpd?useremail=${email}`);
+  console.log(data);
+
   return {
     name: displayName,
     email,
     avatar: photoURL,
+    rgpd: data[0].rgpd,
+    validation: data[0].validation,
     id: uid,
   };
 };
