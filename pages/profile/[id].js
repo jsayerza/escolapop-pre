@@ -18,12 +18,9 @@ function ProfilePage({ articles }) {
     if (!user || user === null || user === undefined) {
       router.push("/login");
     }
-/*     //// Si el user no ha aceptado RGPD  normas de uso o el user no ha sido aceptado por la AMPA, 
-      //// no puede entrar y se le redirige a /rgpd
-    if ((user.rgpd != 10) || (user.validation != 10) ) {
-      router.push("/rgpd");
-    }
- */    
+    
+    //// Si el user no ha aceptado RGPD normas de uso o el user no ha sido aceptado por la AMPA, 
+    //// no puede entrar y se le redirige a /rgpd
     console.log("ProfilePage/user.email: ", user.email);
     user &&
       /* axios.get(HOST_SV + "/api/rgpd", { useremail: user.email, }) */
@@ -33,21 +30,10 @@ function ProfilePage({ articles }) {
         console.log("ProfilePage/userData.data[0]: ", userData.data[0]);
 
         if ((userData.data[0].rgpd != 10) || (userData.data[0].validation != 10) ) {
-          console.log("ProfilePage/cap a /rgpd");          
           router.push("/rgpd");
         }
-
-
         return setUserData(userData.data[0]);
-      })
-/*       .then((userData) => {
-        console.log("ProfilePage/data: ", userData);
-        if ((userData.rgpd != 10) || (userData.validation != 10) ) {
-          console.log("ProfilePage/cap a /rgpd");          
-          router.push("/rgpd");
-        }
-      })
- */      ;
+      });
 
   }, [router, user]);
 

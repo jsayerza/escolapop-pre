@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useState, useRef, useEffect } from "react";
 import { useRouter } from "next/router";
 import { SearchIcon } from "../icons/SearchIcon";
@@ -16,17 +17,32 @@ export default function SearchBar({ keyword = "", queryObj, filters }) {
   const inputRef = useRef(null);
   const [show, handleShowComponent] = useShowComponent();
   const { user } = useUser();
+  const [userData, setUserData] = useState([]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setResetSearch(true);
     if (!user) {
       return router.push("/login");
-      console.log("SearchBar/handleSubmit/user: ", user);
     }
-    /*     if (search === "" || search === undefined) {
-      return router.push(HOST_SV + `/articles/search/`);
-    } */
+    //console.log("SearchBar/handleSubmit/user: ", user);
+
+    //// Si el user no ha aceptado RGPD normas de uso o el user no ha sido aceptado por la AMPA, 
+    //// no puede entrar y se le redirige a /rgpd
+    console.log("SearchBar/user.email: ", user.email);
+    user &&
+      /* axios.get(HOST_SV + "/api/rgpd", { useremail: user.email, }) */
+      axios.get(HOST_SV + `/api/rgpd?useremail=${user.email}`)
+      .then((userData) => {
+        console.log("SearchBar/userData: ", userData);
+        console.log("SearchBar/userData.data[0]: ", userData.data[0]);
+
+        if ((userData.data[0].rgpd != 10) || (userData.data[0].validation != 10) ) {
+          router.push("/rgpd");
+        }
+        return setUserData(userData.data[0]);
+      });
+    
     router.push(HOST_SV + `/articles/search?keyword=${search}`);
   };
 

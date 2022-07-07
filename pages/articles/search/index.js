@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import axios from "axios";
 import { HOST_SV } from "../../../config/config";
@@ -8,14 +8,33 @@ import { SearchResults } from "../../../components/SearchResults";
 import { useUser } from "context/authContext";
 import { OrderButton } from "components/OrderButton";
 
+
 function SearchWithoutParams({ searchQuery, queryObj }) {
   const { user } = useUser();
   const router = useRouter();
+  const [userData, setUserData] = useState([]);
 
   useEffect(() => {
     if (!user || user === null || user === undefined) {
       router.push("/login");
     }
+
+    //// Si el user no ha aceptado RGPD normas de uso o el user no ha sido aceptado por la AMPA, 
+    //// no puede entrar y se le redirige a /rgpd
+    //console.log("search/index/user.email: ", user.email);
+    user &&
+      /* axios.get(HOST_SV + "/api/rgpd", { useremail: user.email, }) */
+      axios.get(HOST_SV + `/api/rgpd?useremail=${user.email}`)
+      .then((userData) => {
+        console.log("search/index/userData: ", userData);
+        console.log("search/index/userData.data[0]: ", userData.data[0]);
+
+        if ((userData.data[0].rgpd != 10) || (userData.data[0].validation != 10) ) {
+          router.push("/rgpd");
+        }
+        return setUserData(userData.data[0]);
+      });
+    
   }, [router, user]);
 
   return (
@@ -25,14 +44,14 @@ function SearchWithoutParams({ searchQuery, queryObj }) {
         <h1 className="font-semibold text-3xl p-4">
           {searchQuery.length > 0
             ? `Resultats de cerca de '${queryObj.keyword}'`
-            : `No existen resultados de '${queryObj.keyword}'`}
+            : `No hi ha resultats de '${queryObj.keyword}'`}
         </h1>
       )}
       {!queryObj.keyword && queryObj.category && (
         <h1 className="font-semibold text-3xl p-4">
           {searchQuery.length > 0
             ? `Resultats de categoria '${queryObj.category}'`
-            : `No existen resultados de categoria '${queryObj.category}'`}
+            : `No hi ha resultats de categoria '${queryObj.category}'`}
         </h1>
       )}
 

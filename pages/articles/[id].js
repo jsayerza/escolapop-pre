@@ -1,5 +1,5 @@
-import { useEffect } from "react";
 import axios from "axios";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { toast } from "react-toastify";
 import Image from "next/image";
@@ -18,12 +18,14 @@ import { useUser } from "context/authContext";
 // import { useUser } from "context/authContext";
 //import ButtonMailto from "components/ButtonMailTo";
 
+
 function ArticleView({ article }) {
   // const { user } = useUser();
   //console.log(user);
   //console.log("ArticleView/article: ", article);
   const router = useRouter();
   const { user } = useUser();
+  const [userData, setUserData] = useState([]);
 
   //console.log("ArticleView/article: ", article);
   const subject = "escolapop - Consulta article ";
@@ -86,6 +88,23 @@ function ArticleView({ article }) {
 
   useEffect(() => {
     !user && router.push("/login");
+
+    //// Si el user no ha aceptado RGPD normas de uso o el user no ha sido aceptado por la AMPA, 
+    //// no puede entrar y se le redirige a /rgpd
+    //console.log("articles/[id]/user.email: ", user.email);
+    user &&
+      /* axios.get(HOST_SV + "/api/rgpd", { useremail: user.email, }) */
+      axios.get(HOST_SV + `/api/rgpd?useremail=${user.email}`)
+      .then((userData) => {
+        console.log("articles/[id]/userData: ", userData);
+        console.log("articles/[id]/userData.data[0]: ", userData.data[0]);
+
+        if ((userData.data[0].rgpd != 10) || (userData.data[0].validation != 10) ) {
+          router.push("/rgpd");
+        }
+        return setUserData(userData.data[0]);
+      });
+
     //handleCounter(article.articleid, article.articlevisitcount);
     handleCounter("articlevisitcount");
   }, [user, router, handleCounter]);
