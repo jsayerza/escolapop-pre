@@ -39,7 +39,7 @@ const mapUserFromFirebaseAuth = async (user) => {
   const { displayName, email, photoURL, uid } = user;
 
   const { data } = await axios.get(HOST_SV + `/api/rgpd?useremail=${email}`);
-  console.log(data);
+  //console.log("client/mapUserFromFirebaseAuth/data: ", data);
 
   return {
     name: displayName,

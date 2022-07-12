@@ -92,8 +92,12 @@ function ArticleView({ article }) {
     //// Si el user no ha aceptado RGPD normas de uso o el user no ha sido aceptado por la AMPA, 
     //// no puede entrar y se le redirige a /rgpd
     //console.log("articles/[id]/user.email: ", user.email);
-    user &&
-      /* axios.get(HOST_SV + "/api/rgpd", { useremail: user.email, }) */
+
+    if ((user.rgpd != 10) || (user.validation != 10) ) {
+      router.push("/rgpd");
+    }
+
+/*     user &&
       axios.get(HOST_SV + `/api/rgpd?useremail=${user.email}`)
       .then((userData) => {
         console.log("articles/[id]/userData: ", userData);
@@ -104,9 +108,9 @@ function ArticleView({ article }) {
         }
         return setUserData(userData.data[0]);
       });
+ */
 
-    //handleCounter(article.articleid, article.articlevisitcount);
-    handleCounter("articlevisitcount");
+      handleCounter("articlevisitcount");
   }, [user, router, handleCounter]);
 
   return (
