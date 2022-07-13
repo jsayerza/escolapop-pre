@@ -8,7 +8,6 @@ import { SearchResults } from "../../../components/SearchResults";
 import { useUser } from "context/authContext";
 import { OrderButton } from "components/OrderButton";
 
-
 function SearchWithoutParams({ searchQuery, queryObj }) {
   const { user } = useUser();
   const router = useRouter();
@@ -19,22 +18,25 @@ function SearchWithoutParams({ searchQuery, queryObj }) {
       router.push("/login");
     }
 
-    //// Si el user no ha aceptado RGPD normas de uso o el user no ha sido aceptado por la AMPA, 
+    //// Si el user no ha aceptado RGPD normas de uso o el user no ha sido aceptado por la AMPA,
     //// no puede entrar y se le redirige a /rgpd
     //console.log("search/index/user.email: ", user.email);
     user &&
       /* axios.get(HOST_SV + "/api/rgpd", { useremail: user.email, }) */
-      axios.get(HOST_SV + `/api/rgpd?useremail=${user.email}`)
-      .then((userData) => {
-        console.log("search/index/userData: ", userData);
-        console.log("search/index/userData.data[0]: ", userData.data[0]);
+      axios
+        .get(HOST_SV + `/api/rgpd?useremail=${user.email}`)
+        .then((userData) => {
+          console.log("search/index/userData: ", userData);
+          console.log("search/index/userData.data[0]: ", userData.data[0]);
 
-        if ((userData.data[0].rgpd != 10) || (userData.data[0].validation != 10) ) {
-          router.push("/rgpd");
-        }
-        return setUserData(userData.data[0]);
-      });
-    
+          if (
+            userData.data[0].rgpd != 10 ||
+            userData.data[0].validation != 10
+          ) {
+            return router.push("/rgpd");
+          }
+          return setUserData(userData.data[0]);
+        });
   }, [router, user]);
 
   return (
@@ -83,6 +85,8 @@ export const getServerSideProps = async (context) => {
         location: context.query?.location,
         course: context.query?.course,
         order_by: context.query?.order_by,
+        page: context.query?.page ? context.query.page : 1,
+        offset: context.query?.offset ? context.query.offset : 15,
       },
     }
   );

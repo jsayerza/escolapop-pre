@@ -23,7 +23,9 @@ const setSearch = async (req, res) => {
     } = req.query;
 
     let query;
-    let pagination = ` LIMIT ${(page - 1) * offset}, ${offset}`;
+    let pagination = ` LIMIT ${
+      (parseInt(page) - 1) * parseInt(offset)
+    }, ${parseInt(offset)}`;
     /*     query =
       keyword !== null || keyword !== undefined
         ? `SELECT * FROM v_article_sell WHERE ((articletitle LIKE '%${keyword}%') OR (description LIKE '%${keyword}%'))`
