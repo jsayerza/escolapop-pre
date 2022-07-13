@@ -31,12 +31,13 @@ const getImage = async (req, res) => {
 const saveImage = async (req, res) => {
   try {
     //console.log("req.body: ", req.body);
-    const { articleId, url } = req.body;
+    const { articleId, url, fbRefPath } = req.body;
     ////TODO: Por ahora forzamos 'mainimage: 1' ya que solo usamos una imagen. Se tendrá q gestionar cuando haya más imágenes. JSM 20220422
     const [result] = await pool.query("INSERT INTO articleimage SET ?", {
       articleid: articleId,
       imageurl: url,
-      mainimage: 1
+      imagerefpath: fbRefPath,
+      mainimage: 1,
     });
     return res.json(result);
   } catch (e) {
@@ -52,8 +53,8 @@ const updateImage = async (req, res) => {
   try {
     await pool.query(
       "UPDATE articleimage " +
-      "SET imageurl = ?, mainimage = 1 " +
-      "WHERE articleid = ?",
+        "SET imageurl = ?, mainimage = 1 " +
+        "WHERE articleid = ?",
       [imageurl, articleimageid]
     );
     return res.status(204).json();
@@ -62,17 +63,15 @@ const updateImage = async (req, res) => {
   }
 };
 
-
 const deleteImage = async (req, res) => {
   //console.log("deleteImage/req.body: ", req.body);
   //console.log("deleteImage/req.query: ", req.query);
   //const { id } = req.query;
   const { articleimageid } = req.body;
   try {
-    await pool.query(
-      "DELETE FROM articleimage WHERE articleid = ?", 
-      [articleimageid]
-    );
+    await pool.query("DELETE FROM articleimage WHERE articleid = ?", [
+      articleimageid,
+    ]);
     return res.status(204).json();
   } catch (error) {
     return res.status(500).json({ message: error.message });
