@@ -22,7 +22,7 @@ export function ArticleForm({ articleUpdateId = null }) {
   // const { data } = useSession();
   //console.log("ArticleForm/data:" , data);
   //console.log("ArticleForm/user.email: ", user.email)
-  console.log("ArticleForm/user: ", user)
+  console.log("ArticleForm/user: ", user);
 
   const [updateArticle, setUpdateArticle] = useState({
     articlecategoryid: 0,
@@ -46,9 +46,11 @@ export function ArticleForm({ articleUpdateId = null }) {
   const [publicationStatus, setPublicationStatus] = useState([]);
   const [saleStatus, setSaleStatus] = useState([]);
   const [articleSize, setArticleSize] = useState([]);
+  const [fbRefPath, setFbRefPath] = useState("");
 
   const handleUpload = (file) => {
-    const { uploadTask } = uploadImage(file);
+    const { uploadTask, fbRefPath } = uploadImage(file);
+    setFbRefPath(fbRefPath);
     uploadTask.on(
       "state_changed",
       (snapshot) => {
@@ -305,6 +307,7 @@ export function ArticleForm({ articleUpdateId = null }) {
                   .post(HOST_SV + "/api/articles/images", {
                     articleId: response.data.articleid,
                     url: urlImg,
+                    imagerefpath: fbRefPath,
                   })
                   .then((res) => router.push("/"))
                   .catch((e) =>
