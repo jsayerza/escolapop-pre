@@ -23,7 +23,7 @@ const setSearch = async (req, res) => {
     } = req.query;
 
     let query;
-    let pagination = ` LIMIT ${page - 1} * ${offset}, ${offset}`;
+    let pagination = ` LIMIT ${(page - 1) * offset}, ${offset}`;
     /*     query =
       keyword !== null || keyword !== undefined
         ? `SELECT * FROM v_article_sell WHERE ((articletitle LIKE '%${keyword}%') OR (description LIKE '%${keyword}%'))`
@@ -100,5 +100,8 @@ const setSearch = async (req, res) => {
     //console.log("search/query: ", query);
     const [result] = await pool.query(query);
     return res.status(200).json(result);
-  } catch (error) {}
+  } catch (error) {
+    console.log(error);
+    return res.status(500);
+  }
 };
