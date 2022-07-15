@@ -10,7 +10,7 @@ import { AiFillDelete } from "react-icons/ai";
 
 import { HOST_SV } from "../config/config";
 import { BadgeStatus } from "../components/BadgeStatus";
-import { deleteFirebaseImage } from "firebase/client";
+import { deleteFirebaseImage } from "../firebase/client";
 
 export const ProfileButtons = ({ publicationStatus, saleStatus, article }) => {
   const router = useRouter();
