@@ -293,16 +293,16 @@ export function ArticleForm({ articleUpdateId = null }) {
                 .catch((e) => console.log("onSubmit PUT article error: ", e))
             );
           } else {
-            //console.log("onSubmit/POST");
-            //console.log("onSubmit/POST/values: ", values);
-            //console.log("onSubmit/POST/`${user.email}`: ", `${user.email}`);
+            //console.log("ArticleForm/onSubmit/POST");
+            //console.log("ArticleForm/onSubmit/POST/values: ", values);
+            //console.log("ArticleForm/onSubmit/POST/`${user.email}`: ", `${user.email}`);
             return axios
               .post(HOST_SV + "/api/articles", {
                 ...values,
                 useremail: `${user?.email}`,
               })
               .then((response) => {
-                //console.log(response.data);
+                //console.log("ArticleForm/onSubmit/POST/response.data: ", response.data);
                 return axios
                   .post(HOST_SV + "/api/articles/images", {
                     articleId: response.data.articleid,

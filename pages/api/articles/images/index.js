@@ -30,15 +30,14 @@ const getImage = async (req, res) => {
 
 const saveImage = async (req, res) => {
   try {
-    //console.log("req.body: ", req.body);
-    const { articleId, url, fbRefPath } = req.body;
+    //console.log("artticles-images-index/saveImage/req.body: ", req.body);
+    const { articleId, url, imagerefpath } = req.body;
+    //console.log("artticles-images-index/saveImage/imagerefpath: ", imagerefpath);
     ////TODO: Por ahora forzamos 'mainimage: 1' ya que solo usamos una imagen. Se tendrá q gestionar cuando haya más imágenes. JSM 20220422
-    const [result] = await pool.query("INSERT INTO articleimage SET ?", {
-      articleid: articleId,
-      imageurl: url,
-      imagerefpath: fbRefPath,
-      mainimage: 1,
-    });
+    const [result] = await pool.query(
+      `INSERT INTO articleimage (articleid, imageurl, mainimage, imagerefpath) VALUES (?, ?, ?, ?)`, 
+      [ articleId, url, '1', imagerefpath]
+    );
     return res.json(result);
   } catch (e) {
     return res.status(500).json({ error: e.message });

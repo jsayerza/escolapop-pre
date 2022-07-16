@@ -113,12 +113,13 @@ export const deleteFirebaseImage = (fbRefPath) => {
 };
 
 export const uploadImage = (file) => {
-  // creamos la referencia de donde se guradaran en firebase y el nombre del archivo
-  //console.log("client/uploadImage/file.name: ", file.name);
+  //// creamos la referencia de donde se guradaran en firebase y el nombre del archivo
+  console.log("client/uploadImage/file.name: ", file.name);
   const fbRefPath = "images/" + file.name + nanoid();
+  console.log("client/uploadImage/fbRefPath: ", fbRefPath);
   const reference = ref(storage, fbRefPath);
 
-  // Lo subimos
+  //// Lo subimos
   const uploadTask = uploadBytesResumable(reference, file);
 
   return { uploadTask, fbRefPath };
