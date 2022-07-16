@@ -22,7 +22,7 @@ export function ArticleForm({ articleUpdateId = null }) {
   // const { data } = useSession();
   //console.log("ArticleForm/data:" , data);
   //console.log("ArticleForm/user.email: ", user.email)
-  console.log("ArticleForm/user: ", user)
+  console.log("ArticleForm/user: ", user);
 
   const [updateArticle, setUpdateArticle] = useState({
     articlecategoryid: 0,
@@ -46,9 +46,11 @@ export function ArticleForm({ articleUpdateId = null }) {
   const [publicationStatus, setPublicationStatus] = useState([]);
   const [saleStatus, setSaleStatus] = useState([]);
   const [articleSize, setArticleSize] = useState([]);
+  const [fbRefPath, setFbRefPath] = useState("");
 
   const handleUpload = (file) => {
-    const { uploadTask } = uploadImage(file);
+    const { uploadTask, fbRefPath } = uploadImage(file);
+    setFbRefPath(fbRefPath);
     uploadTask.on(
       "state_changed",
       (snapshot) => {
@@ -291,20 +293,21 @@ export function ArticleForm({ articleUpdateId = null }) {
                 .catch((e) => console.log("onSubmit PUT article error: ", e))
             );
           } else {
-            //console.log("onSubmit/POST");
-            //console.log("onSubmit/POST/values: ", values);
-            //console.log("onSubmit/POST/`${user.email}`: ", `${user.email}`);
+            //console.log("ArticleForm/onSubmit/POST");
+            //console.log("ArticleForm/onSubmit/POST/values: ", values);
+            //console.log("ArticleForm/onSubmit/POST/`${user.email}`: ", `${user.email}`);
             return axios
               .post(HOST_SV + "/api/articles", {
                 ...values,
                 useremail: `${user?.email}`,
               })
               .then((response) => {
-                //console.log(response.data);
+                //console.log("ArticleForm/onSubmit/POST/response.data: ", response.data);
                 return axios
                   .post(HOST_SV + "/api/articles/images", {
                     articleId: response.data.articleid,
                     url: urlImg,
+                    imagerefpath: fbRefPath,
                   })
                   .then((res) => router.push("/"))
                   .catch((e) =>

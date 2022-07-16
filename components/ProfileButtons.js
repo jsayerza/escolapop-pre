@@ -10,12 +10,12 @@ import { AiFillDelete } from "react-icons/ai";
 
 import { HOST_SV } from "../config/config";
 import { BadgeStatus } from "../components/BadgeStatus";
-
+import { deleteFirebaseImage } from "../firebase/client";
 
 export const ProfileButtons = ({ publicationStatus, saleStatus, article }) => {
   const router = useRouter();
 
-  const handleDelete = async (id) => {
+  const handleDelete = async (id, imgpath) => {
     try {
       //console.log("ArticleList/handleDelete/id: ", id);
       return await axios
@@ -27,6 +27,9 @@ export const ProfileButtons = ({ publicationStatus, saleStatus, article }) => {
               articleimageid: id,
             };
           toast.success("Article eliminat");
+        })
+        .then(() => {
+          deleteFirebaseImage(imgpath);
           router.push("/");
         })
         .catch((e) => console.log("handleDelete delete article error: ", e));
@@ -59,7 +62,6 @@ export const ProfileButtons = ({ publicationStatus, saleStatus, article }) => {
 
   return (
     <div className="flex flex-wrap md:flex-nowrap gap-2 justify-center items-center">
-
       <div className="flex flex-col justify-center items-center py-2 px-2">
         <h1 className="textl-lg font-lato font-normal text-gray-900">
           {article.articlestatus}
@@ -75,56 +77,49 @@ export const ProfileButtons = ({ publicationStatus, saleStatus, article }) => {
 
       <div className="flex gap-1 md:gap-4 justify-center items-center">
         <Tooltip title="Marca com article venut">
-          <IconButton size="small">
-            <button
-              className="px-2 py-2 rounded font-lato font-bold text-gray-700 hover:bg-greenescola hover:text-white transition-all duration-200"
-              onClick={() => {
-                //console.log("ProfileButtons/sold/article.articleid: ", article.articleid);
-                handleUpdate(article.articleid, 3);
-              }}
-            >
-              <FaRegHandshake size={22} />
-            </button>
+          <IconButton
+            size="small"
+            className="px-2 py-2 rounded font-lato font-bold text-gray-700 hover:bg-greenescola hover:text-white transition-all duration-200"
+            onClick={() => {
+              //console.log("ProfileButtons/sold/article.articleid: ", article.articleid);
+              handleUpdate(article.articleid, 3);
+            }}
+          >
+            <FaRegHandshake size={22} />
           </IconButton>
         </Tooltip>
 
         <Tooltip title="Marca com article reservat">
-          <IconButton size="small">
-            <button
-              className="px-2 py-2 rounded font-lato font-bold text-gray-700 hover:bg-orangeAMPA hover:text-white transition-all duration-200"
-              onClick={() => {
-                //console.log("ArticleView/reserved/article.articleid: ", article.articleid);
-                handleUpdate(article.articleid, 2);
-              }}
-            >
-              <BsBookmark size={22} />
-            </button>
+          <IconButton
+            size="small"
+            onClick={() => handleUpdate(article.articleid, 2)}
+            className="px-2 py-2 rounded font-lato font-bold text-gray-700 hover:bg-orangeAMPA hover:text-white transition-all duration-200"
+          >
+            <BsBookmark size={22} />
           </IconButton>
         </Tooltip>
       </div>
 
       <Tooltip title="Edita el teu article">
-        <IconButton size="small">
-          <button
-            className="px-2 py-2 rounded font-lato font-bold text-gray-700 hover:bg-gray-400 hover:text-white transition-all duration-200"
-            onClick={() => {
-              //console.log("ArticleView/article.articleid: ", article.articleid)
-              router.push("/articles/edit/" + article.articleid);
-            }}
-          >
-            <FiEdit3 size={22} />
-          </button>
+        <IconButton
+          size="small"
+          className="px-2 py-2 rounded font-lato font-bold text-gray-700 hover:bg-gray-400 hover:text-white transition-all duration-200"
+          onClick={() => {
+            //console.log("ArticleView/article.articleid: ", article.articleid)
+            router.push("/articles/edit/" + article.articleid);
+          }}
+        >
+          <FiEdit3 size={22} />
         </IconButton>
       </Tooltip>
 
       <Tooltip title="Elimina definitivament el teu article">
-        <IconButton size="small">
-          <button
-            className="px-2 py-2 rounded font-lato font-bold text-gray-700 hover:bg-red-500 hover:text-white transition-all duration-200"
-            onClick={() => handleDelete(article.articleid)}
-          >
-            <AiFillDelete size={22} />
-          </button>
+        <IconButton
+          size="small"
+          className="px-2 py-2 rounded font-lato font-bold text-gray-700 hover:bg-red-500 hover:text-white transition-all duration-200"
+          onClick={() => handleDelete(article.articleid, article.imagerefpath)}
+        >
+          <AiFillDelete size={22} />
         </IconButton>
       </Tooltip>
     </div>

@@ -8,7 +8,6 @@ import { SearchResults } from "../../../components/SearchResults";
 import { useUser } from "context/authContext";
 import { OrderButton } from "components/OrderButton";
 
-
 function SearchWithoutParams({ searchQuery, queryObj }) {
   const { user } = useUser();
   const router = useRouter();
@@ -88,6 +87,8 @@ export const getServerSideProps = async (context) => {
         location: context.query?.location,
         course: context.query?.course,
         order_by: context.query?.order_by,
+        page: context.query?.page ? context.query.page : 1,
+        offset: context.query?.offset ? context.query.offset : 15,
       },
     }
   );
