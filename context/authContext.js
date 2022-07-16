@@ -15,8 +15,8 @@ export const AuthContextProvider = ({ children }) => {
   const [user, setUser] = useState(USER_STATES.NOT_LOGGED);
 
   useEffect(() => {
-    async function user() {
-      await authStateChanged(setUser);
+    function user() {
+      authStateChanged(setUser);
     }
     user();
   }, []);
