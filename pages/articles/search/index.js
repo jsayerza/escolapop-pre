@@ -16,27 +16,28 @@ function SearchWithoutParams({ searchQuery, queryObj }) {
   useEffect(() => {
     if (!user || user === null || user === undefined) {
       router.push("/login");
+    } else {
+      //// Si el user no ha aceptado RGPD normas de uso o el user no ha sido aceptado por la AMPA,
+      //// no puede entrar y se le redirige a /rgpd
+      //console.log("search/index/user.email: ", user.email);
+
+      if (user.rgpd != 10 || user.validation != 10) {
+        router.push("/rgpd");
+      }
     }
 
-    //// Si el user no ha aceptado RGPD normas de uso o el user no ha sido aceptado por la AMPA,
-    //// no puede entrar y se le redirige a /rgpd
-    //console.log("search/index/user.email: ", user.email);
-    user &&
-      /* axios.get(HOST_SV + "/api/rgpd", { useremail: user.email, }) */
-      axios
-        .get(HOST_SV + `/api/rgpd?useremail=${user.email}`)
-        .then((userData) => {
-          console.log("search/index/userData: ", userData);
-          console.log("search/index/userData.data[0]: ", userData.data[0]);
+    /*     user &&
+      axios.get(HOST_SV + `/api/rgpd?useremail=${user.email}`)
+      .then((userData) => {
+        console.log("search/index/userData: ", userData);
+        console.log("search/index/userData.data[0]: ", userData.data[0]);
 
-          if (
-            userData.data[0].rgpd != 10 ||
-            userData.data[0].validation != 10
-          ) {
-            return router.push("/rgpd");
-          }
-          return setUserData(userData.data[0]);
-        });
+        if ((userData.data[0].rgpd != 10) || (userData.data[0].validation != 10) ) {
+          router.push("/rgpd");
+        }
+        return setUserData(userData.data[0]);
+      });
+ */
   }, [router, user]);
 
   return (
