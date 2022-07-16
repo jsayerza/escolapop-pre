@@ -11,7 +11,6 @@ import { OrderButton } from "components/OrderButton";
 function SearchWithoutParams({ searchQuery, queryObj }) {
   const { user } = useUser();
   const router = useRouter();
-  const [userData, setUserData] = useState([]);
 
   useEffect(() => {
     if (!user || user === null || user === undefined) {
@@ -21,23 +20,10 @@ function SearchWithoutParams({ searchQuery, queryObj }) {
       //// no puede entrar y se le redirige a /rgpd
       //console.log("search/index/user.email: ", user.email);
 
-      if (user.rgpd != 10 || user.validation != 10) {
+      if (user.rgpd !== 10 || user.validation !== 10) {
         router.push("/rgpd");
       }
     }
-
-    /*     user &&
-      axios.get(HOST_SV + `/api/rgpd?useremail=${user.email}`)
-      .then((userData) => {
-        console.log("search/index/userData: ", userData);
-        console.log("search/index/userData.data[0]: ", userData.data[0]);
-
-        if ((userData.data[0].rgpd != 10) || (userData.data[0].validation != 10) ) {
-          router.push("/rgpd");
-        }
-        return setUserData(userData.data[0]);
-      });
- */
   }, [router, user]);
 
   return (
