@@ -19,7 +19,7 @@ const setSearch = async (req, res) => {
       order_by,
       keyword,
       page = 1,
-      offset = 15,
+      offset = 10,
     } = req.query;
 
     let query;
@@ -38,65 +38,60 @@ const setSearch = async (req, res) => {
       keyword === "%" ||
       !keyword
     ) {
-      query = `SELECT * FROM v_article_sell WHERE 1` ;
+      query = `SELECT * FROM v_article_sell WHERE 1`;
     } else {
-      query =
-        `SELECT * FROM v_article_sell WHERE ((articletitle LIKE '%${keyword}%') OR (description LIKE '%${keyword}%'))` +
-        pagination;
+      query = `SELECT * FROM v_article_sell WHERE ((articletitle LIKE '%${keyword}%') OR (description LIKE '%${keyword}%'))`;
     }
     if (category && category !== null && !keyword) {
-      query =
-        `SELECT * FROM v_article_sell WHERE articlecategory = '${category}'` +
-        pagination;
+      query = `SELECT * FROM v_article_sell WHERE articlecategory = '${category}'`;
     }
 
     if (keyword && category) {
-      query = query + ` AND articlecategory = '${category}'` ;
+      query = query + ` AND articlecategory = '${category}'`;
     }
 
     if (category !== null && !keyword) {
-      query = query + ` AND articlecategory = '${category}'` ;
+      query = query + ` AND articlecategory = '${category}'`;
     }
 
     if (min_price && min_price !== null && max_price && max_price !== null) {
-      query =
-        query + ` AND price BETWEEN ${min_price} AND ${max_price}` ;
+      query = query + ` AND price BETWEEN ${min_price} AND ${max_price}`;
     }
 
     if (location && location !== null) {
-      query = query + ` AND location = '${location}'` ;
+      query = query + ` AND location = '${location}'`;
     }
 
     if (size && size !== null) {
-      query = query + ` AND articlesize = '${size}'` ;
+      query = query + ` AND articlesize = '${size}'`;
     }
 
     if (course && course !== null) {
-      query = query + ` AND course = '${course}'` ;
+      query = query + ` AND course = '${course}'`;
     }
 
     if (order_by && order_by !== null && order_by === "min_price") {
-      query = query + ` ORDER BY price` ;
+      query = query + ` ORDER BY price`;
     }
 
     if (order_by && order_by !== null && order_by === "max_price") {
-      query = query + ` ORDER BY price DESC` ;
+      query = query + ` ORDER BY price DESC`;
     }
 
     if (order_by && order_by !== null && order_by === "min_size") {
-      query = query + ` ORDER BY articlesize` ;
+      query = query + ` ORDER BY articlesize`;
     }
 
     if (order_by && order_by !== null && order_by === "max_size") {
-      query = query + ` ORDER BY articlesize DESC` ;
+      query = query + ` ORDER BY articlesize DESC`;
     }
 
     if (order_by && order_by !== null && order_by === "min_course") {
-      query = query + ` ORDER BY course` ;
+      query = query + ` ORDER BY course`;
     }
 
     if (order_by && order_by !== null && order_by === "max_course") {
-      query = query + ` ORDER BY course DESC` ;
+      query = query + ` ORDER BY course DESC`;
     }
 
     query = query + pagination;

@@ -69,11 +69,11 @@ const catchErrorsFromFirebaseAuth = (error) => {
 };
 
 export const authStateChanged = (onChange) => {
-  return onAuthStateChanged(auth, (user) => {
+  return onAuthStateChanged(auth, async (user) => {
     //console.log("client/onAuthStateChanged/user: ", user);
     // si el usuario existe transformamos la data a lo que nos interesa
-    const normalizedUser = user ? mapUserFromFirebaseAuth(user) : null;
-    onChange(normalizedUser);
+    const normalizedUser = user ? await mapUserFromFirebaseAuth(user) : null;
+    return await onChange(normalizedUser);
   });
 };
 

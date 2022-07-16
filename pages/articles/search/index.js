@@ -87,7 +87,7 @@ export const getServerSideProps = async (context) => {
         course: context.query?.course,
         order_by: context.query?.order_by,
         page: context.query?.page ? context.query.page : 1,
-        offset: context.query?.offset ? context.query.offset : 15,
+        offset: context.query?.offset ? context.query.offset : 10,
       },
     }
   );
