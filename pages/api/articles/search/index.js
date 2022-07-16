@@ -18,10 +18,14 @@ const setSearch = async (req, res) => {
       course,
       order_by,
       keyword,
+      page = 1,
+      offset = 10,
     } = req.query;
 
     let query;
-
+    let pagination = ` LIMIT ${
+      (parseInt(page) - 1) * parseInt(offset)
+    }, ${parseInt(offset)}`;
     /*     query =
       keyword !== null || keyword !== undefined
         ? `SELECT * FROM v_article_sell WHERE ((articletitle LIKE '%${keyword}%') OR (description LIKE '%${keyword}%'))`
@@ -90,8 +94,13 @@ const setSearch = async (req, res) => {
       query = query + ` ORDER BY course DESC`;
     }
 
-    //console.log("search/query: ", query);
+    query = query + pagination;
+
+    console.log("search/index/query: ", query);
     const [result] = await pool.query(query);
     return res.status(200).json(result);
-  } catch (error) {}
+  } catch (error) {
+    console.log(error);
+    return res.status(500);
+  }
 };

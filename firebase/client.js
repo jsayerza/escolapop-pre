@@ -1,5 +1,12 @@
 import { initializeApp } from "firebase/app";
-import { getStorage, ref, uploadBytesResumable } from "firebase/storage";
+import {
+  deleteObject,
+  getDownloadURL,
+  getStorage,
+  listAll,
+  ref,
+  uploadBytesResumable,
+} from "firebase/storage";
 import {
   getAuth,
   signOut,
@@ -9,6 +16,7 @@ import {
 } from "firebase/auth";
 import { HOST_SV } from "config/config";
 import axios from "axios";
+import { nanoid } from "nanoid";
 
 const firebaseConfig = {
   apiKey: "AIzaSyByQP6YvMi6uDvejkm93aRFGrC2sjXT430",
@@ -61,11 +69,11 @@ const catchErrorsFromFirebaseAuth = (error) => {
 };
 
 export const authStateChanged = (onChange) => {
-  return onAuthStateChanged(auth, (user) => {
+  return onAuthStateChanged(auth, async (user) => {
     //console.log("client/onAuthStateChanged/user: ", user);
     // si el usuario existe transformamos la data a lo que nos interesa
-    const normalizedUser = user ? mapUserFromFirebaseAuth(user) : null;
-    onChange(normalizedUser);
+    const normalizedUser = user ? await mapUserFromFirebaseAuth(user) : null;
+    return await onChange(normalizedUser);
   });
 };
 
@@ -95,15 +103,26 @@ export const firebaseLogout = () => {
 
 // iniciamos el storage
 const storage = getStorage(app);
+// const allImageListRef = ref(storage, "images/");
+
+export const deleteFirebaseImage = (fbRefPath) => {
+  const imageRefPath = ref(storage, fbRefPath);
+  deleteObject(imageRefPath)
+    .then(() => console.log("deleted!"))
+    .catch((e) => console.error(e));
+};
 
 export const uploadImage = (file) => {
-  // creamos la referencia de donde se guradaran en firebase y el nombre del archivo
+  //// creamos la referencia de donde se guradaran en firebase y el nombre del archivo
   //console.log("client/uploadImage/file.name: ", file.name);
-  const reference = ref(storage, `images/${file.name}`);
-  // Lo subimos
+  const fbRefPath = "images/" + file.name + nanoid();
+  //console.log("client/uploadImage/fbRefPath: ", fbRefPath);
+  const reference = ref(storage, fbRefPath);
+
+  //// Lo subimos
   const uploadTask = uploadBytesResumable(reference, file);
 
-  return { uploadTask };
+  return { uploadTask, fbRefPath };
 
   /*   // Mientras se sube recuperamos su estado
   uploadTask.on(

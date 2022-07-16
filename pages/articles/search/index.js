@@ -8,7 +8,6 @@ import { SearchResults } from "../../../components/SearchResults";
 import { useUser } from "context/authContext";
 import { OrderButton } from "components/OrderButton";
 
-
 function SearchWithoutParams({ searchQuery, queryObj }) {
   const { user } = useUser();
   const router = useRouter();
@@ -18,11 +17,11 @@ function SearchWithoutParams({ searchQuery, queryObj }) {
     if (!user || user === null || user === undefined) {
       router.push("/login");
     } else {
-      //// Si el user no ha aceptado RGPD normas de uso o el user no ha sido aceptado por la AMPA, 
+      //// Si el user no ha aceptado RGPD normas de uso o el user no ha sido aceptado por la AMPA,
       //// no puede entrar y se le redirige a /rgpd
       //console.log("search/index/user.email: ", user.email);
 
-      if ((user.rgpd != 10) || (user.validation != 10) ) {
+      if (user.rgpd != 10 || user.validation != 10) {
         router.push("/rgpd");
       }
     }
@@ -88,6 +87,8 @@ export const getServerSideProps = async (context) => {
         location: context.query?.location,
         course: context.query?.course,
         order_by: context.query?.order_by,
+        page: context.query?.page ? context.query.page : 1,
+        offset: context.query?.offset ? context.query.offset : 10,
       },
     }
   );

@@ -20,7 +20,7 @@ export const FavoriteButtons = ({ publicationStatus, saleStatus, article }) => {
     try {
       //console.log("ArticleList/handleDeleteFavorite/articleid: ", articleid);
       //console.log("ArticleList/handleDeleteFavorite/user.email: ", user.email);
-      console.log(articleid);
+      //console.log(articleid);
       return await axios.delete(
         HOST_SV + `/api/articles/favorites?aid=${articleid}&email=${user.email}`
       );
