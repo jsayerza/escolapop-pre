@@ -16,8 +16,8 @@ export default async function handler(req, res) {
 const deleteFavoriteArticle = async (req, res) => {
   try {
     const { aid, email } = req.query;
-    console.log("index/deleteFavoriteArticle/articleid: ", aid);
-    console.log("index/deleteFavoriteArticle/useremail: ", email);
+    //console.log("index/deleteFavoriteArticle/articleid: ", aid);
+    //console.log("index/deleteFavoriteArticle/useremail: ", email);
 
     await pool.query(
       "DELETE FROM userarticlefavorite WHERE (useremail = ? AND articleid = ?)",

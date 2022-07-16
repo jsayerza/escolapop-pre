@@ -17,15 +17,17 @@ export const ProfileButtons = ({ publicationStatus, saleStatus, article }) => {
 
   const handleDelete = async (id, imgpath) => {
     try {
-      //console.log("ArticleList/handleDelete/id: ", id);
+      console.log("ProfileButtons/handleDelete/id: ", id);
       return await axios
         .delete("/api/articles/" + id)
         .then(async (res) => {
-          //await axios.delete("/api/articles/images/" + id);
-          await axios.delete("/api/articles/images"),
+/*           await axios.delete("/api/articles/images"),
             {
               articleimageid: id,
             };
+ */
+          await axios
+            .delete(HOST_SV + `/api/articles/images?articleid=${id}`)
           toast.success("Article eliminat");
         })
         .then(() => {
