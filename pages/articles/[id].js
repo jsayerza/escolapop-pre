@@ -39,9 +39,9 @@ function ArticleView({ article }) {
         .delete("/api/articles/" + id)
         .then((res) => {
           //console.log("handleDelete/cap a : ", HOST_SV + `/api/articles/images`);
-          //console.log("handleDelete/then/id: ", id);
+          console.log("articles-[id]/handleDelete/then/id: ", id);
           axios
-            .delete(HOST_SV + `/api/articles/images`, { articleimageid: id })
+            .delete(HOST_SV + `/api/articles/images`, { articleid: id })
             .then((res) => {
               ////TODO: Eliminar también la imagen en firebase JSM 20220702
               //console.log("handleDelete/then/eliminat!");

@@ -10,7 +10,7 @@ import { HOST_SV } from "../../config/config";
 
 function ProfilePage({ articles }) {
   const { user } = useUser();
-  console.log("ProfilePage/user: ", user);
+  //console.log("ProfilePage/user: ", user);
   const router = useRouter();
   const [userData, setUserData] = useState([]);
 

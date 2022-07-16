@@ -64,14 +64,15 @@ const updateImage = async (req, res) => {
 
 
 const deleteImage = async (req, res) => {
-  //console.log("deleteImage/req.body: ", req.body);
+  console.log("index/deleteImage/req.body: ", req.body);
   //console.log("deleteImage/req.query: ", req.query);
   //const { id } = req.query;
-  const { articleimageid } = req.body;
+  const { articleid } = req.body;
+  console.log("index/deleteImage/articleid: ", articleid);
   try {
     await pool.query(
       "DELETE FROM articleimage WHERE articleid = ?", 
-      [articleimageid]
+      [articleid]
     );
     return res.status(204).json();
   } catch (error) {
