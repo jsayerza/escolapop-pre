@@ -253,9 +253,9 @@ export function ArticleForm({ articleUpdateId = null }) {
         }}
         validationSchema={
           new yup.ObjectSchema({
-            articletitle: yup.string().required("Title is required"),
-            price: yup.number().required("Price is required"),
-            description: yup.string().required("Description is required"),
+            articletitle: yup.string().required("El títol és obligatori"),
+            price: yup.number().required("El preu és obligatori"),
+            description: yup.string().required("La descripció és obligatoria"),
           })
         }
         onSubmit={(values, actions) => {
