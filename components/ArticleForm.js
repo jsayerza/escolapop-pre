@@ -22,7 +22,7 @@ export function ArticleForm({ articleUpdateId = null }) {
   // const { data } = useSession();
   //console.log("ArticleForm/data:" , data);
   //console.log("ArticleForm/user.email: ", user.email)
-  console.log("ArticleForm/user: ", user);
+  //console.log("ArticleForm/user: ", user);
 
   const [updateArticle, setUpdateArticle] = useState({
     articlecategoryid: 0,

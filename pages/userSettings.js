@@ -1,23 +1,41 @@
+import { useState, useEffect } from "react";
 import Image from "next/image";
-import { FaUserCircle } from "react-icons/fa";
+//import { FaUserCircle } from "react-icons/fa";
+import { useRouter } from "next/router";
+import { useUser } from "context/authContext";
 
-//import { useUser } from "context/authContext";
 import Layout from "../components/Layout";
+//import { HOST_SV } from "../config/config";
+//import { VALIDATION_EMAIL } from "../config/config";
 
 
-function userSettings() {
+function UserSettingsPage() {
 
-/*   const { user } = useUser();
-  //console.log("userSettings/user: ", user)
-  //console.log("userSettings/user.avatar: ", user.avatar)
- */
+  //console.log("UserSettingsPage/HOST_SV: ", HOST_SV );
+  //console.log("UserSettingsPage/VALIDATION_EMAIL: ", VALIDATION_EMAIL );
+
+  const { user } = useUser();
+  //console.log("UserSettingsPage/user: ", user);
+  //console.log("UserSettingsPage/user.avatar: ", user.avatar);
+  const router = useRouter();
+
+
+  useEffect(() => {
+    //console.log("UserSettingsPage/useEffect/user: ", user);
+    //console.log("UserSettingsPage/useEffect/user.email: ", user.email);
+    !user || (user === null && router.push("/login"));
+
+  }, [router, user]);
+
+
+
   return (
     <Layout>
       <h1 className="text-left text-2xl font-lato font-black text-greenescola my-2">
-        <div>El meu usuari (reparar)</div>
+        <div>El meu usuari</div>
       </h1>
 
-{/*       <div className="flex flex-col gap-4 md:flex-row">
+      <div className="flex flex-col gap-4 md:flex-row">
         <div>
           <h2 className="text-lg text-gray-900 font-lato font-normal pb-2">
             Avatar:
@@ -54,6 +72,7 @@ function userSettings() {
             <></>
           )}
         </div>
+
         <div>
           <h2 className="text-lg text-gray-900 font-lato font-normal pb-2">
             Email usuari:
@@ -66,10 +85,38 @@ function userSettings() {
             <></>
           )}
         </div>
+
+        <div>
+          <h2 className="text-lg text-gray-900 font-lato font-normal pb-2">
+            Normes d&apos;ús + RGPD:
+          </h2>
+          {user && user.rgpd == 10 ? (
+            <>
+            Acceptat
+            </>
+          ) : (
+            <>No acceptat</>
+          )}
+        </div>
+
+        <div>
+          <h2 className="text-lg text-gray-900 font-lato font-normal pb-2">
+            Autorització de l&apos;AMPA:
+          </h2>
+          {user && user.validation == 10 ? (
+            <>
+            Acceptat
+            </>
+          ) : (
+            <>No acceptat</>
+          )}
+        </div>
+
+
       </div>
- */}
+
     </Layout>
   )
 }
 
-export default userSettings
+export default UserSettingsPage

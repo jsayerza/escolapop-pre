@@ -8,28 +8,31 @@ import { AiFillInfoCircle } from "react-icons/ai";
 import { MdOutlineMailOutline } from "react-icons/md";
 
 import { HOST_SV } from "../config/config";
-
+import { VALIDATION_EMAIL } from "../config/config";
 
 function RGPDPage() {
+
+  //console.log("RGPDPage/HOST_SV: ", HOST_SV );
+  //console.log("RGPDPage/VALIDATION_EMAIL: ", VALIDATION_EMAIL );
+
     const router = useRouter();
     const { user } = useUser();
 
     const subject = "Escolapop - Sol·licitud accés ";
     const body =
-      "Hola, estic interesat/da en accedir al servei Escolapop. " + 
-      "Nom: ____ " +
-      "Cognoms: ____ " +
-      "Pare/Mare de ____ la classe ____." ;
+      "Hola, estic interesat/da en accedir al servei Escolapop.%0A%0A" + 
+      "Nom: ____%0A" +
+      "Cognoms: ____%0A" +
+      "Pare/Mare de ____, de la classe ____.%0A%0A" ;
   
   const handleUpdate = async (event, answerRGPD) => {
-    console.log("RGPDPage/handleUpdate/answerRGPD: ", answerRGPD);
-    console.log("RGPDPage/handleUpdate/user.email: ", user.email );
+    //console.log("RGPDPage/handleUpdate/answerRGPD: ", answerRGPD);
+    //console.log("RGPDPage/handleUpdate/user.email: ", user.email );
     try {
       axios
         .put(HOST_SV + `/api/rgpd`, {
             answerRGPD: answerRGPD,
             useremail: user.email,
-            /* useremail: "jsayerza.comptes@gmail.com", */
         })
         .then(async (res) => {
           toast.success("Resposta RGPD registrada");
@@ -87,7 +90,8 @@ function RGPDPage() {
                 className="flex flex-col gap-4 pt-6 pb-1"
                 onClick={() => {
                     router.push(
-                    `mailto:${"jsayerza.comptes@gmail.com"}?subject=${
+                    //`mailto:${"jsayerza.comptes@gmail.com"}?subject=${
+                    `mailto:${VALIDATION_EMAIL}?subject=${
                         subject + user.email
                     }&body=${body}`
                     );

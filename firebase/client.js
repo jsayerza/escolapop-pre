@@ -18,6 +18,27 @@ import { HOST_SV } from "config/config";
 import axios from "axios";
 import { nanoid } from "nanoid";
 
+import { APIKEY_FB, APPID_FB, AUTHDOMAIN_FB, MESSAGINGSENDERID_FB, PROJECTID_FB, STORAGEBUCKET_FB } from "../config/config";
+
+/* console.log("APIKEY_FB: ", APIKEY_FB);
+console.log("AUTHDOMAIN_FB: ", AUTHDOMAIN_FB);
+console.log("PROJECTID_FB: ", PROJECTID_FB);
+console.log("STORAGEBUCKET_FB: ", STORAGEBUCKET_FB);
+console.log("MESSAGINGSENDERID_FB: ", MESSAGINGSENDERID_FB);
+console.log("APPID_FB: ", APPID_FB);
+ */
+//// Sayer's Firebase configuration with NEXT_PUBLIC ENV vars
+/* const firebaseConfig = {
+  apiKey: APIKEY_FB,
+  authDomain: AUTHDOMAIN_FB,
+  projectId: PROJECTID_FB,
+  storageBucket: STORAGEBUCKET_FB,
+  messagingSenderId: MESSAGINGSENDERID_FB,
+  appId: APPID_FB,
+};
+ */
+
+//// Sayer's Firebase configuration without NEXT_PUBLIC ENV vars
 const firebaseConfig = {
   apiKey: "AIzaSyByQP6YvMi6uDvejkm93aRFGrC2sjXT430",
   authDomain: "escolapop-pre.firebaseapp.com",
@@ -26,6 +47,7 @@ const firebaseConfig = {
   messagingSenderId: "669590894513",
   appId: "1:669590894513:web:104db4bd09c13422b7af90",
 };
+
 
 //// Joaquin's Firebase configuration
 /* const firebaseConfig = {
@@ -114,9 +136,9 @@ export const deleteFirebaseImage = (fbRefPath) => {
 
 export const uploadImage = (file) => {
   //// creamos la referencia de donde se guradaran en firebase y el nombre del archivo
-  console.log("client/uploadImage/file.name: ", file.name);
+  //console.log("client/uploadImage/file.name: ", file.name);
   const fbRefPath = "images/" + file.name + nanoid();
-  console.log("client/uploadImage/fbRefPath: ", fbRefPath);
+  //console.log("client/uploadImage/fbRefPath: ", fbRefPath);
   const reference = ref(storage, fbRefPath);
 
   //// Lo subimos

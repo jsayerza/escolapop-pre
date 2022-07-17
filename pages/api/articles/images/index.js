@@ -63,14 +63,16 @@ const updateImage = async (req, res) => {
 };
 
 const deleteImage = async (req, res) => {
-  //console.log("deleteImage/req.body: ", req.body);
-  //console.log("deleteImage/req.query: ", req.query);
-  //const { id } = req.query;
-  const { articleimageid } = req.body;
+  //console.log("index/deleteImage/req.body: ", req.body);
+  //console.log("index/deleteImage/req.query: ", req.query);
+  const { articleid } = req.query;
+  //const { articleid } = req.body;
+  //console.log("index/deleteImage/articleid: ", articleid);
   try {
-    await pool.query("DELETE FROM articleimage WHERE articleid = ?", [
-      articleimageid,
-    ]);
+    await pool.query(
+      "DELETE FROM articleimage WHERE articleid = ?", 
+      [ articleid ]
+    );
     return res.status(204).json();
   } catch (error) {
     return res.status(500).json({ message: error.message });

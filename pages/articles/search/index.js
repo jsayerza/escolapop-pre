@@ -24,6 +24,19 @@ function SearchWithoutParams({ searchQuery, queryObj }) {
         router.push("/rgpd");
       }
     }
+
+    /*     user &&
+      axios.get(HOST_SV + `/api/rgpd?useremail=${user.email}`)
+      .then((userData) => {
+        console.log("search/index/userData: ", userData);
+        console.log("search/index/userData.data[0]: ", userData.data[0]);
+
+        if ((userData.data[0].rgpd != 10) || (userData.data[0].validation != 10) ) {
+          router.push("/rgpd");
+        }
+        return setUserData(userData.data[0]);
+      });
+ */
   }, [router, user]);
 
   return (
