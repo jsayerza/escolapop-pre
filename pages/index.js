@@ -3,11 +3,18 @@ import Image from "next/image";
 
 import { Layout } from "../components/Layout";
 import { HOST_SV } from "../config/config";
+//import { VALIDATION_EMAIL } from "../config/config";
 import { Home } from "components/Home";
 import { Footer } from "../components/Footer";
 import { SearchCategoryBar } from "../components/SearchCategoryBar";
 
+
 function HomePage({ articles }) {
+
+  //console.log("HomePage/HOST_SV: ", HOST_SV );
+  //console.log("HomePage/VALIDATION_EMAIL: ", VALIDATION_EMAIL );
+
+
   return (
     <Layout>
       <Image

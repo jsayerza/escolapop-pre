@@ -63,11 +63,11 @@ const updateImage = async (req, res) => {
 };
 
 const deleteImage = async (req, res) => {
-  console.log("index/deleteImage/req.body: ", req.body);
-  console.log("index/deleteImage/req.query: ", req.query);
+  //console.log("index/deleteImage/req.body: ", req.body);
+  //console.log("index/deleteImage/req.query: ", req.query);
   const { articleid } = req.query;
   //const { articleid } = req.body;
-  console.log("index/deleteImage/articleid: ", articleid);
+  //console.log("index/deleteImage/articleid: ", articleid);
   try {
     await pool.query(
       "DELETE FROM articleimage WHERE articleid = ?", 

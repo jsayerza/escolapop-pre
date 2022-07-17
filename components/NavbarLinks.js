@@ -31,7 +31,7 @@ export const NavbarLinks = ({ user, logout, privateLinks = false }) => {
         </li>
 
         <li>
-          <Link href="/userSettings">
+          <Link href="/usersettings">
             <a>
               <Tooltip title="Detalls i configuració del meu usuari">
                 <IconButton
