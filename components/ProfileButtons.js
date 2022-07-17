@@ -17,7 +17,7 @@ export const ProfileButtons = ({ publicationStatus, saleStatus, article }) => {
 
   const handleDelete = async (id, imgpath) => {
     try {
-      console.log("ProfileButtons/handleDelete/id: ", id);
+      //console.log("ProfileButtons/handleDelete/id: ", id);
       return await axios
         .delete("/api/articles/" + id)
         .then(async (res) => {

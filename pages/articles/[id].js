@@ -38,8 +38,8 @@ function ArticleView({ article }) {
       return await axios
         .delete("/api/articles/" + id)
         .then((res) => {
-          console.log("articles[id]/handleDelete/cap a : ", HOST_SV + `/api/articles/images`);
-          console.log("articles[id]/handleDelete/then/id: ", id);
+          //console.log("articles[id]/handleDelete/cap a : ", HOST_SV + `/api/articles/images`);
+          //console.log("articles[id]/handleDelete/then/id: ", id);
           axios
           //.delete(HOST_SV + `/api/articles/images`, { articleid: id })
           .delete(HOST_SV + `/api/articles/images?articleid=${id}`)
