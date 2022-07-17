@@ -17,6 +17,7 @@ import { BadgeSaleStatus } from "components/BadgeSaleStatus";
 import { useUser } from "context/authContext";
 // import { useUser } from "context/authContext";
 //import ButtonMailto from "components/ButtonMailTo";
+import { deleteFirebaseImage } from "../../firebase/client";
 
 
 function ArticleView({ article }) {
@@ -32,9 +33,10 @@ function ArticleView({ article }) {
   const body =
     "Hola, estic interesat/da en l'article que tens publicat a escolapop.";
 
-  const handleDelete = async (id) => {
+  const handleDelete = async (id, imgpath) => {
     try {
-      //console.log("handleDelete/id: ", id);
+      //console.log("articles-[id]/handleDelete/id: ", id);
+      //console.log("articles-[id]/handleDelete/imgpath: ", imgpath);
       return await axios
         .delete("/api/articles/" + id)
         .then((res) => {
@@ -46,8 +48,14 @@ function ArticleView({ article }) {
             .then((res) => {
               //console.log("handleDelete/then/eliminat!");
               toast.success("Article eliminat");
+              //router.push("/");
+            })
+            .then(() => {
+              //console.log("handleDelete/then/a eliminar a firebase!");
+              deleteFirebaseImage(imgpath);
               router.push("/");
             })
+    
             .catch((e) =>
               console.error("handleDelete DELETE image error: ", e)
             );
@@ -315,7 +323,7 @@ function ArticleView({ article }) {
                   <button
                     /* className="bg-red-500 hover:bg-red-700 text-white rounded px-3 py-2" */
                     className="px-2 py-2 rounded font-lato font-bold text-gray-700 hover:bg-red-500 hover:text-white transition-all duration-200"
-                    onClick={() => handleDelete(article.articleid)}
+                    onClick={() => handleDelete(article.articleid, article.imagerefpath)}
                   >
                     {/* Elimina article */}
                     <AiFillDelete size={22} />
