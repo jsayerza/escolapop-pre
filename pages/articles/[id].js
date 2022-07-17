@@ -15,9 +15,9 @@ import { Layout } from "../../components/Layout";
 import { BadgeStatus } from "components/BadgeStatus";
 import { BadgeSaleStatus } from "components/BadgeSaleStatus";
 import { useUser } from "context/authContext";
+import { deleteFirebaseImage } from "../../firebase/client";
 // import { useUser } from "context/authContext";
 //import ButtonMailto from "components/ButtonMailTo";
-
 
 function ArticleView({ article }) {
   // const { user } = useUser();
@@ -32,7 +32,7 @@ function ArticleView({ article }) {
   const body =
     "Hola, estic interesat/da en l'article que tens publicat a escolapop.";
 
-  const handleDelete = async (id) => {
+  const handleDelete = async (id, imgrefpath) => {
     try {
       //console.log("handleDelete/id: ", id);
       return await axios
@@ -46,6 +46,9 @@ function ArticleView({ article }) {
               ////TODO: Eliminar también la imagen en firebase JSM 20220702
               //console.log("handleDelete/then/eliminat!");
               toast.success("Article eliminat");
+            })
+            .then(() => {
+              deleteFirebaseImage(imgrefpath);
               router.push("/");
             })
             .catch((e) =>
@@ -89,15 +92,15 @@ function ArticleView({ article }) {
   useEffect(() => {
     !user && router.push("/login");
 
-    //// Si el user no ha aceptado RGPD normas de uso o el user no ha sido aceptado por la AMPA, 
+    //// Si el user no ha aceptado RGPD normas de uso o el user no ha sido aceptado por la AMPA,
     //// no puede entrar y se le redirige a /rgpd
     //console.log("articles/[id]/user.email: ", user.email);
 
-    if ((user.rgpd != 10) || (user.validation != 10) ) {
+    if (user.rgpd != 10 || user.validation != 10) {
       router.push("/rgpd");
     }
 
-/*     user &&
+    /*     user &&
       axios.get(HOST_SV + `/api/rgpd?useremail=${user.email}`)
       .then((userData) => {
         console.log("articles/[id]/userData: ", userData);
@@ -110,7 +113,7 @@ function ArticleView({ article }) {
       });
  */
 
-      handleCounter("articlevisitcount");
+    handleCounter("articlevisitcount");
   }, [user, router, handleCounter]);
 
   return (
@@ -315,7 +318,9 @@ function ArticleView({ article }) {
                   <button
                     /* className="bg-red-500 hover:bg-red-700 text-white rounded px-3 py-2" */
                     className="px-2 py-2 rounded font-lato font-bold text-gray-700 hover:bg-red-500 hover:text-white transition-all duration-200"
-                    onClick={() => handleDelete(article.articleid)}
+                    onClick={() =>
+                      handleDelete(article.articleid, article.imagerefpath)
+                    }
                   >
                     {/* Elimina article */}
                     <AiFillDelete size={22} />
