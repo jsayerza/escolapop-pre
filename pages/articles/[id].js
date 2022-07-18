@@ -32,25 +32,29 @@ function ArticleView({ article }) {
   const body =
     "Hola, estic interesat/da en l'article que tens publicat a escolapop.";
 
-  const handleDelete = async (id, imgrefpath) => {
+  const handleDelete = async (id, imgpath) => {
     try {
-      //console.log("handleDelete/id: ", id);
+      //console.log("articles-[id]/handleDelete/id: ", id);
+      //console.log("articles-[id]/handleDelete/imgpath: ", imgpath);
       return await axios
         .delete("/api/articles/" + id)
         .then((res) => {
           //console.log("articles[id]/handleDelete/cap a : ", HOST_SV + `/api/articles/images`);
           //console.log("articles[id]/handleDelete/then/id: ", id);
           axios
-          //.delete(HOST_SV + `/api/articles/images`, { articleid: id })
-          .delete(HOST_SV + `/api/articles/images?articleid=${id}`)
+            //.delete(HOST_SV + `/api/articles/images`, { articleid: id })
+            .delete(HOST_SV + `/api/articles/images?articleid=${id}`)
             .then((res) => {
               //console.log("handleDelete/then/eliminat!");
               toast.success("Article eliminat");
+              //router.push("/");
             })
             .then(() => {
-              deleteFirebaseImage(imgrefpath);
+              //console.log("handleDelete/then/a eliminar a firebase!");
+              deleteFirebaseImage(imgpath);
               router.push("/");
             })
+
             .catch((e) =>
               console.error("handleDelete DELETE image error: ", e)
             );
