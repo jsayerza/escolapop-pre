@@ -27,15 +27,15 @@ export default function SearchBar({ keyword = "", queryObj, filters }) {
     }
     //console.log("SearchBar/handleSubmit/user: ", user);
 
-    //// Si el user no ha aceptado RGPD normas de uso o el user no ha sido aceptado por la AMPA, 
+    //// Si el user no ha aceptado RGPD normas de uso o el user no ha sido aceptado por la AMPA,
     //// no puede entrar y se le redirige a /rgpd
     //console.log("SearchBar/user.email: ", user.email);
 
-    if ((user.rgpd != 10) || (user.validation != 10) ) {
+    if (user.rgpd !== 10 || user.validation !== 10) {
       router.push("/rgpd");
     }
 
-/*     user &&
+    /*     user &&
       axios.get(HOST_SV + `/api/rgpd?useremail=${user.email}`)
       .then((userData) => {
         console.log("SearchBar/userData: ", userData);
@@ -46,7 +46,7 @@ export default function SearchBar({ keyword = "", queryObj, filters }) {
         }
         return setUserData(userData.data[0]);
       });
- */    
+ */
     router.push(HOST_SV + `/articles/search?keyword=${search}`);
   };
 
