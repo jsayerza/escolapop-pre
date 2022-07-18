@@ -94,7 +94,7 @@ const setSearch = async (req, res) => {
       query = query + ` ORDER BY course DESC`;
     }
 
-    query = query + pagination;
+    // query = query + pagination;
 
     //console.log("search/index/query: ", query);
     const [result] = await pool.query(query);
