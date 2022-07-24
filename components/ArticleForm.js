@@ -47,9 +47,22 @@ export function ArticleForm({ articleUpdateId = null }) {
   const [saleStatus, setSaleStatus] = useState([]);
   const [articleSize, setArticleSize] = useState([]);
   const [fbRefPath, setFbRefPath] = useState("");
+  const [uploadError, setUploadError] = useState(false);
 
-  const handleUpload = (file) => {
+  const handleUpload = (file = null) => {
+    console.log(file);
+    if (
+      file?.size > 1000000 ||
+      file?.type === "" ||
+      file?.type.startsWith("image") === false
+    ) {
+      return setUploadError(true);
+    }
     const { uploadTask, fbRefPath } = uploadImage(file);
+    if (!uploadTask || !fbRefPath) {
+      return setUploadError(true);
+    }
+
     setFbRefPath(fbRefPath);
     uploadTask.on(
       "state_changed",
@@ -57,12 +70,14 @@ export function ArticleForm({ articleUpdateId = null }) {
         const progress =
           (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
         //console.log("handleUpload/progress: ", progress);
+        console.log(snapshot);
       },
       // si hay error lo ejecutamos
       (err) => console.log(err),
       // si todo fue ok hacemos un callback con una promesa recuperando la url y la seteamos al estado
       () => {
         getDownloadURL(uploadTask.snapshot.ref).then(setUrlImg);
+        console.log(urlImg);
       }
     );
   };
@@ -419,7 +434,13 @@ export function ArticleForm({ articleUpdateId = null }) {
             </div>
 
             <div className="mb-4 flex flex-col">
+              {uploadError && (
+                <p className="text-xl text-left text-red-500">
+                  The file not is an image or is too big
+                </p>
+              )}
               <input
+                accept="image/*"
                 type="file"
                 name="imageUrl"
                 onChange={(e) =>

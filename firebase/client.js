@@ -6,6 +6,7 @@ import {
   listAll,
   ref,
   uploadBytesResumable,
+  getMetadata,
 } from "firebase/storage";
 import {
   getAuth,
@@ -18,7 +19,14 @@ import { HOST_SV } from "config/config";
 import axios from "axios";
 import { nanoid } from "nanoid";
 
-import { APIKEY_FB, APPID_FB, AUTHDOMAIN_FB, MESSAGINGSENDERID_FB, PROJECTID_FB, STORAGEBUCKET_FB } from "../config/config";
+import {
+  APIKEY_FB,
+  APPID_FB,
+  AUTHDOMAIN_FB,
+  MESSAGINGSENDERID_FB,
+  PROJECTID_FB,
+  STORAGEBUCKET_FB,
+} from "../config/config";
 
 /* console.log("APIKEY_FB: ", APIKEY_FB);
 console.log("AUTHDOMAIN_FB: ", AUTHDOMAIN_FB);
@@ -47,7 +55,6 @@ const firebaseConfig = {
   messagingSenderId: "669590894513",
   appId: "1:669590894513:web:104db4bd09c13422b7af90",
 };
-
 
 //// Joaquin's Firebase configuration
 /* const firebaseConfig = {
@@ -134,10 +141,19 @@ export const deleteFirebaseImage = (fbRefPath) => {
     .catch((e) => console.error(e));
 };
 
+/** @type {any} */
+const metadata = {
+  contentType: "image/jpeg",
+  size: 1000000,
+};
+
 export const uploadImage = (file) => {
+  if (!file) {
+    return { uploadTask: null };
+  }
   //// creamos la referencia de donde se guradaran en firebase y el nombre del archivo
   //console.log("client/uploadImage/file.name: ", file.name);
-  const fbRefPath = "images/" + file.name + nanoid();
+  const fbRefPath = "images/" + nanoid() + "-" + file.name;
   //console.log("client/uploadImage/fbRefPath: ", fbRefPath);
   const reference = ref(storage, fbRefPath);
 
@@ -146,14 +162,29 @@ export const uploadImage = (file) => {
 
   return { uploadTask, fbRefPath };
 
-  /*   // Mientras se sube recuperamos su estado
-  uploadTask.on(
+  // Mientras se sube recuperamos su estado
+  /*   uploadTask.on(
     "state_changed",
     (snapshot) => {
       const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+      console.log(snapshot.metadata?.contentType, "uploading");
+      //console.log(snapshot.metadata.contentType.startsWith("image/"));
     },
     // si hay error lo ejecutamos
-    (err) => console.log(err),
+    (error) => {
+      switch (error.code) {
+        case "storage/unauthorized":
+          // User doesn't have permission to access the object
+          break;
+        case "storage/canceled":
+          // User canceled the upload
+          break;
+
+        case "storage/unknown":
+          // Unknown error occurred, inspect error.serverResponse
+          break;
+      }
+    },
     // si todo fue ok hacemos un callback con una promesa recuperando la url
     () => {
       getDownloadURL(uploadTask.snapshot.ref).then((url) => console.log(url));
