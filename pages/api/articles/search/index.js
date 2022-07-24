@@ -1,5 +1,6 @@
 import { pool } from "config/db";
 
+
 export default async function handler(req, res) {
   switch (req.method) {
     case "GET":
@@ -43,34 +44,66 @@ const setSearch = async (req, res) => {
       query = `SELECT * FROM v_article_sell WHERE ((articletitle LIKE '%${keyword}%') OR (description LIKE '%${keyword}%'))`;
     }
     if (category && category !== null && !keyword) {
-      query = `SELECT * FROM v_article_sell WHERE articlecategory = '${category}'`;
+      query = `SELECT * FROM v_article_sell WHERE (articlecategory = '${category}')`;
     }
 
     if (keyword && category) {
-      query = query + ` AND articlecategory = '${category}'`;
+      query = query + ` AND (articlecategory = '${category}')`;
     }
 
     if (category !== null && !keyword) {
-      query = query + ` AND articlecategory = '${category}'`;
+      query = query + ` AND (articlecategory = '${category}')`;
     }
 
     if (min_price && min_price !== null && max_price && max_price !== null) {
-      query = query + ` AND price BETWEEN ${min_price} AND ${max_price}`;
+      query = query + ` AND (price BETWEEN ${min_price} AND ${max_price})`;
     }
 
     if (location && location !== null) {
-      query = query + ` AND location = '${location}'`;
+      query = query + ` AND (location LIKE '%${location}%')`;
     }
 
     if (size && size !== null) {
-      query = query + ` AND articlesize = '${size}'`;
+      query = query + ` AND (articlesize = '${size}')`;
     }
 
     if (course && course !== null) {
-      query = query + ` AND course = '${course}'`;
+      query = query + ` AND (course = '${course}')`;
     }
 
-    if (order_by && order_by !== null && order_by === "min_price") {
+
+    //// Concatenate ORDER BY. JSM 20220724
+    switch (order_by) {
+      case "min_price":
+        query = query + ` ORDER BY price`;
+        break;
+
+      case "max_price":
+        query = query + ` ORDER BY price DESC`;
+        break;
+
+      case "min_size":
+        query = query + ` ORDER BY articlesize`;
+        break;
+  
+      case "max_size":
+        query = query + ` ORDER BY articlesize DESC`;
+        break;
+  
+      case "min_course":
+        query = query + ` ORDER BY course`;
+        break;
+  
+      case "max_course":
+        query = query + ` ORDER BY course DESC`;
+        break;
+    
+      default:
+        query = query + ` ORDER BY datecreation DESC`;
+    }
+
+
+/*     if (order_by && order_by !== null && order_by === "min_price") {
       query = query + ` ORDER BY price`;
     }
 
@@ -93,10 +126,10 @@ const setSearch = async (req, res) => {
     if (order_by && order_by !== null && order_by === "max_course") {
       query = query + ` ORDER BY course DESC`;
     }
-
+ */
     // query = query + pagination;
 
-    //console.log("search/index/query: ", query);
+    console.log("search/index/query: ", query);
     const [result] = await pool.query(query);
     return res.status(200).json(result);
   } catch (error) {
