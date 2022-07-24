@@ -15,7 +15,7 @@ function SearchWithoutParams({ searchQuery, queryObj }) {
   const [currentItems, setCurrentItems] = useState(searchQuery);
   const [pageCount, setPageCount] = useState(0);
   const [itemOffset, setItemOffset] = useState(0);
-  const itemsPerPage = 5;
+  const itemsPerPage = 25;
 
   useEffect(() => {
     if (!user || user === null || user === undefined) {
@@ -74,21 +74,23 @@ function SearchWithoutParams({ searchQuery, queryObj }) {
       )}
 
       <div className="flex flex-col gap-2">
-        <ReactPaginate
-          breakLabel="..."
-          nextLabel="next >"
-          onPageChange={handlePageClick}
-          pageRangeDisplayed={5}
-          pageCount={pageCount}
-          previousLabel="< previous"
-          renderOnZeroPageCount={null}
-          containerClassName="flex flex-wrap gap-4 md:gap-1 justify-center items-center mb-4"
-          pageLinkClassName="rounded font-semibold px-3 py-2 hover:bg-orangeAMPA hover:text-white duration-200 transition-all"
-          activeClassName="bg-orangeAMPA px-2 py-2 text-sm md:text-base text-white rounded hover:none"
-          previousLinkClassName="px-2 md:px-3 py-2 text-sm md:text-base font-semibold bg-white rounded border-2 hover:border-orangeAMPA hover:text-orangeAMPA"
-          nextLinkClassName="px-2 md:px-3 py-2 text-sm md:text-base font-semibold bg-white rounded border-2 hover:border-orangeAMPA hover:text-orangeAMPA"
-        />
-        <OrderButton queryObj={queryObj} />
+        <div className="flex md:flex-row flex-col gap-2 justify-center items-center md:items-end md:justify-between">
+          <OrderButton queryObj={queryObj} />
+          <ReactPaginate
+            breakLabel="..."
+            nextLabel="next >"
+            onPageChange={handlePageClick}
+            pageRangeDisplayed={8}
+            pageCount={pageCount}
+            previousLabel="< previous"
+            renderOnZeroPageCount={null}
+            containerClassName="flex flex-wrap gap-4 md:gap-1 justify-center items-center"
+            pageLinkClassName="rounded font-semibold px-3 py-2 hover:bg-orangeAMPA hover:text-white duration-200 transition-all"
+            activeClassName="bg-orangeAMPA px-2 py-2 text-sm md:text-base text-white rounded hover:none"
+            previousLinkClassName="px-2 md:px-3 py-2 text-sm md:text-base font-semibold bg-white rounded border-2 hover:border-orangeAMPA hover:text-orangeAMPA"
+            nextLinkClassName="px-2 md:px-3 py-2 text-sm md:text-base font-semibold bg-white rounded border-2 hover:border-orangeAMPA hover:text-orangeAMPA"
+          />
+        </div>
 
         <div className="grid gap-4 grid-cols-1 md:grid-cols-3">
           <SearchResults searched={currentItems} />
