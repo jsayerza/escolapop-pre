@@ -9,7 +9,7 @@ import Image from "next/image";
 import { uploadImage } from "../firebase/client";
 import { useUser } from "context/authContext";
 // import { useSession } from "next-auth/react";
-import { HOST_SV } from "../config/config";
+import { HOST_SV, MAXIMAGESIZE } from "../config/config";
 
 export function ArticleForm({ articleUpdateId = null }) {
   //console.log("articleUpdateId: ", articleUpdateId);
@@ -50,9 +50,12 @@ export function ArticleForm({ articleUpdateId = null }) {
   const [uploadError, setUploadError] = useState(false);
 
   const handleUpload = (file = null) => {
-    console.log(file);
+    //console.log("ArticleForm/handleUpload/file: ", file);
+    //console.log("ArticleForm/handleUpload/MAXIMAGESIZE: ", MAXIMAGESIZE);
+
+    //file?.size > 1000000 ||
     if (
-      file?.size > 1000000 ||
+      file?.size > MAXIMAGESIZE ||
       file?.type === "" ||
       file?.type.startsWith("image") === false
     ) {
@@ -436,7 +439,7 @@ export function ArticleForm({ articleUpdateId = null }) {
             <div className="mb-4 flex flex-col">
               {uploadError && (
                 <p className="text-xl text-left text-red-500">
-                  The file not is an image or is too big
+                  El fitxer no és una imatge o és massa gran (1MB max.)
                 </p>
               )}
               <input

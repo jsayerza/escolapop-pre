@@ -1,13 +1,15 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
+import { useUser } from "context/authContext";
 import axios from "axios";
-import { HOST_SV } from "../../../config/config";
+import ReactPaginate from "react-paginate";
+
+import { HOST_SV, ITEMSXPAGE } from "../../../config/config";
 import { Layout } from "../../../components/Layout";
 import SearchBar from "../../../components/SearchBar";
 import { SearchResults } from "../../../components/SearchResults";
-import { useUser } from "context/authContext";
 import { OrderButton } from "components/OrderButton";
-import ReactPaginate from "react-paginate";
+
 
 function SearchWithoutParams({ searchQuery, queryObj }) {
   const { user } = useUser();
@@ -15,7 +17,13 @@ function SearchWithoutParams({ searchQuery, queryObj }) {
   const [currentItems, setCurrentItems] = useState(searchQuery);
   const [pageCount, setPageCount] = useState(0);
   const [itemOffset, setItemOffset] = useState(0);
-  const itemsPerPage = 25;
+  //const itemsPerPage = 25;
+  const itemsPerPage = ITEMSXPAGE;
+
+  //console.log("search/index/HOST_SV: ", HOST_SV);
+  //console.log("search/index/ITEMSXPAGE: ", ITEMSXPAGE);
+  //console.log("search/index/itemsPerPage: ", itemsPerPage);
+  
 
   useEffect(() => {
     if (!user || user === null || user === undefined) {
@@ -24,24 +32,10 @@ function SearchWithoutParams({ searchQuery, queryObj }) {
       //// Si el user no ha aceptado RGPD normas de uso o el user no ha sido aceptado por la AMPA,
       //// no puede entrar y se le redirige a /rgpd
       //console.log("search/index/user.email: ", user.email);
-
       if (user.rgpd !== 10 || user.validation !== 10) {
         router.push("/rgpd");
       }
     }
-
-    /*     user &&
-      axios.get(HOST_SV + `/api/rgpd?useremail=${user.email}`)
-      .then((userData) => {
-        console.log("search/index/userData: ", userData);
-        console.log("search/index/userData.data[0]: ", userData.data[0]);
-
-        if ((userData.data[0].rgpd != 10) || (userData.data[0].validation != 10) ) {
-          router.push("/rgpd");
-        }
-        return setUserData(userData.data[0]);
-      });
- */
   }, [router, user]);
 
   useEffect(() => {
@@ -78,11 +72,11 @@ function SearchWithoutParams({ searchQuery, queryObj }) {
           <OrderButton queryObj={queryObj} />
           <ReactPaginate
             breakLabel="..."
-            nextLabel="next >"
+            nextLabel="següent >"
             onPageChange={handlePageClick}
             pageRangeDisplayed={8}
             pageCount={pageCount}
-            previousLabel="< previous"
+            previousLabel="< prèvia"
             renderOnZeroPageCount={null}
             containerClassName="flex flex-wrap gap-4 md:gap-1 justify-center items-center"
             pageLinkClassName="rounded font-semibold px-3 py-2 hover:bg-orangeAMPA hover:text-white duration-200 transition-all"

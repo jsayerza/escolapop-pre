@@ -122,7 +122,7 @@ const setSearch = async (req, res) => {
     }
  */
 
-    console.log("search/[search]/query: ", query);
+    //console.log("search/[search]/query: ", query);
     const [result] = await pool.query(query);
     return res.status(200).json(result);
   } catch (error) {

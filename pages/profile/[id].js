@@ -66,11 +66,11 @@ function ProfilePage({ articles }) {
       <div>
         <ReactPaginate
           breakLabel="..."
-          nextLabel="next >"
+          nextLabel="següent >"
           onPageChange={handlePageClick}
           pageRangeDisplayed={5}
           pageCount={pageCount}
-          previousLabel="< previous"
+          previousLabel="< prèvia"
           renderOnZeroPageCount={null}
           containerClassName="flex flex-wrap gap-4 md:gap-1 justify-center items-center mb-4"
           pageLinkClassName="rounded font-semibold px-3 py-2 hover:bg-orangeAMPA hover:text-white duration-200 transition-all"

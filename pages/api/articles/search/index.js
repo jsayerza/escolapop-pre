@@ -129,7 +129,7 @@ const setSearch = async (req, res) => {
  */
     // query = query + pagination;
 
-    console.log("search/index/query: ", query);
+    //console.log("search/index/query: ", query);
     const [result] = await pool.query(query);
     return res.status(200).json(result);
   } catch (error) {

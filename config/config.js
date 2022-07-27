@@ -28,4 +28,6 @@ export const APPID_FB               = process.env.NEXT_PUBLIC_APPID_FB;
 
 export const NEXT_PUBLIC_SECRET     = process.env.NEXT_PUBLIC_SECRET;
 
+export const ITEMSXPAGE             = process.env.NEXT_PUBLIC_ITEMSXPAGE;
+export const MAXIMAGESIZE           = process.env.NEXT_PUBLIC_MAXIMAGESIZE;
 
