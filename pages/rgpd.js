@@ -16,7 +16,7 @@ function RGPDPage() {
   //console.log("RGPDPage/VALIDATION_EMAIL: ", VALIDATION_EMAIL );
 
     const router = useRouter();
-    const { user } = useUser();
+    const { user, firebaseLogout } = useUser();
 
     const subject = "Escolapop - Sol·licitud accés ";
     const body =
@@ -35,13 +35,19 @@ function RGPDPage() {
             useremail: user.email,
         })
         .then(async (res) => {
-          toast.success("Resposta RGPD registrada");
+          console.log("RGPDPage/handleUpdate/then/answerRGPD: ", answerRGPD);
+          if (answerRGPD != '10') {
+            toast.warn("🙁 Resposta registrada. No pots accedir a l'app si no llegeixes i acceptes les condicions.");
+          } else {
+            toast.info("👍🏼 Resposta registrada. Has llegit i acceptat les condicions. Has de fer login de nou per poder entrar a l'app");
+            firebaseLogout();
+          }
           router.push("/");
         })
         .catch((e) => console.log("handleUpdate update RGPD error: ", e));
     } catch (error) {
         console.log("RGPDPage/handleUpdate/error: ", error);
-        //toast.error(error.response.data.message);
+        toast.error(error.response.data.message);
     }
   };
 

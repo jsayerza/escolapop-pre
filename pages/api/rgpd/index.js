@@ -17,7 +17,7 @@ export default async function handler(req, res) {
 
 
 const updateRGPD = async (req, res) => {
-  console.log("updateRGPD/req.body: ", req.body);
+  //console.log("updateRGPD/req.body: ", req.body);
   const { answerRGPD, useremail } = req.body;
 
   try {
