@@ -35,7 +35,7 @@ function RGPDPage() {
             useremail: user.email,
         })
         .then(async (res) => {
-          console.log("RGPDPage/handleUpdate/then/answerRGPD: ", answerRGPD);
+          //console.log("RGPDPage/handleUpdate/then/answerRGPD: ", answerRGPD);
           if (answerRGPD != '10') {
             toast.warn("🙁 Resposta registrada. No pots accedir a l'app si no llegeixes i acceptes les condicions.");
           } else {

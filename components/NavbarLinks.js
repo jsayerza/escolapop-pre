@@ -8,8 +8,10 @@ import { FaUserCircle } from "react-icons/fa";
 import Image from "next/image";
 import Link from "next/link";
 
+
 export const NavbarLinks = ({ user, logout, privateLinks = false }) => {
   if (privateLinks) {
+    //console.log("NavbarLinks");
     return (
       <>
         <li>
@@ -74,13 +76,33 @@ export const NavbarLinks = ({ user, logout, privateLinks = false }) => {
                 onClick={logout}
                 className="rounded-full hover:cursor-pointer bg-transparent flex  flex-col"
               >
-                <Image
+{/*                 <Image
                   width={32}
                   height={32}
                   src={user.avatar}
                   alt="avatar image"
                   className="h-10 w-10 rounded-full"
                 />
+ */}                
+                   {user.avatar ? (
+                    <Image
+                      width={32}
+                      height={32}
+                      onClick={() => firebaseLogout()}
+                      src={user.avatar}
+                      alt="avatar image"
+                      className="h-10 w-10 rounded-full bg-gray-100 "
+                    />
+                  ):(
+                    <Image
+                      width={32}
+                      height={32}
+                      onClick={() => firebaseLogout()}
+                      src="/user-profile-icon.jpg"
+                      alt="avatar image"
+                      className="h-10 w-10 rounded-full bg-gray-100 "
+                    />
+                  )}
               </IconButton>
             </Tooltip>
           </li>

@@ -74,18 +74,58 @@ const provider = new GoogleAuthProvider();
 // mapeamos/transformamos los datos que queremos
 const mapUserFromFirebaseAuth = async (user) => {
   const { displayName, email, photoURL, uid } = user;
+  console.log("client/mapUserFromFirebaseAuth/uid: ", uid);
+ //console.log("client/mapUserFromFirebaseAuth/email: ", email);
+ //console.log("client/mapUserFromFirebaseAuth/displayName: ", displayName);
+ //console.log("client/mapUserFromFirebaseAuth/photoURL: ", photoURL);
 
   const { data } = await axios.get(HOST_SV + `/api/rgpd?useremail=${email}`);
-  //console.log("client/mapUserFromFirebaseAuth/data: ", data);
+ //console.log("client/mapUserFromFirebaseAuth/data: ", data);
+  if (data.length == 0) {
+   //console.log("client/mapUserFromFirebaseAuth/data.length == 0");
+    return {
+      name: displayName,
+      email,
+      avatar: photoURL,
+      rgpd: 99,
+      validation: 99,
+      id: uid,
+    };
+  } else {
+   //console.log("client/mapUserFromFirebaseAuth/data.length != 0");
+   //console.log("client/mapUserFromFirebaseAuth/data[0].rgpd: ", data[0].rgpd);
+   //console.log("client/mapUserFromFirebaseAuth/data[0].validation: ", data[0].validation);
+    //// Si existe el registro en DB/user, recojemos los datos del registro, en lugar de usar los de firebase
+    ////    ya que, en el caso de user email+psw no tenemos name ni avatar. JSM 20220808
+    return {
+      name: data[0].username,
+      email,
+      avatar: data[0].avatarurl,
+      rgpd: data[0].rgpd,
+      validation: data[0].validation,
+      id: uid,
+    };
+  }
 
-  return {
-    name: displayName,
-    email,
-    avatar: photoURL,
-    rgpd: data[0].rgpd,
-    validation: data[0].validation,
-    id: uid,
-  };
+
+
+/*   const { data } = await axios.get(HOST_SV + `/api/rgpd?useremail=${email}`)
+  .then((data) => {
+    //console.log("client/mapUserFromFirebaseAuth/dataxxx: ", data);
+    //console.log("client/mapUserFromFirebaseAuth/data.data: ", data.data);
+    //console.log("client/mapUserFromFirebaseAuth/data[0].rgpd: ", data.data[0].rgpd);
+    return {
+      name: displayName,
+      email,
+      avatar: photoURL,
+      rgpd: data.data[0].rgpd,
+      validation: data.data[0].validation,
+      id: uid,
+    };
+  })
+  .catch((e) => console.log("mapUserFromFirebaseAuth error: ", e));
+ */  
+
 };
 
 // atrapamos el error si ocurre en un objeto
@@ -99,7 +139,7 @@ const catchErrorsFromFirebaseAuth = (error) => {
 
 export const authStateChanged = (onChange) => {
   return onAuthStateChanged(auth, async (user) => {
-    //console.log("client/onAuthStateChanged/user: ", user);
+   //console.log("client/onAuthStateChanged/user: ", user);
     // si el usuario existe transformamos la data a lo que nos interesa
     const normalizedUser = user ? await mapUserFromFirebaseAuth(user) : null;
     return await onChange(normalizedUser);

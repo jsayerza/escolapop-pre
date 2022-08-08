@@ -25,7 +25,10 @@ function HomePage({ articles }) {
         alt=""
       />
       {/* Aqui va la barra de busqueda por categoria */}
-      <SearchCategoryBar />
+      {/* <SearchCategoryBar /> */}
+      <SearchCategoryBar 
+        className="flex flex-col md:flex-row md:items-center"
+      />
       <Home articles={articles} />
       <Footer />
     </Layout>

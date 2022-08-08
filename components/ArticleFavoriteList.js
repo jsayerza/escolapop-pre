@@ -20,8 +20,8 @@ export default function ArticleFavoriteList({ articles }) {
 
   return (
     <div className="flex gap-4 flex-col w-full justify-center">
-      {articles &&
-        articles.length > 0 &&
+      {(articles && (articles.length > 0)) ?
+        (
         articles.map((article) => (
           <Link href={`/articles/${article.articleid}`} key={article.articleid}>
             <a>
@@ -82,7 +82,13 @@ export default function ArticleFavoriteList({ articles }) {
               </div>
             </a>
           </Link>
-        ))}
+        ))
+        )
+        :
+        (
+          <div>No tens articles favorits</div>
+        )
+      }
     </div>
   );
 }

@@ -30,21 +30,27 @@ function SignUpPage() {
   };
 
   const handleSignupSubmit = (e) => {
+    //console.log("signup/handleSignupSubmit/ENTRRRÖ!");
     e.preventDefault();
+    //console.log("signup/handleSignupSubmit/auth: ", auth);
+    //console.log("signup/handleSignupSubmit/email: ", email);
+    //console.log("signup/handleSignupSubmit/password: ", password);
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredentials) => {
         userCredentials.user.displayName = name;
         //console.log("handleSignupSubmit/userCredentials: ", userCredentials);
         setUser(userCredentials);
+       //console.log("handleSignupSubmit/userCredentials.user.email: ", userCredentials.user.email);
         axios
           .post(HOST_SV + "/api/register", {
             id: userCredentials.user.uid,
             email: userCredentials.user.email,
             username: userCredentials.user.displayName,
             ////Creo q esto es inutil
-            avatarurl: userCredentials.user.avatar,
+            avatarurl: "/user-profile-icon.jpg",
           })
           .then(() => {
+           //console.log("handleSignupSubmit/then/CREAT!");
             router.push("/profile");
           })
           .catch((err) => console.log(err));
@@ -66,7 +72,7 @@ function SignUpPage() {
   return (
     <div className="min-h-screen grid place-content-center items-center justify-center bg-gray-100">
       <div className="bg-white p-4 w-full md:w-96 rounded shadow-md">
-        <h1 className="font-semibold text-4xl text-center p-4">Sign Up</h1>
+        <h1 className="font-semibold text-4xl text-center p-4">Registre (Sign Up)</h1>
 
         <form
           className="w-full flex flex-col gap-4 border-gray-200 border-b py-4"

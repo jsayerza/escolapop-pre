@@ -6,7 +6,7 @@ import { useUser } from "context/authContext";
 import ArticleFavoriteList from "../components/ArticleFavoriteList";
 import Layout from "../components/Layout";
 import { HOST_SV } from "../config/config";
-import { NavbarPrivateArea } from "../components/NavbarPrivateArea";
+//import { NavbarPrivateArea } from "../components/NavbarPrivateArea";
 
 function FavoritesPage() {
   const { user } = useUser();

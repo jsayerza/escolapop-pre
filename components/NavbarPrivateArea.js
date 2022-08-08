@@ -12,7 +12,7 @@ import { useUser } from "context/authContext";
 export function NavbarPrivateArea() {
   const { user, handleGoogleLogin, firebaseLogout } = useUser();
   const [toggle, setToggle] = useState(false);
-  //console.log(data);
+  //console.log("NavbarPrivateArea/user: ", user);
   // const { user, handleGoogleLogin } = useUser();
   const toggleButtonAction = () => {
     setToggle(!toggle);
@@ -65,7 +65,7 @@ export function NavbarPrivateArea() {
                 xxx
               </span>
               <span className="block text-sm font-lato font-light text-gray-500 truncate dark:text-gray-400">
-                jsayerza.comptes@gmail.com
+                adm.escolapop@gmail.com
               </span>
             </div>
             <ul className="py-1" aria-labelledby="dropdown">
@@ -187,7 +187,7 @@ export function NavbarPrivateArea() {
             </li>
 
             <li className="pt-1">
-              {user ? (
+{/*               {user ? (
                 <div className="rounded-full hover:cursor-pointer">
                   <Image
                     width={32}
@@ -205,6 +205,39 @@ export function NavbarPrivateArea() {
                   </a>
                 </Link>
               )}
+ */}
+              {user ? (
+                <div className="rounded-full hover:cursor-pointer">
+                  {user.avatar ? (
+                    <Image
+                      width={32}
+                      height={32}
+                      onClick={() => firebaseLogout()}
+                      src={user.avatar}
+                      alt="avatar image"
+                      className="h-10 w-10 rounded-full bg-gray-100 "
+                    />
+                  ):(
+                    <Image
+                      width={32}
+                      height={32}
+                      onClick={() => firebaseLogout()}
+                      src="/user-profile-icon.jpg"
+                      alt="avatar image"
+                      className="h-10 w-10 rounded-full bg-gray-100 "
+                    />
+                  )}
+                </div>
+              ) : (
+                <Link href="/login">
+                  <a className="bg-gray-100 flex items-center justify-center m-auto py-2 px-4 font-lato font-normal text-black border rounded font-bold w-full hover:bg-orangeAMPA hover:text-black transition-all ease duration-200">
+                    Login
+                  </a>
+                </Link>
+              )}
+
+
+
             </li>
           </ul>
         </div>

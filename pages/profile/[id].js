@@ -26,23 +26,10 @@ function ProfilePage({ articles }) {
       //// no puede entrar y se le redirige a /rgpd
       //console.log("ProfilePage/user.email: ", user.email);
 
-      if (user.rgpd != 10 || user.validation != 10) {
+      if ((user.rgpd != 10) || (user.validation != 10)) {
         router.push("/rgpd");
       }
     }
-
-    /*     user &&
-      axios.get(HOST_SV + `/api/rgpd?useremail=${user.email}`)
-      .then((userData) => {
-        console.log("ProfilePage/userData: ", userData);
-        console.log("ProfilePage/userData.data[0]: ", userData.data[0]);
-
-        if ((userData.data[0].rgpd != 10) || (userData.data[0].validation != 10) ) {
-          router.push("/rgpd");
-        }
-        return setUserData(userData.data[0]);
-      });
- */
   }, [router, user]);
 
   useEffect(() => {

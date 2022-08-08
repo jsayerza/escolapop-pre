@@ -11,7 +11,7 @@ import { NavbarPrivateArea } from "../../components/NavbarPrivateArea";
 
 function FavoritesPage({ articles }) {
   const { user } = useUser();
-  console.log("FavoritesPage/user: ", user);
+ //console.log("FavoritesPage/user: ", user);
   const router = useRouter();
   const [userData, setUserData] = useState([]);
 

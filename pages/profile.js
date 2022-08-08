@@ -9,7 +9,7 @@ import ArticleList from "../components/ArticleList";
 import Layout from "../components/Layout";
 import { HOST_SV } from "../config/config";
 import { NavbarPrivateArea } from "../components/NavbarPrivateArea";
-import { ProfileBar } from "components/ProfileBar";
+//import { ProfileBar } from "components/ProfileBar";
 
 function ProfilePage() {
   const { user } = useUser();
@@ -19,7 +19,8 @@ function ProfilePage() {
 
   useEffect(() => {
     !user || (user === null && router.push("/login"));
-
+    
+    //console.log("profileArticles/Hi ha user i vol retornar articles");
     user &&
       axios
         .get(HOST_SV + "/api/articles/profile", {

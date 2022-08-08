@@ -1,28 +1,28 @@
-import axios from "axios";
+//import axios from "axios";
 import Image from "next/image";
 import Link from "next/link";
-import { toast } from "react-toastify";
+//import { toast } from "react-toastify";
 import Moment from "moment";
 import { useRouter } from "next/router";
-import { Tooltip } from "@mui/material";
-import { IconButton } from "@mui/material";
+//import { Tooltip } from "@mui/material";
+//import { IconButton } from "@mui/material";
 
-import { HOST_SV } from "../config/config";
+//import { HOST_SV } from "../config/config";
 import { ProfileButtons } from "./ProfileButtons";
 import { BadgeSaleStatus } from "../components/BadgeSaleStatus";
 
 
 export default function ArticleList({ articles }) {
-  //console.log("ArticleList/articles: ", articles);
   const router = useRouter();
   Moment.locale("es");
 
-  //console.log(articles, "from article list");
+  //console.log("ArticleList/articles: ", articles);
+  //console.log("ArticleList/articles.length: ", articles.length);
 
   return (
     <div className="flex gap-4 flex-col w-full justify-center">
-      {articles &&
-        articles.length > 0 &&
+      {(articles && (articles.length > 0)) ?
+        (
         articles.map((article) => (
 
           <Link href={`/articles/${article.articleid}`} key={article.articleid}>
@@ -124,9 +124,13 @@ export default function ArticleList({ articles }) {
           </div>
           </a>
           </Link>
-
-
-        ))}
+        ))
+        )
+        :
+        (
+          <div>No has creat articles</div>
+        )
+      }
     </div>
   );
 }

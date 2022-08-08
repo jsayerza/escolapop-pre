@@ -37,7 +37,8 @@ const updateRGPD = async (req, res) => {
 const getUserRGPD = async (req, res) => {
   //const { useremail } = req.body;
   const { useremail } = req.query;
-  //console.log("getUserRGPD/useremail: ", useremail);
+ //console.log("getUserRGPD/req.query: ", req.query);
+ //console.log("getUserRGPD/useremail: ", useremail);
   try {
     const [user] = await pool.query(
 /*       `SELECT * FROM user WHERE useremail = '${useremail}'` */

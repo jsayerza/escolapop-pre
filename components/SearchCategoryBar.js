@@ -1,11 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Tooltip } from "@mui/material";
-import { IconButton } from "@mui/material";
+//import { Tooltip } from "@mui/material";
+//import { IconButton } from "@mui/material";
 
 export const SearchCategoryBar = () => {
   return (
-    <div>
+    <div
+      className="flex flex-col md:flex-row md:items-center"
+    >
       <Link href="/articles/search?category=Roba">
         <a>
           <Image

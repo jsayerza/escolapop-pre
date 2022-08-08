@@ -73,14 +73,14 @@ export function ArticleForm({ articleUpdateId = null }) {
         const progress =
           (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
         //console.log("handleUpload/progress: ", progress);
-        console.log(snapshot);
+        //console.log(snapshot);
       },
       // si hay error lo ejecutamos
       (err) => console.log(err),
       // si todo fue ok hacemos un callback con una promesa recuperando la url y la seteamos al estado
       () => {
         getDownloadURL(uploadTask.snapshot.ref).then(setUrlImg);
-        console.log(urlImg);
+        //console.log(urlImg);
       }
     );
   };
