@@ -12,6 +12,7 @@ import { IoHeartCircle } from "react-icons/io5";
 
 import { HOST_SV } from "config/config";
 import { Layout } from "../../components/Layout";
+import { Footer } from "../../components/Footer";
 import { BadgeStatus } from "components/BadgeStatus";
 import { BadgeSaleStatus } from "components/BadgeSaleStatus";
 import { useUser } from "context/authContext";
@@ -80,6 +81,7 @@ function ArticleView({ article }) {
           useremail: user.email,
         })
         .then(async (res) => {
+          toast.info("👍🏼 Article inclòs en la teva llista de favorits");
           //console.log("+1 a comptador visites de: ", id);
           //router.push("/");
           /* router.push(`/profile/${user.id}`); */
@@ -278,7 +280,7 @@ function ArticleView({ article }) {
 
               <div>
                 <h2 className="text-lg text-gray-900 font-lato font-normal pb-2">
-                  Marcar com preferit
+                  Marcar com favorit
                 </h2>
                 <Tooltip title="Marca com article preferit">
                   <IconButton size="small">
@@ -338,6 +340,8 @@ function ArticleView({ article }) {
           {/* ///////// */}
         </div>
       </div>
+      <div className="pb-10"> </div>
+      <Footer />
     </Layout>
   );
 }

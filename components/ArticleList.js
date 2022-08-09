@@ -128,7 +128,7 @@ export default function ArticleList({ articles }) {
         )
         :
         (
-          <div>No has creat articles</div>
+          <div>No has creat articles. Publica el teu primer article!</div>
         )
       }
     </div>

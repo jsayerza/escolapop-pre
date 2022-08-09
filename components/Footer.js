@@ -32,7 +32,7 @@ export function Footer() {
                             |
                             <Link href="/rules">
                                 <a className="font-lato font-bold w-full hover:text-orangeAMPA p-4">
-                                    Normes ús
+                                    Normes_ús
                                 </a>
                             </Link>
                             |
@@ -43,7 +43,7 @@ export function Footer() {
                             </Link>
                     </div>
                     <div>
-                        © Escolapop. All rights reserved.
+                        © AMPA Escola Sant feliu. All rights reserved.
                     </div>
                 </div>
 

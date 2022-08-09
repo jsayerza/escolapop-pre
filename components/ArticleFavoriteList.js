@@ -86,7 +86,10 @@ export default function ArticleFavoriteList({ articles }) {
         )
         :
         (
-          <div>No tens articles favorits</div>
+          <div>
+            <div>No tens articles favorits.</div>
+            <div>Pots afegir els teus articles favorits fent una cerca i fent clic a "Favorit".</div>
+          </div>
         )
       }
     </div>

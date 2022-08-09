@@ -57,18 +57,22 @@ export const Home = ({ articles }) => {
 
   if (searchResult === null) {
     return (
-      <>
+      <div
+        //className="flex items-center justify-center"
+      >
         <SearchBar change={handleChange} />
         <h1 className="text-center text-2xl font-lato font-bold">
           No hi ha resultats de {`"${search}"`}
         </h1>
-      </>
+      </div>
     );
   }
 
   return (
-    <>
-      <SearchBar filters={false} />
+    <div
+      //className="flex items-center justify-center"
+    >
+    <SearchBar filters={false} />
       {/*       <h1 className="text-center text-2xl font-lato font-bold">
         {searchResult === SEARCH_RESULT_STATE.NOT_FOUND ||
         search === SEARCH_STATE.EMPTY
@@ -85,6 +89,6 @@ export const Home = ({ articles }) => {
           ))
         )}
       </div> */}
-    </>
+    </div>
   );
 };

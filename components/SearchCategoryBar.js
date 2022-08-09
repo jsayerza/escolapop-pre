@@ -6,7 +6,7 @@ import Link from "next/link";
 export const SearchCategoryBar = () => {
   return (
     <div
-      className="flex flex-col md:flex-row md:items-center"
+      className="flex items-center justify-center"
     >
       <Link href="/articles/search?category=Roba">
         <a>

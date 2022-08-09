@@ -7,6 +7,7 @@ import ArticleFavoriteList from "../components/ArticleFavoriteList";
 import Layout from "../components/Layout";
 import { HOST_SV } from "../config/config";
 //import { NavbarPrivateArea } from "../components/NavbarPrivateArea";
+import { Footer } from "../components/Footer";
 
 function FavoritesPage() {
   const { user } = useUser();
@@ -47,6 +48,7 @@ function FavoritesPage() {
       <div>
         <ArticleFavoriteList articles={favoritesArticles} />
       </div>
+      <Footer />
     </Layout>
   );
 }
