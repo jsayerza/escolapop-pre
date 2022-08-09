@@ -81,7 +81,6 @@ function ArticleView({ article }) {
           useremail: user.email,
         })
         .then(async (res) => {
-          toast.info("👍🏼 Article inclòs en la teva llista de favorits");
           //console.log("+1 a comptador visites de: ", id);
           //router.push("/");
           /* router.push(`/profile/${user.id}`); */
@@ -289,6 +288,7 @@ function ArticleView({ article }) {
                       onClick={() => {
                         //console.log("ArticleView/preferit/article.articleid: ", article.articleid);
                         handleCounter("articlefavoritecount");
+                        toast.info("👍🏼 Article inclòs en la teva llista de favorits");
                       }}
                     >
                       <IoHeartCircle size={22} />
