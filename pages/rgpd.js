@@ -10,20 +10,21 @@ import { MdOutlineMailOutline } from "react-icons/md";
 import { HOST_SV } from "../config/config";
 import { VALIDATION_EMAIL } from "../config/config";
 
+
 function RGPDPage() {
 
   //console.log("RGPDPage/HOST_SV: ", HOST_SV );
   //console.log("RGPDPage/VALIDATION_EMAIL: ", VALIDATION_EMAIL );
 
-    const router = useRouter();
-    const { user, firebaseLogout } = useUser();
+  const router = useRouter();
+  const { user, firebaseLogout } = useUser();
 
-    const subject = "Escolapop - Sol·licitud accés ";
-    const body =
-      "Hola, estic interesat/da en accedir al servei Escolapop.%0A%0A" + 
-      "Nom: ____%0A" +
-      "Cognoms: ____%0A" +
-      "Pare/Mare de ____, de la classe ____.%0A%0A" ;
+  const subject = "Escolapop - Sol·licitud accés ";
+  const body =
+    "Hola, estic interesat/da en accedir al servei Escolapop.%0A%0A" + 
+    "Nom: ____%0A" +
+    "Cognoms: ____%0A" +
+    "Pare/Mare de ____, de la classe ____.%0A%0A" ;
   
   const handleUpdate = async (event, answerRGPD) => {
     //console.log("RGPDPage/handleUpdate/answerRGPD: ", answerRGPD);
