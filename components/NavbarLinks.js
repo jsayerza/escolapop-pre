@@ -114,6 +114,24 @@ export const NavbarLinks = ({ user, logout, privateLinks = false }) => {
   return (
     <>
       <li>
+        <Link href="/new">
+          <a>
+            <Tooltip title="Publica un nou article">
+              <IconButton
+                size="small"
+                className="bg-gray-100 flex items-center justify-center m-auto py-2 px-4 font-lato font-normal text-black border rounded font-bold w-full hover:bg-orangeAMPA hover:text-black transition-all ease duration-200"
+              >
+                Nou article
+                <span className="px-2">
+                  <AiFillFileAdd size={"2rem"} />
+                </span>
+              </IconButton>
+            </Tooltip>
+          </a>
+        </Link>
+      </li>
+
+      <li>
         <Tooltip title="La meva àrea d'usuari/a">
           <IconButton size="small">
             <Link href={user ? `/profile/${user.id}` : `/login`}>

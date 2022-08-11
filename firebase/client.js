@@ -74,15 +74,15 @@ const provider = new GoogleAuthProvider();
 // mapeamos/transformamos los datos que queremos
 const mapUserFromFirebaseAuth = async (user) => {
   const { displayName, email, photoURL, uid } = user;
-  console.log("client/mapUserFromFirebaseAuth/uid: ", uid);
- //console.log("client/mapUserFromFirebaseAuth/email: ", email);
- //console.log("client/mapUserFromFirebaseAuth/displayName: ", displayName);
- //console.log("client/mapUserFromFirebaseAuth/photoURL: ", photoURL);
+  //console.log("client/mapUserFromFirebaseAuth/uid: ", uid);
+  //console.log("client/mapUserFromFirebaseAuth/email: ", email);
+  //console.log("client/mapUserFromFirebaseAuth/displayName: ", displayName);
+  //console.log("client/mapUserFromFirebaseAuth/photoURL: ", photoURL);
 
   const { data } = await axios.get(HOST_SV + `/api/rgpd?useremail=${email}`);
- //console.log("client/mapUserFromFirebaseAuth/data: ", data);
+  //console.log("client/mapUserFromFirebaseAuth/data: ", data);
   if (data.length == 0) {
-   //console.log("client/mapUserFromFirebaseAuth/data.length == 0");
+    //console.log("client/mapUserFromFirebaseAuth/data.length == 0");
     return {
       name: displayName,
       email,
