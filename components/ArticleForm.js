@@ -5,11 +5,13 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as yup from "yup";
 import { getDownloadURL } from "firebase/storage";
 import Image from "next/image";
+import { toast } from "react-toastify";
 
 import { uploadImage } from "../firebase/client";
 import { useUser } from "context/authContext";
 // import { useSession } from "next-auth/react";
 import { HOST_SV, MAXIMAGESIZE } from "../config/config";
+
 
 export function ArticleForm({ articleUpdateId = null }) {
   //console.log("articleUpdateId: ", articleUpdateId);
@@ -300,12 +302,18 @@ export function ArticleForm({ articleUpdateId = null }) {
                         imageurl: urlImg,
                         articleimageid: articleUpdateId,
                       })
-                      .then((res) => router.push("/"))
+                      .then((res) => {
+                        toast.info("Article actualitzat");
+                        //router.push("/");
+                        router.back();
+                      })
                       .catch((e) =>
                         console.error("onSubmit PUT image error: ", e)
                       );
                   } else {
-                    router.push("/");
+                    toast.info("Article actualitzat");
+                    //router.push("/");
+                    router.back();
                   }
                 })
                 .catch((e) => console.log("onSubmit PUT article error: ", e))
@@ -327,7 +335,11 @@ export function ArticleForm({ articleUpdateId = null }) {
                     url: urlImg,
                     imagerefpath: fbRefPath,
                   })
-                  .then((res) => router.push("/"))
+                  .then((res) => {
+                    toast.info("Article creat");
+                    //router.push("/");
+                    router.back();
+                  })
                   .catch((e) =>
                     console.error("onSubmit POST image error: ", e)
                   );
