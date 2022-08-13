@@ -50,7 +50,7 @@ function rules() {
         <p>+ Estat de publicació: &quot;Publicat&quot; </p>
         <p>+ Estat de venda: &quot;En venda&quot; o &quot;Reservat&quot;</p>
         <p></p>
-        <p>Si a l’hora de publicar, modificar o cancel·lar un article teniu incidències, podeu sol·licitar suport tècnic contactant per email amb <a href="mailto:adm.escolapop@gmail.com" className="underline text-greenescola hover:text-orangeAMPA visited:text-purple-600">adm.escolapop@gmail.com</a>.</p>
+        <p>Si a l’hora de publicar, modificar o cancel·lar un article teniu incidències, podeu sol·licitar suport tècnic contactant per email amb <a href="mailto:adm.escolapop@gmail.com?subject=Escolapop - Suport" className="underline text-greenescola hover:text-orangeAMPA visited:text-purple-600">adm.escolapop@gmail.com</a>.</p>
         <p></p>
         <p>Els administradors d’aquesta plataforma d’intercanvi, podran eliminar les publicacions que considerin que el seu contingut no es apropiat per a cada apartat o per a aquesta plataforma d’intercanvi en general.</p>
       </div>
