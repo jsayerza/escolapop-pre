@@ -97,7 +97,6 @@ function RGPDPage() {
                 className="flex flex-col gap-4 pt-6 pb-1"
                 onClick={() => {
                     router.push(
-                    //`mailto:${"jsayerza.comptes@gmail.com"}?subject=${
                     `mailto:${VALIDATION_EMAIL}?subject=${
                         subject + user.email
                     }&body=${body}`
