@@ -52,8 +52,8 @@ export function ArticleForm({ articleUpdateId = null }) {
   const [uploadError, setUploadError] = useState(false);
 
   const handleUpload = (file = null) => {
-    console.log("ArticleForm/handleUpload/file: ", file);
-    console.log("ArticleForm/handleUpload/MAXIMAGESIZE: ", MAXIMAGESIZE);
+    //console.log("ArticleForm/handleUpload/file: ", file);
+    //console.log("ArticleForm/handleUpload/MAXIMAGESIZE: ", MAXIMAGESIZE);
 
     //file?.size > 1000000 ||
     if (
