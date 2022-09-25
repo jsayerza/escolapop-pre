@@ -52,8 +52,8 @@ export function ArticleForm({ articleUpdateId = null }) {
   const [uploadError, setUploadError] = useState(false);
 
   const handleUpload = (file = null) => {
-    //console.log("ArticleForm/handleUpload/file: ", file);
-    //console.log("ArticleForm/handleUpload/MAXIMAGESIZE: ", MAXIMAGESIZE);
+    console.log("ArticleForm/handleUpload/file: ", file);
+    console.log("ArticleForm/handleUpload/MAXIMAGESIZE: ", MAXIMAGESIZE);
 
     //file?.size > 1000000 ||
     if (
@@ -451,7 +451,7 @@ export function ArticleForm({ articleUpdateId = null }) {
             <div className="mb-4 flex flex-col">
               {uploadError && (
                 <p className="text-xl text-left text-red-500">
-                  El fitxer no és una imatge o és massa gran (1MB max.)
+                  El fitxer no és una imatge o és massa gran (5MB max.)
                 </p>
               )}
               <input
