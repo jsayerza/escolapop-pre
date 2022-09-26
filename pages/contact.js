@@ -1,6 +1,6 @@
 import Layout from "../components/Layout";
 import { Footer } from "../components/Footer";
-//import { VALIDATION_EMAIL } from "../config/config";
+import { VALIDATION_EMAIL } from "../config/config";
 
 
 function contact() {
