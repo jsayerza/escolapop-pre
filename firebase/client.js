@@ -46,8 +46,21 @@ console.log("APPID_FB: ", APPID_FB);
 };
  */
 
-//// Sayer's Firebase configuration without NEXT_PUBLIC ENV vars
+//// PRO Sayer's Firebase configuration without NEXT_PUBLIC ENV vars
 const firebaseConfig = {
+  apiKey: "AIzaSyBjk37WjBZeG8KCEErmbKXdLKm47L39ky8",
+  authDomain: "escolapop-pro.firebaseapp.com",
+  projectId: "escolapop-pro",
+  storageBucket: "escolapop-pro.appspot.com",
+  messagingSenderId: "200134930061",
+  appId: "1:200134930061:web:4ec73bcd1f9d9fc0e7bcc4",
+  measurementId: "G-9C3HNT32MW"
+};
+
+
+
+//// PRE Sayer's Firebase configuration without NEXT_PUBLIC ENV vars
+/* const firebaseConfig = {
   apiKey: "AIzaSyByQP6YvMi6uDvejkm93aRFGrC2sjXT430",
   authDomain: "escolapop-pre.firebaseapp.com",
   projectId: "escolapop-pre",
@@ -55,7 +68,7 @@ const firebaseConfig = {
   messagingSenderId: "669590894513",
   appId: "1:669590894513:web:104db4bd09c13422b7af90",
 };
-
+ */
 //// Joaquin's Firebase configuration
 /* const firebaseConfig = {
   apiKey: "AIzaSyDMrVCx3Czfj5Rcp52Dk544UKTaZ7CzRAg",
